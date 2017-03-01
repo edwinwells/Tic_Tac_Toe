@@ -1,12 +1,21 @@
 class Board
 
-	attr_accessor :board
+	attr_accessor :setup
 
 	def initialize()
-		@board=["", "" , "" , "", "", "", "", "", ""]
+		@setup=["", "" , "" , "", "", "", "", "", ""]
 	end
 
 	def set_position(position, character)
-		@board[position] = character
+		@setup[position] = character
 	end
+
+	def check_position?(position)
+		if @setup[position] == ""
+			true
+		else
+			false
+		end
+	end	
+
 end
