@@ -3,7 +3,7 @@ class Board
 	attr_accessor :setup
 
 	def initialize()
-		@setup=["", "" , "" , "", "", "", "", "", ""]
+		@setup=Array.new(9, "")
 	end
 
 	def set_position(position, character)
@@ -18,4 +18,11 @@ class Board
 		end
 	end	
 
+	def check_full?()
+		@setup.count("") == 0
+	end
+
+	def win?()
+
+	end
 end

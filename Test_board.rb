@@ -37,5 +37,45 @@ class TestBoard < Minitest::Test
 		board.setup = ["X", "", "", "", "O", "", "", "", ""]		
 		result = board.check_position?(0)
 		assert_equal(false,result)
-	end		
+	end	
+
+	def test_empty_spot
+		board = Board.new
+		board.setup = ["X", "", "", "", "O", "", "", "X", ""]
+		result = board.check_position?(1)
+		assert_equal(true,result)
+	end
+
+	def test_attempted_new_spot_at_already_occupied_returns_false
+		board = Board.new
+		board.setup = ["X", "O", "", "", "O", "", "X", "X", "X"]
+		result = board.check_position?(1)
+		assert_equal(false, result)
+	end
+
+	def test_an_attempted_second_new_spot_at_already_occupied_returns_false
+		board = Board.new
+		board.setup = ["X", "O", "", "", "O", "", "X", "X", "X"]
+		 result = board.check_position?(15)
+		 assert_equal(false,result)
+		end
+
+		def test_full_board_equals_game_over
+			board = Board.new
+
+			board.setup = ["X", "O", "O", "O", "O", "X", "X", "X", "X"]
+			assert_equal(true, board.check_full?)
+		end
+
+		def test_almost_full_board_returns_false_for_check_full?
+			board = Board.new
+			board.setup = ["X", "X", "O", "O", "O", "", "X", "X", "X"]
+			assert_equal(false,board.check_full?)
+		end 
+
+		def test_if_board_is_empty_returns_false_for_check_full?
+			board=Board.new
+			board.setup = ["", "", "", "", "", "", "", "", ""]
+			assert_equal(false,board.check_full?)
+		end
 end
