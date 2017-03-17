@@ -5,10 +5,11 @@ newboard=Board.new
 terminal=Terminal.new
  
 newboard={
-			:a1=>"X", :a2=>"O", :a3=>"O",
+			:a1=>"X", :a2=>"O", :a3=>"X",
 		 	:b1=>"X", :b2=>"", :b3=>"O",
-		  	:c1=>"O", :c2=>"O", :c3=>"X"	
+		  	:c1=>"X", :c2=>"O", :c3=>"X"	
 		 }
 
 
 terminal.rows(newboard)
+# terminal.check_for_wins(newboard)
