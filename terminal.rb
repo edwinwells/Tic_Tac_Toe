@@ -5,30 +5,31 @@ class Terminal
 	def rows(board_hash)
 
 		empty=Hash.new
-			board_hash.each do |key, value|
-	 			value = " " if value == ""
-	 			"#{key}-----"
-   
-                empty[:"#{key}"] = value
-                # empty[:"#{value}"] = value
-                end
-                print empty
-                # hash.each do |key, array|
-                # puts "#{key}-----"
-                # puts array
-                # end
 
-				# empty.(:key=>value)
-				# empty.inject{key,value}
-							
-# grades = Hash.new
+		board_hash.each do |key, value|
+		empty[key] = value
 
-# grades["Bob"] = 82
-# grades["Jim"] = 94
-# grades["Billy"] = 58
-	# 	row = empty.each_slice(3).to_a
-	# 		row.each do |here|			
-	# 		puts " " + here.join(" ") # X O O
-	# 		end			
-	end	
+	 		if empty[key] == ""
+           	   empty[key] = " "
+        	end                
+        end
+=begin
+ The following code articulates the display,
+ with top & bottom borders;
+ with a1 in lower-left corner; and
+ with c3 in upper-right corner:
+=end
+
+        puts ""
+        print "********"
+        puts ""
+        print " " + empty[:c1] + " " + empty[:c2] + " " + empty[:c3]
+        puts ""
+        print " " + empty[:b1] + " " + empty[:b2] + " " + empty[:b3]
+        puts ""
+        print " " + empty[:a1] + " " + empty[:a2] + " " + empty[:a3]
+        puts ""
+        puts ""
+        print "********"
+     end					
 end

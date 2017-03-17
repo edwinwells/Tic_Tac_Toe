@@ -4,12 +4,11 @@ require_relative "terminal.rb"
 newboard=Board.new
 terminal=Terminal.new
  
-newboard={:A1=>"X", :A2=>"O", :A3=>"O",
-		  :B1=>"X", :B2=>:"", :B3=>"O",
-		  :C1=>"O", :C2=>"O", :C3=>"X"	
-			}
+newboard={
+			:a1=>"X", :a2=>"O", :a3=>"O",
+		 	:b1=>"X", :b2=>"", :b3=>"O",
+		  	:c1=>"O", :c2=>"O", :c3=>"X"	
+		 }
 
-
-# rows(board_array)	
 
 terminal.rows(newboard)
