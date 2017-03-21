@@ -181,4 +181,11 @@ end
 	        print "********"
 	end
 
+	def game_over?(board)
+		if  check_for_wins(board) !=  win_for_X() &&
+		    check_for_wins(board) !=  win_for_O()
+		    false
+		end
+	end
+
 end

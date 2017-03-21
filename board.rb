@@ -35,4 +35,8 @@ class Board
         if count <9 then false else true end
     end
 
+    # def check_winner?()
+    # 	@board.stub_winner? || (@board.stub_winner? == false && @board.check_full? == true)
+    # end
+
 end
