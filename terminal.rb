@@ -2,17 +2,25 @@ require_relative "board.rb"
 
 class Terminal
 
+	attr_reader :win
+
+	def initialize()
+		@win = false
+	end
+
 	def rows(board_hash)
 
 		empty=Hash.new
 
 		board_hash.each do |key, value|
 		empty[key] = value
-
+puts "rows"
 	 		if empty[key] == ""
            	   empty[key] = " "
         	end                
-        end
+      	end
+       empty
+     end
 =begin
  The following code articulates the display,
  with top & bottom borders;
@@ -22,11 +30,11 @@ class Terminal
 
 
 # print empty
-showboard(empty)
-check_for_wins(empty)
-end
+# showboard(empty)
+# check_for_wins(empty)
 
 	def check_for_wins(empty)
+		puts "check_for_wins"
 		if (
 			empty[:a1] == "X" &&
 		    empty[:a2] == "X" &&
@@ -159,15 +167,15 @@ end
 		def win_for_X()
 			puts""
 			puts " X wins "
-			exit
-			# win = true
+			# exit
+			@win = true
 		end
 
 		def win_for_O()
 			puts""
 			puts " O wins "
-			exit
-			# win = true
+			# exit
+			@win = true
 		end
 
 	def showboard(empty)
