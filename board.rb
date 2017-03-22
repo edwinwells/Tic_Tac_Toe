@@ -167,24 +167,24 @@ class Board
 
 		def win_for_X()
 			puts""
-			puts " X wins"
+			puts " X wins "
 			win = true
 		end
 
 		def win_for_O()
 			puts""
-			puts " O wins"
+			puts " O wins "
 			win = true
 		end
 
 		def get_X(newgame)
-			print " X, enter your square!"
+			print " X, enter your square! "
 			square = gets.chomp
 
 			until newgame.check_position?(square) == true do
 	        	print " Invalid entry! Already occupied."
 				puts ""
-				print " X, enter your square!"
+				print " X, enter your square! "
 				square = gets.chomp
 			end
 

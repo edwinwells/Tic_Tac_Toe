@@ -16,40 +16,31 @@ terminal = Terminal.new
 
 			newgame.get_X(newgame)
 			terminal.rows(newgame.setup)
+
+			if newgame.check_full?() == true ||
+			  win == true
+			  puts""
+			  print " Care for another game? (Y or N) "
+			  again = gets.chomp
+			  	if again = "Y" || "y"
+			  		goto 1
+			  	else 
+			  		exit
+			  	end
+			end
+
 			newgame.get_O(newgame)
 			terminal.rows(newgame.setup)
+
+			if newgame.check_full?() == true ||
+			  win == true
+			  puts""
+			  print " Care for another game? (Y or N) "
+			  again = gets.chomp
+			  	if again = "Y" || "y"
+			  		goto 1
+			  	else 
+			  		exit
+			  	end
+			end
 		end
-
-		# def get_X()
-		# 	print "X, enter your square!"
-		# 	square = gets.chomp
-
-		# 	until newgame.check_position?(square) == true do
-	 #        	print "Invalid entry! Already occupied."
-		# 		puts ""
-		# 		print "X, enter your square!"
-		# 		square = gets.chomp
-		# 	end
-
-		# 	newgame.set_position(square,"X")
-		# 	puts ""
-		# 	print newgame.setup
-		# 	puts ""
-		# end
-
-		# def get_O()
-		# 	print "O, enter your square!"
-		# 	square = gets.chomp
-
-		# 	until newgame.check_position?(square) == true do
-	 #        	print "Invalid entry! Already occupied."
-		# 		puts ""
-		# 		print "O, enter your square!"
-		# 		square = gets.chomp
-		# 	end
-
-		# 	newgame.set_position(square,"O")
-		# 	puts ""
-		# 	print newgame.setup
-		# 	puts ""
-		# end

@@ -158,14 +158,16 @@ end
 	end
 		def win_for_X()
 			puts""
-			puts " X wins"
-			win = true
+			puts " X wins "
+			exit
+			# win = true
 		end
 
 		def win_for_O()
 			puts""
-			puts " O wins"
-			win = true
+			puts " O wins "
+			exit
+			# win = true
 		end
 
 	def showboard(empty)
@@ -186,6 +188,8 @@ end
 		if  check_for_wins(board) !=  win_for_X() &&
 		    check_for_wins(board) !=  win_for_O()
 		    false
+		else 
+			true
 		end
 	end
 
