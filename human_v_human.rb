@@ -1,40 +1,55 @@
 require_relative "board.rb"
 require_relative "terminal.rb"
 
-setup = Board.new
+newgame = Board.new
 terminal = Terminal.new
 
-setup = {
-			:a1 => "", :a2 => "", :a3 => "",
-			:b1 => "", :b2 => "", :b3 => "",
-			:c1 => "", :c2 => "", :c3 => ""
-		  }
 
 
-		print setup
-		puts ""
-		print "X, enter your square!"
-		square = gets.chomp
-		setup[:"#{square}"] = "X"
-		puts ""
-		print setup
-		puts ""
 
-		ready = 0
-		until ready == 1 do
-			print "O enter your square!"
-			square = gets.chomp
+		win = false
+		until newgame.check_full? == true ||
+			  win == true do
 
-			if setup[:"#{square}"] != ""
-				print "Invalid entry! Already occupied."
-				puts ""
-				ready = 0
-			else setup[:"#{square}"] = "O"
-				ready = 1
-			end
+			print newgame.setup
+			puts ""
+
+			newgame.get_X(newgame)
+			terminal.rows(newgame.setup)
+			newgame.get_O(newgame)
+			terminal.rows(newgame.setup)
 		end
-				puts ""
-		setup[:"#{square}"] = "O"
 
-terminal.rows(setup)
-# terminal.check_for_wins(setup)
+		# def get_X()
+		# 	print "X, enter your square!"
+		# 	square = gets.chomp
+
+		# 	until newgame.check_position?(square) == true do
+	 #        	print "Invalid entry! Already occupied."
+		# 		puts ""
+		# 		print "X, enter your square!"
+		# 		square = gets.chomp
+		# 	end
+
+		# 	newgame.set_position(square,"X")
+		# 	puts ""
+		# 	print newgame.setup
+		# 	puts ""
+		# end
+
+		# def get_O()
+		# 	print "O, enter your square!"
+		# 	square = gets.chomp
+
+		# 	until newgame.check_position?(square) == true do
+	 #        	print "Invalid entry! Already occupied."
+		# 		puts ""
+		# 		print "O, enter your square!"
+		# 		square = gets.chomp
+		# 	end
+
+		# 	newgame.set_position(square,"O")
+		# 	puts ""
+		# 	print newgame.setup
+		# 	puts ""
+		# end

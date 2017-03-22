@@ -156,26 +156,27 @@ end
 			  win_for_O()																
 		end
 	end
-
 		def win_for_X()
 			puts""
 			puts " X wins"
+			win = true
 		end
 
 		def win_for_O()
 			puts""
 			puts " O wins"
+			win = true
 		end
 
 	def showboard(empty)
 	        puts ""
 	        print "********"
 	        puts ""
-	        print " " + empty[:c1] + " " + empty[:c2] + " " + empty[:c3]
+	        print " " + empty[:a3] + " " + empty[:b3] + " " + empty[:c3]
 	        puts ""
-	        print " " + empty[:b1] + " " + empty[:b2] + " " + empty[:b3]
+	        print " " + empty[:a2] + " " + empty[:b2] + " " + empty[:c2]
 	        puts ""
-	        print " " + empty[:a1] + " " + empty[:a2] + " " + empty[:a3]
+	        print " " + empty[:a1] + " " + empty[:b1] + " " + empty[:c1]
 	        puts ""
 	        puts ""
 	        print "********"
