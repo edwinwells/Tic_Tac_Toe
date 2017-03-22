@@ -13,14 +13,12 @@ terminal = Terminal.new
 		print newgame.setup
 		print"HI"
 		print newgame
-		# win = false
 		terminal.showboard(newgame.setup)
 
 		while newgame.check_full? == false ||
 			  terminal.win == false do
 			puts "newgame"
 			terminal.showboard(newgame.setup)
-			# print newgame.setup
 			puts ""
 
 			newgame.get_X()
@@ -43,16 +41,12 @@ terminal = Terminal.new
 			end	
 
 			newgame.get_O()
-			  	puts "terminal.win: #{terminal.win}"
 			terminal.check_for_wins(newgame.setup)
-			  	puts "terminal.win: #{terminal.win}"
 			terminal.showboard(newgame.setup)
-			  	puts "terminal.win: #{terminal.win}"
 			if newgame.check_full? == true ||
 			  terminal.win == true
 			  print " Care for another game? (Y or N) "
 			  again = gets.chomp
-			  # again = again.downcase
 			  	if again == "y"
 			  		startgame()
 			  	else
@@ -62,24 +56,3 @@ terminal = Terminal.new
 		end
 end
 startgame()
-		# 	  puts""
-		# 	  print " Care for another game? (Y or N) "
-		# 	  again = gets.chomp
-		# 	  	if again = "Y" || "y"
-		# 	  		goto 1
-		# 	  	else 
-		# 	  		exit
-		# 	  	end
-		# 	end
-		# end
-			# if newgame.check_full?() == true ||
-			#   win == true
-			#   puts""
-			#   print " Care for another game? (Y or N) "
-			#   again = gets.chomp
-			#   	if again = "Y" || "y"
-			#   		goto 1
-			#   	else 
-			#   		exit
-			#   	end
-			# end

@@ -28,11 +28,6 @@ puts "rows"
  with c3 in upper-right corner:
 =end
 
-
-# print empty
-# showboard(empty)
-# check_for_wins(empty)
-
 	def check_for_wins(empty)
 		puts "check_for_wins"
 		if (
@@ -167,14 +162,12 @@ puts "rows"
 		def win_for_X()
 			puts""
 			puts " X wins "
-			# exit
 			@win = true
 		end
 
 		def win_for_O()
 			puts""
 			puts " O wins "
-			# exit
 			@win = true
 		end
 
@@ -182,11 +175,17 @@ puts "rows"
 	        puts ""
 	        print "********"
 	        puts ""
-	        print " " + empty[:a3] + " " + empty[:b3] + " " + empty[:c3]
+	        print " " + empty[:a3] +
+	        	  " " + empty[:b3] +
+	        	  " " + empty[:c3]
 	        puts ""
-	        print " " + empty[:a2] + " " + empty[:b2] + " " + empty[:c2]
+	        print " " + empty[:a2] +
+	        	  " " + empty[:b2] +
+	        	  " " + empty[:c2]
 	        puts ""
-	        print " " + empty[:a1] + " " + empty[:b1] + " " + empty[:c1]
+	        print " " + empty[:a1] +
+	        	  " " + empty[:b1] +
+	        	  " " + empty[:c1]
 	        puts ""
 	        puts ""
 	        print "********"
