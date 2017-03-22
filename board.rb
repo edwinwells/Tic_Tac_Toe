@@ -182,7 +182,7 @@ class Board
 			square = gets.chomp
 
 			until newgame.check_position?(square) == true do
-	        	print " Invalid entry! Already occupied."
+	        	print " Invalid entry! Try again..."
 				puts ""
 				print " X, enter your square! "
 				square = gets.chomp
@@ -199,7 +199,7 @@ class Board
 			square = gets.chomp
 
 			until newgame.check_position?(square) == true do
-	        	print " Invalid entry! Already occupied."
+	        	print " Invalid entry! Try again..."
 				puts ""
 				print " O, enter your square!"
 				square = gets.chomp
