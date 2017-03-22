@@ -17,7 +17,7 @@ class Board
 	end
 
 	def check_position?(position)
-		if @setup[:"#{position}"] == ""
+		if @setup[:"#{position}"] == " "
 			true
 		else
 			false

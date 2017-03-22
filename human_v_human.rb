@@ -1,32 +1,40 @@
 require_relative "board.rb"
 require_relative "terminal.rb"
 
-board = Board.new
+setup = Board.new
 terminal = Terminal.new
 
 setup = {
-		:a1 => "", :a2 => "", :a3 => "",
-		:b1 => "", :b2 => "", :b3 => "",
-		:c1 => "", :c2 => "", :c3 => ""
-		}
+			:a1 => "", :a2 => "", :a3 => "",
+			:b1 => "", :b2 => "", :b3 => "",
+			:c1 => "", :c2 => "", :c3 => ""
+		  }
 
-terminal.rows(setup)
 
-# terminal.showboard(board.set_position)
-
-	while terminal.game_over?(setup) == false
+		print setup
+		puts ""
 		print "X, enter your square!"
 		square = gets.chomp
-		setup.set_position(square, "X")
-		terminal.showboard(setup.set_position)
-	if terminal.game_over?
-		break
-	end
+		setup[:"#{square}"] = "X"
+		puts ""
+		print setup
+		puts ""
 
-		print "O enter your square!"
-		square = gets.chomp
-		board.set_position(square, "O")
-		terminal.showboard(setup.set_position)
-	end
+		ready = 0
+		until ready == 1 do
+			print "O enter your square!"
+			square = gets.chomp
 
-	terminal.check_for_wins(setup)
+			if setup[:"#{square}"] != ""
+				print "Invalid entry! Already occupied."
+				puts ""
+				ready = 0
+			else setup[:"#{square}"] = "O"
+				ready = 1
+			end
+		end
+				puts ""
+		setup[:"#{square}"] = "O"
+
+terminal.rows(setup)
+# terminal.check_for_wins(setup)
