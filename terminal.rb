@@ -14,8 +14,7 @@ class Terminal
 
 		board_hash.each do |key, value|
 		empty[key] = value
-puts "rows"
-	 		if empty[key] == ""
+ 		if empty[key] == ""
            	   empty[key] = " "
         	end                
       	end
@@ -29,7 +28,6 @@ puts "rows"
 =end
 
 	def check_for_wins(empty)
-		puts "check_for_wins"
 		if (
 			empty[:a1] == "X" &&
 		    empty[:a2] == "X" &&
