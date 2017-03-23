@@ -34,34 +34,18 @@ class Board
         if count <9 then false else true end
     end
 
-		def get_X()
-			print " X, enter your square! "
+		def get_player_move(player_name)
+			print " #{player_name}, enter your square! "
 			square = gets.chomp
 
 			until check_position?(square) == true do
 	        	print " Invalid entry! Try again..."
 				puts ""
-				print " X, enter your square! "
+				print " #{player_name}, enter your square! "
 				square = gets.chomp
 			end
 
-			set_position(square,"X")
-			puts ""
-			puts ""
-		end
-
-		def get_O()
-			print " O, enter your square! "
-			square = gets.chomp
-
-			until check_position?(square) == true do
-	        	print " Invalid entry! Try again..."
-				puts ""
-				print " O, enter your square! "
-				square = gets.chomp
-			end
-
-			set_position(square,"O")
+			set_position(square, player_name)
 			puts ""
 			puts ""
 		end

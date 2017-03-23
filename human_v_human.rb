@@ -13,10 +13,10 @@ terminal = Terminal.new
 			terminal.showboard(newgame.setup)
 			puts ""
 
-			newgame.get_X()
+			newgame.get_player_move("X")
 			newgame.game_status(terminal, newgame)	
 
-			newgame.get_O()
+			newgame.get_player_move("O")
 			newgame.game_status(terminal, newgame)	
 
 		end
