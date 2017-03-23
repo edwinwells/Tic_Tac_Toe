@@ -14,49 +14,11 @@ terminal = Terminal.new
 			puts ""
 
 			newgame.get_X()
-			terminal.check_for_wins(newgame.setup)
-			terminal.showboard(newgame.setup)
-			if newgame.check_full? == true
-				  print " The game is tie! Care for another game? (Y or N) "
-				  again = gets.chomp
-			  	if again.downcase == "y"
-			  		startgame()
-			  	else 
-			  		exit
-			  	end
-			end
-			if	  terminal.win == true
-				  print " Care for another game? (Y or N) "
-				  again = gets.chomp
-				  if again.downcase == "y"
-				  	startgame()
-				  else 
-				  	exit
-				  end			
-			end	
+			newgame.game_status(terminal, newgame)	
 
 			newgame.get_O()
-			terminal.check_for_wins(newgame.setup)
-			terminal.showboard(newgame.setup)
-			if newgame.check_full? == true
-				  print " The game is tie! Care for another game? (Y or N) "
-				  again = gets.chomp
-				  	if again.downcase == "y"
-				  		startgame()
-				  	else 
-				  		exit
-				  	end
-			end
-			if	  terminal.win == true
-				  print " Care for another game? (Y or N) "
-				  again = gets.chomp
+			newgame.game_status(terminal, newgame)	
 
-				  	if again.downcase == "y"
-				  		startgame()
-				  	else 
-				  		exit
-				  	end			
-			end
 		end
 end
 startgame()
