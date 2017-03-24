@@ -47,29 +47,37 @@ class Board
 
 			set_position(square, player_name)
 			puts ""
-			puts ""
 		end
 
 		def game_status(terminal, newgame)
 			terminal.check_for_wins(newgame.setup)
 			terminal.showboard(newgame.setup)
-			if newgame.check_full? == true
-				  print " The game is tie! Care for another game? (Y or N) "
-				  again = gets.chomp
-			  	if again.downcase == "y"
-			  		startgame()
-			  	else 
-			  		exit
-			  	end
-			end
+			if newgame.check_full? == true &&
+					  terminal.win == false
+				print " The game is tie!"
+				if reset_game? == true
+					startgame()
+				else 
+					exit			
+				end
+			end		
+
 			if	  terminal.win == true
-				  print " Care for another game? (Y or N) "
-				  again = gets.chomp
-				  if again.downcase == "y"
-				  	startgame()
-				  else 
-				  	exit
-				  end	
-			end
+				if reset_game? == true
+					startgame()
+				else 
+					exit			
+				end
+			end	
+		end
+
+		def reset_game?()
+		  print " Care for another game? (Y or N) "
+		  again = gets.chomp
+			  if again.downcase == "y"
+			  	true
+			  else 
+			  	false
+			  end
 		end
 end

@@ -10,12 +10,12 @@ terminal = Terminal.new
 
 		while newgame.check_full? == false ||
 			  terminal.win == false do
-			terminal.showboard(newgame.setup)
+
 			puts ""
-
 			newgame.get_player_move("X")
-			newgame.game_status(terminal, newgame)	
-
+			newgame.game_status(terminal, newgame)
+				
+			puts ""
 			newgame.get_player_move("O")
 			newgame.game_status(terminal, newgame)	
 
