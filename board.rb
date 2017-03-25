@@ -4,9 +4,9 @@ class Board
 
 	def initialize()
 		@setup = {
-			     :a1 => "", :a2 => "", :a3 => "",
-			     :b1 => "", :b2 => "", :b3 => "",
-			     :c1 => "", :c2 => "", :c3 => ""
+			     a1: "", a2: "", a3: "",
+			     b1: "", b2: "", b3: "",
+			     c1: "", c2: "", c3: ""
 		         }
 
 	end
@@ -49,8 +49,8 @@ class Board
 			puts ""
 		end
 
-		def game_status(terminal, newgame)
-			terminal.check_for_wins(newgame.setup)
+		def game_status(terminal, newgame, player_name)
+			terminal.check_for_wins(newgame.setup, player_name)
 			terminal.showboard(newgame.setup)
 			if newgame.check_full? == true &&
 					  terminal.win == false
@@ -72,7 +72,7 @@ class Board
 		end
 
 		def reset_game?()
-		  print " Care for another game? (Y or N) "
+		  print "\n Care for another game? (Y or N) "
 		  again = gets.chomp
 			  if again.downcase == "y"
 			  	true

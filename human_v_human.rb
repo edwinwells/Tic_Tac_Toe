@@ -13,11 +13,11 @@ terminal = Terminal.new
 
 			puts ""
 			newgame.get_player_move("X")
-			newgame.game_status(terminal, newgame)
+			newgame.game_status(terminal, newgame, "X")
 				
 			puts ""
 			newgame.get_player_move("O")
-			newgame.game_status(terminal, newgame)	
+			newgame.game_status(terminal, newgame, "O")	
 
 		end
 end

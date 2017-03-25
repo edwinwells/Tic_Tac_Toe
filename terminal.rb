@@ -20,155 +20,55 @@ class Terminal
       	end
        empty
      end
+
+	def check_for_wins(empty, player_name)
+
+		win1 = {a1: "#{player_name}",
+			    a2: "#{player_name}",
+			    a3: "#{player_name}"}
+		win2 = {a1: "#{player_name}",
+			    b1: "#{player_name}",
+			    c1: "#{player_name}"}
+		win3 = {a3: "#{player_name}",
+			    b3: "#{player_name}",
+			    c3: "#{player_name}"}
+		win4 = {c3: "#{player_name}",
+			    c2: "#{player_name}",
+			    c1: "#{player_name}"}
+		win5 = {b3: "#{player_name}",
+			    b2: "#{player_name}",
+			    b1: "#{player_name}"}
+		win6 = {a1: "#{player_name}",
+			    b2: "#{player_name}",
+			    c3: "#{player_name}"}
+		win7 = {a3: "#{player_name}",
+			    b2: "#{player_name}",
+			    c1: "#{player_name}"}
+		win8 = {a2: "#{player_name}",
+			    b2: "#{player_name}",
+			    c2: "#{player_name}"}
+
+		if  (empty >= win1) == true ||
+            (empty >= win2) == true ||
+            (empty >= win3) == true ||
+            (empty >= win4) == true ||
+            (empty >= win5) == true ||
+            (empty >= win6) == true ||
+            (empty >= win7) == true ||
+            (empty >= win8) == true
+		    puts "There's a win!"
+			puts ""
+			puts " #{player_name} wins "
+			@win = true
+		end
+	end
+
 =begin
  The following code articulates the display,
  with top & bottom borders;
  with a1 in lower-left corner; and
  with c3 in upper-right corner:
 =end
-
-	def check_for_wins(empty)
-		if (
-			empty[:a1] == "X" &&
-		    empty[:a2] == "X" &&
-		   	empty[:a3] == "X"
-		   	) == true
-
-			win_for_X()
-
-		elsif (
-			   empty[:a1] == "X" &&
-		       empty[:b1] == "X" &&
-		   	   empty[:c1] == "X"
-		   	  ) == true
-
-			  win_for_X()
-
-		elsif (
-			   empty[:a3] == "X" &&
-		       empty[:b3] == "X" &&
-		   	   empty[:c3] == "X"
-		   	  ) == true
-
-			  win_for_X()
-
-		elsif (
-			   empty[:c3] == "X" &&
-		       empty[:c2] == "X" &&
-		   	   empty[:c1] == "X"
-		   	  ) == true
-
-			  win_for_X()
-
-		elsif (
-			   empty[:b3] == "X" &&
-		       empty[:b2] == "X" &&
-		   	   empty[:b1] == "X"
-		   	  ) == true
-
-			  win_for_X()
-
-		elsif (
-			   empty[:a1] == "X" &&
-		       empty[:b2] == "X" &&
-		   	   empty[:c3] == "X"
-		   	  ) == true
-
-			  win_for_X()
-
-		elsif (
-			   empty[:a3] == "X" &&
-		       empty[:b2] == "X" &&
-		   	   empty[:c1] == "X"
-		   	  ) == true
-
-			  win_for_X()
-
-		elsif (
-			   empty[:a2] == "X" &&
-		       empty[:b2] == "X" &&
-		   	   empty[:c2] == "X"
-		   	  ) == true
-
-			  win_for_X()
-
-		elsif (
-			    empty[:a1] == "O" &&
-		        empty[:a2] == "O" &&
-		   	    empty[:a3] == "O"
-		   	   ) == true
-
-			   win_for_O()
-
-		elsif (
-			   empty[:a1] == "O" &&
-		       empty[:b1] == "O" &&
-		   	   empty[:c1] == "O"
-		   	  ) == true
-
-			  win_for_O()
-
-		elsif (
-			   empty[:a3] == "O" &&
-		       empty[:b3] == "O" &&
-		   	   empty[:c3] == "O"
-		   	  ) == true
-
-			  win_for_O()
-
-		elsif (
-			   empty[:c3] == "O" &&
-		       empty[:c2] == "O" &&
-		   	   empty[:c1] == "O"
-		   	  ) == true
-
-			  win_for_O()
-
-		elsif (
-			   empty[:b3] == "O" &&
-		       empty[:b2] == "O" &&
-		   	   empty[:b1] == "O"
-		   	  ) == true
-
-			  win_for_O()
-
-		elsif (
-			   empty[:a1] == "O" &&
-		       empty[:b2] == "O" &&
-		   	   empty[:c3] == "O"
-		   	  ) == true
-
-			  win_for_O()
-
-		elsif (
-			   empty[:a3] == "O" &&
-		       empty[:b2] == "O" &&
-		   	   empty[:c1] == "O"
-		   	  ) == true
-
-			  win_for_O()
-
-		elsif (
-			   empty[:a2] == "O" &&
-		       empty[:b2] == "O" &&
-		   	   empty[:c2] == "O"
-		   	  ) == true
-
-			  win_for_O()																
-		end
-	end
-		def win_for_X()
-			puts""
-			puts " X wins "
-			@win = true
-		end
-
-		def win_for_O()
-			puts""
-			puts " O wins "
-			@win = true
-		end
-
 	def showboard(empty)
 	        puts ""
 	        print "********"
@@ -187,15 +87,6 @@ class Terminal
 	        puts ""
 	        puts ""
 	        print "********"
-	end
-
-	def game_over?(board)
-		if  check_for_wins(board) !=  win_for_X() &&
-		    check_for_wins(board) !=  win_for_O()
-		    false
-		else 
-			true
-		end
 	end
 
 end
