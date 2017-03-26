@@ -48,14 +48,15 @@ class Terminal
 			    b2: "#{player_name}",
 			    c2: "#{player_name}"}
 
-		if  (currentBoard >= win1) == true ||
-            (currentBoard >= win2) == true ||
-            (currentBoard >= win3) == true ||
-            (currentBoard >= win4) == true ||
-            (currentBoard >= win5) == true ||
-            (currentBoard >= win6) == true ||
-            (currentBoard >= win7) == true ||
-            (currentBoard >= win8) == true
+		if currentBoard >= win1 ||
+		   currentBoard >= win2 ||
+		   currentBoard >= win3 ||
+		   currentBoard >= win4 ||
+		   currentBoard >= win5 ||
+		   currentBoard >= win6 ||
+		   currentBoard >= win7 ||
+		   currentBoard >= win8 
+
 		    puts "There's a win!"
 			puts ""
 			puts " #{player_name} wins "
