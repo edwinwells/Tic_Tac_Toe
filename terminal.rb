@@ -10,18 +10,18 @@ class Terminal
 
 	def rows(board_hash)
 
-		empty=Hash.new
+		currentBoard=Hash.new
 
 		board_hash.each do |key, value|
-		empty[key] = value
- 		if empty[key] == ""
-           	   empty[key] = " "
+		currentBoard[key] = value
+ 		if currentBoard[key] == ""
+           	   currentBoard[key] = " "
         	end                
       	end
-       empty
+       currentBoard
      end
 
-	def check_for_wins(empty, player_name)
+	def check_for_wins(currentBoard, player_name)
 
 		win1 = {a1: "#{player_name}",
 			    a2: "#{player_name}",
@@ -48,14 +48,14 @@ class Terminal
 			    b2: "#{player_name}",
 			    c2: "#{player_name}"}
 
-		if  (empty >= win1) == true ||
-            (empty >= win2) == true ||
-            (empty >= win3) == true ||
-            (empty >= win4) == true ||
-            (empty >= win5) == true ||
-            (empty >= win6) == true ||
-            (empty >= win7) == true ||
-            (empty >= win8) == true
+		if  (currentBoard >= win1) == true ||
+            (currentBoard >= win2) == true ||
+            (currentBoard >= win3) == true ||
+            (currentBoard >= win4) == true ||
+            (currentBoard >= win5) == true ||
+            (currentBoard >= win6) == true ||
+            (currentBoard >= win7) == true ||
+            (currentBoard >= win8) == true
 		    puts "There's a win!"
 			puts ""
 			puts " #{player_name} wins "
@@ -69,21 +69,21 @@ class Terminal
  with a1 in lower-left corner; and
  with c3 in upper-right corner:
 =end
-	def showboard(empty)
+	def showboard(currentBoard)
 	        puts ""
 	        print "********"
 	        puts ""
-	        print " " + empty[:a3] +
-	        	  " " + empty[:b3] +
-	        	  " " + empty[:c3]
+	        print " " + currentBoard[:a3] +
+	        	  " " + currentBoard[:b3] +
+	        	  " " + currentBoard[:c3]
 	        puts ""
-	        print " " + empty[:a2] +
-	        	  " " + empty[:b2] +
-	        	  " " + empty[:c2]
+	        print " " + currentBoard[:a2] +
+	        	  " " + currentBoard[:b2] +
+	        	  " " + currentBoard[:c2]
 	        puts ""
-	        print " " + empty[:a1] +
-	        	  " " + empty[:b1] +
-	        	  " " + empty[:c1]
+	        print " " + currentBoard[:a1] +
+	        	  " " + currentBoard[:b1] +
+	        	  " " + currentBoard[:c1]
 	        puts ""
 	        puts ""
 	        print "********"
