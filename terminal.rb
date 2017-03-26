@@ -65,7 +65,8 @@ class Terminal
 	end
 
 =begin
- The following code articulates the display,
+ The following function "showboard(currentBoard)"
+ articulates the display,
  with top & bottom borders;
  with a1 in lower-left corner; and
  with c3 in upper-right corner:

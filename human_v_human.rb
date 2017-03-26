@@ -6,19 +6,19 @@ newgame = Board.new
 terminal = Terminal.new
 
 
-	 	newgame.setup = terminal.rows(newgame.setup)
+ 	newgame.setup = terminal.rows(newgame.setup)
 
-		while newgame.check_full? == false ||
-			  terminal.win == false do
+	while newgame.check_full? == false ||
+		  terminal.win == false do
 
-			puts ""
-			newgame.get_player_move("X")
-			newgame.game_status(terminal, newgame, "X")
-				
-			puts ""
-			newgame.get_player_move("O")
-			newgame.game_status(terminal, newgame, "O")	
+		puts ""
+		newgame.get_player_move("X")
+		newgame.game_status(terminal, newgame, "X")
+			
+		puts ""
+		newgame.get_player_move("O")
+		newgame.game_status(terminal, newgame, "O")	
 
-		end
+	end
 end
 startgame()
