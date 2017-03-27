@@ -57,7 +57,7 @@ class Terminal
 		   currentBoard >= win7 ||
 		   currentBoard >= win8 
 
-		    puts "There's a win!"
+		    puts " There's a win!"
 			puts ""
 			puts " #{player_name} wins "
 			@win = true

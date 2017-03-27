@@ -58,19 +58,6 @@ class Board
         	end                
       	end
 
-		# newgame.each do |square, marker|
-		#   if "#{square}"
-		#   puts "#{key}-----"
-		#   puts array
-		# end
-
-		# until check_position?(square) == true do
-  #       	print " Invalid entry! Try again..."
-		# 	puts ""
-		# 	print " #{player_name}, enter your square! "
-		# 	square = gets.chomp
-		# end
-
 		set_position(square_sought, player_name)
 		puts ""
 	end
@@ -90,6 +77,7 @@ class Board
 			(newgame.check_full? == true)) ||
 		   ((newgame.check_full? == true) &&
 		    (terminal.win == false))
+
 				reset_game?()
 		end	
 	end
