@@ -47,6 +47,31 @@ class Board
 		puts ""
 	end
 
+	def get_sequential_computer_player_move(terminal, newgame, player_name)
+
+		(newgame.setup).each do |key, value|
+	 		if currentBoard[key] == " "
+           	   currentBoard[key] = "#{player_name}"
+        	end                
+      	end
+
+		# newgame.each do |square, marker|
+		#   if "#{square}"
+		#   puts "#{key}-----"
+		#   puts array
+		# end
+
+		# until check_position?(square) == true do
+  #       	print " Invalid entry! Try again..."
+		# 	puts ""
+		# 	print " #{player_name}, enter your square! "
+		# 	square = gets.chomp
+		# end
+
+		set_position(currentBoard[key], player_name)
+		puts ""
+	end
+
 	def game_status(terminal, newgame, player_name)
 		terminal.check_for_wins(newgame.setup, player_name)
 
