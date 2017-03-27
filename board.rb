@@ -48,10 +48,13 @@ class Board
 	end
 
 	def get_sequential_computer_player_move(terminal, newgame, player_name)
+		square_sought = ""
 
 		(newgame.setup).each do |key, value|
-	 		if currentBoard[key] == " "
-           	   currentBoard[key] = "#{player_name}"
+	 		if newgame.setup[key] == " "
+           	   newgame.setup[key] = "#{player_name}"
+           	   square_sought = newgame.setup[key]
+           	   break
         	end                
       	end
 
@@ -68,7 +71,7 @@ class Board
 		# 	square = gets.chomp
 		# end
 
-		set_position(currentBoard[key], player_name)
+		set_position(square_sought, player_name)
 		puts ""
 	end
 

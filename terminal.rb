@@ -89,6 +89,7 @@ class Terminal
 	        puts ""
 	        puts ""
 	        print "********"
+	        puts ""
 	end
 
 end

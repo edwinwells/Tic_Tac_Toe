@@ -26,7 +26,8 @@ terminal = Terminal.new
 				newgame.get_player_move("X")
 				newgame.game_status(terminal, newgame, "X")
 					
-				puts ""
+				puts "And..."
+				puts "The computer moves!: "
 				newgame.get_sequential_computer_player_move(terminal, newgame, "O")
 				newgame.game_status(terminal, newgame, "O")	
 			end
