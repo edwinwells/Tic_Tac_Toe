@@ -111,5 +111,4 @@ class Board
 		puts ""
 		terminal.showboard(newgame.setup)
 	end
-
 end
