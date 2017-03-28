@@ -61,6 +61,21 @@ class Board
 		puts ""
 	end
 
+	def get_random_computer_player_move(terminal, newgame, player_name)
+
+		vacant_squares = Array.new
+
+    	(newgame.setup).each do |key, value|
+	 		if newgame.setup[key] == " "
+	           	vacant_squares.push(key)
+	        end
+	    end
+# .sample chooses a random index value from vacant_squares:            
+		square_sought = vacant_squares.sample
+		set_position(square_sought, player_name)
+		puts ""
+	end
+
 	def game_status(terminal, newgame, player_name)
 		terminal.check_for_wins(newgame.setup, player_name)
 
