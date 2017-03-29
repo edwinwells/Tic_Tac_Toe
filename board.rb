@@ -100,6 +100,7 @@ class Board
 			  	square_sought = "a3"
 			  elsif vacant_squares.include?("a3") == false
 			  	square_sought = "c3"
+		#ideal second move for X, if O has taken a2, b3, b1, or c2, is b2:
 			  else square_sought = "b2"			  	
 			  end
 		end
@@ -108,7 +109,7 @@ class Board
 	end
 
 	def get_unbeatable_computer_player_O_move(terminal, newgame, player_name)
-		
+
 	end	
 
 
