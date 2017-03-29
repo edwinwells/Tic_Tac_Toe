@@ -104,13 +104,13 @@ class Board
    				elsif newgame.setup >= {a1: "X", a3: "O"}
    					"c3"
 		#ideal second move for X, if O has taken a2, b3, b1, or c2, is b2:
-   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:a2) == false
+   				elsif newgame.setup >= {a1: "X", a2: "O"}
    					"b2"
-   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:b3) == false
+   				elsif newgame.setup >= {a1: "X", b3: "O"}
    					"b2"
-   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:b1) == false
+   				elsif newgame.setup >= {a1: "X", b1: "O"}
    					"b2"
-   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:c2) == false
+   				elsif newgame.setup >= {a1: "X", c2: "O"}
    					"b2"
    				end
 
