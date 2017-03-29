@@ -70,11 +70,47 @@ class Board
 	           	vacant_squares.push(key)
 	        end
 	    end
-# .sample chooses a random index value from vacant_squares:            
+	# .sample chooses a random index value from vacant_squares:            
 		square_sought = vacant_squares.sample
 		set_position(square_sought, player_name)
 		puts ""
 	end
+
+	def get_unbeatable_computer_player_X_move(terminal, newgame, player_name)
+
+		vacant_squares = Array.new
+
+    	(newgame.setup).each do |key, value|
+	 		if newgame.setup[key] == " "
+	           	vacant_squares.push(key)
+	        end
+	     end
+		#ideal first move for X is a corner square:
+		if vacant_squares.count == 9
+			square_sought = "a1"
+		#ideal second move for X, if O has taken b2, is the opposite corner square:
+		elsif vacant_squares.count == 7 &&
+			  vacant_squares.include?("b2") == true
+			square_sought = "a3"
+		elsif vacant_squares.count == 7 &&
+			  vacant_squares.include?("b2") == false
+			  if vacant_squares.include?("c1") == false
+			  	square_sought = "c3"
+			  elsif vacant_squares.include?("c3") == false
+			  	square_sought = "a3"
+			  elsif vacant_squares.include?("a3") == false
+			  	square_sought = "c3"
+			  else square_sought = "b2"			  	
+			  end
+		end
+			set_position(square_sought, player_name)
+			puts ""
+	end
+
+	def get_unbeatable_computer_player_O_move(terminal, newgame, player_name)
+
+	end	
+
 
 	def game_status(terminal, newgame, player_name)
 		terminal.check_for_wins(newgame.setup, player_name)
