@@ -79,32 +79,50 @@ class Board
 	def get_unbeatable_computer_player_X_move(terminal, newgame, player_name)
 
 		vacant_squares = Array.new
-
     	(newgame.setup).each do |key, value|
 	 		if newgame.setup[key] == " "
 	           	vacant_squares.push(key)
 	        end
 	     end
+	    # puts vacant_squares.include?(:b2)
+	    # p vacant_squares
+
+	    square_sought = case vacant_squares.count
 		#ideal first move for X is a corner square:
-		if vacant_squares.count == 9
-			square_sought = "a1"
+   			when 9
+   				"a1"
 		#ideal second move for X, if O has taken b2, is the opposite corner square:
-		elsif vacant_squares.count == 7 &&
-			  vacant_squares.include?("b2") == true
-			square_sought = "a3"
-		elsif vacant_squares.count == 7 &&
-			  vacant_squares.include?("b2") == false
-			  if vacant_squares.include?("c1") == false
-			  	square_sought = "c3"
-			  elsif vacant_squares.include?("c3") == false
-			  	square_sought = "a3"
-			  elsif vacant_squares.include?("a3") == false
-			  	square_sought = "c3"
+   			when 7 
+   				if vacant_squares.include?(:b2) == false
+   					"c3"
+		#alternatively, if O has taken a corner, X's second move should take any vacant corner:
+   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:c3) == false
+   					"a3"
+   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:c1) == false
+   					"c3"
+   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:a3) == false
+   					"c3"
 		#ideal second move for X, if O has taken a2, b3, b1, or c2, is b2:
-			  else square_sought = "b2"			  	
-			  end
-		end
+   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:a2) == false
+   					"b2"
+   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:b3) == false
+   					"b2"
+   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:b1) == false
+   					"b2"
+   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:c2) == false
+   					"b2"
+   				end
+
+   			# when 7 
+   			# 		elsif vacant_squares.include?("b2") == true && vacant_squares.include?("c3") == false then "a3"
+   			# 		elsif vacant_squares.include?("b2") == true && vacant_squares.include?("a3") == false then "c3"
+   			# 		# end
+   			# 	end
+   		end				
+			# puts vacant_squares.count
+			# puts square_sought
 			set_position(square_sought, player_name)
+	        # p vacant_squares
 			puts ""
 	end
 
