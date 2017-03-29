@@ -86,21 +86,22 @@ class Board
 	     end
 	    # puts vacant_squares.include?(:b2)
 	    # p vacant_squares
+	    # p newgame.setup
 
 	    square_sought = case vacant_squares.count
 		#ideal first move for X is a corner square:
    			when 9
    				"a1"
 		#ideal second move for X, if O has taken b2, is the opposite corner square:
-   			when 7 
-   				if vacant_squares.include?(:b2) == false
+   			when 7
+   				if newgame.setup >= {a1: "X", b2: "O"}
    					"c3"
 		#alternatively, if O has taken a corner, X's second move should take any vacant corner:
-   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:c3) == false
+   				elsif newgame.setup >= {a1: "X", c3: "O"}
    					"a3"
-   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:c1) == false
+   				elsif newgame.setup >= {a1: "X", c1: "O"}
    					"c3"
-   				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:a3) == false
+   				elsif newgame.setup >= {a1: "X", a3: "O"}
    					"c3"
 		#ideal second move for X, if O has taken a2, b3, b1, or c2, is b2:
    				elsif vacant_squares.include?(:b2) == true && vacant_squares.include?(:a2) == false
@@ -113,11 +114,6 @@ class Board
    					"b2"
    				end
 
-   			# when 7 
-   			# 		elsif vacant_squares.include?("b2") == true && vacant_squares.include?("c3") == false then "a3"
-   			# 		elsif vacant_squares.include?("b2") == true && vacant_squares.include?("a3") == false then "c3"
-   			# 		# end
-   			# 	end
    		end				
 			# puts vacant_squares.count
 			# puts square_sought

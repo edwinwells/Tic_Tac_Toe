@@ -22,6 +22,7 @@ terminal = Terminal.new
 		  terminal.win == false do
 
 				puts ""
+	    		print newgame.setup
 				newgame.get_player_move("X")
 				newgame.game_status(terminal, newgame, "X")
 					
@@ -36,12 +37,14 @@ terminal = Terminal.new
 			while newgame.check_full? == false ||
 		  terminal.win == false do
 
+	    		puts "Current board: #{newgame.setup}"
 				puts "And..."
 				puts "The computer moves!: "
 				newgame.get_unbeatable_computer_player_X_move(terminal, newgame, "X")
 				newgame.game_status(terminal, newgame, "X")
 
 				puts ""
+	    		puts "Current board: #{newgame.setup}"
 				newgame.get_player_move("O")
 				newgame.game_status(terminal, newgame, "O")					
 			end
