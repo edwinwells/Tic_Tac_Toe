@@ -47,4 +47,5 @@ terminal = Terminal.new
 			end
 		end		
 end
+
 startgame()
