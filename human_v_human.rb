@@ -1,8 +1,8 @@
-require_relative "board.rb"
+require_relative "gameboard.rb"
 require_relative "terminal.rb"
 
 def startgame()
-newgame = Board.new
+newgame = GameBoard.new
 terminal = Terminal.new
 
 	while newgame.check_full? == false ||

@@ -1,4 +1,4 @@
-class Board
+class GameBoard
 
 	attr_accessor :setup
 

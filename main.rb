@@ -1,8 +1,8 @@
-require_relative "board.rb"
+require_relative "gameboard.rb"
 require_relative "terminal.rb"
 
-newboard=Board.new
-terminal=Terminal.new
+newboard = GameBoard.new
+terminal = Terminal.new
  
 newboard={
 			:a1=>"O", :a2=>"O", :a3=>"O",
