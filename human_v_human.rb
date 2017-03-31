@@ -6,7 +6,7 @@ newgame = Board.new
 terminal = Terminal.new
 
 
- 	newgame.setup = terminal.rows(newgame.setup)
+ 	# newgame.setup = terminal.rows(newgame.setup)
 
 	while newgame.check_full? == false ||
 		  terminal.win == false do

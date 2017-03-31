@@ -5,7 +5,7 @@ def startgame()
 newgame = Board.new
 terminal = Terminal.new
 
- 	newgame.setup = terminal.rows(newgame.setup)
+ 	# newgame.setup = terminal.rows(newgame.setup)
 
 #Determine which player will be "X":
 	response = ""
