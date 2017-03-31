@@ -39,7 +39,7 @@ class TestBoard < Minitest::Test
 
 	def test_returns_true_if_space_is_vacant
 		board = Board.new
-		board.set_position(:c1, "")
+		board.set_position(:c1, " ")
 		result = board.check_position?(:c1)
 		assert_equal(true,result)
 	end	
@@ -59,7 +59,7 @@ class TestBoard < Minitest::Test
 		board.setup = {
 					   :a1 => "X", :a2 => "O", :a3 => "X",
 					   :b1 => "O", :b2 => "X", :b3 => "O",
-			           :c1 => "", :c2 => "O", :c3 => "X"
+			           :c1 => " ", :c2 => "O", :c3 => "X"
 		              }
 		assert_equal(false, board.check_full?)
 	end
@@ -68,9 +68,9 @@ class TestBoard < Minitest::Test
 	def test_empty_board_equals_false_for_check_full?
 		board = Board.new
 		board.setup = {
-					   :a1 => "", :a2 => "", :a3 => "",
-					   :b1 => "", :b2 => "", :b3 => "",
-			           :c1 => "", :c2 => "", :c3 => ""
+					  :a1 => " ", :a2 => " ", :a3 => " ",
+					  :b1 => " ", :b2 => " ", :b3 => " ",
+			          :c1 => " ", :c2 => " ", :c3 => " "
 		              }
 		assert_equal(false, board.check_full?)
 	end

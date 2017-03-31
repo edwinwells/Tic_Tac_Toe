@@ -8,19 +8,6 @@ class Terminal
 		@win = false
 	end
 
-	# def rows(board_hash)
-
-	# 	currentBoard=Hash.new
-
-	# 	board_hash.each do |key, value|
-	# 	currentBoard[key] = value
- # 		if currentBoard[key] == ""
- #           	   currentBoard[key] = " "
- #        	end                
- #      	end
- #       currentBoard
- #     end
-
 	def check_for_wins(currentBoard, player_name)
 
 		win1 = {a1: "#{player_name}",
