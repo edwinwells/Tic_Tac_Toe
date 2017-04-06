@@ -1,5 +1,7 @@
 require_relative "gameboard.rb"
 require_relative "terminal.rb"
+require_relative "player.rb"
+
 
 def startgame()
 newgame = GameBoard.new

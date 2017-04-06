@@ -32,21 +32,6 @@ class GameBoard
 		if count <9 then false else true end
     end
 
-	def get_player_move(player_name)
-		print " #{player_name}, enter your square! "
-		square = gets.chomp
-
-		until check_position?(square) == true do
-        	print " Invalid entry! Try again..."
-			puts ""
-			print " #{player_name}, enter your square! "
-			square = gets.chomp
-		end
-
-		set_position(square, player_name)
-		puts ""
-	end
-
 	def get_sequential_computer_player_move(terminal, newgame, player_name)
 		vacant_squares = Array.new
 
