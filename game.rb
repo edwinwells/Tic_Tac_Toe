@@ -4,9 +4,14 @@ require_relative "player.rb"
 
 class Game
 
-newboard = GameBoard.new()
-playerX = Player.new("X")
-playerO = ComputerRandom.new("O")
+	@newboard = GameBoard.new()
+
+	def initialize(p1,p2)
+		@player1 = p1
+		@player2 = p2
+	end
+
+
 
 	def play()
 		a = 0
@@ -19,7 +24,10 @@ playerO = ComputerRandom.new("O")
 
 end
 
-game = Game.new
+playerX = Player.new("X")
+playerO = ComputerRandom.new("O")
+game = Game.new(playerX, playerO)
+
 game.play()
 
 
