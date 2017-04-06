@@ -12,11 +12,11 @@ terminal = Terminal.new
 
 		puts ""
 		newgame.get_player_move("X")
-		newgame.game_status(terminal, newgame, "X")
+		newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
 			
 		puts ""
 		newgame.get_player_move("O")
-		newgame.game_status(terminal, newgame, "O")	
+		newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")	
 
 	end
 end

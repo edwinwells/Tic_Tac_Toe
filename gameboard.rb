@@ -37,7 +37,7 @@ class GameBoard
 	end	
 
 
-	def game_status(terminal, newgame, player_name)
+	def game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, player_name)
 		terminal.check_for_wins(newgame.setup, player_name)
 
 		if ((terminal.win == false) &&
@@ -55,6 +55,12 @@ class GameBoard
 
 				reset_game?()
 		end	
+	end
+
+	def identify_vacant_squares()
+
+
+
 	end
 
 	def reset_game?()

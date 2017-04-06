@@ -24,12 +24,12 @@ terminal = Terminal.new
 				puts ""
 	    		print newgame.setup
 				newgame.get_player_move("X")
-				newgame.game_status(terminal, newgame, "X")
+				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
 					
 				puts "And..."
 				puts "The computer moves!: "
 				newgame.get_unbeatable_computer_player_O_move(terminal, newgame, "O")
-				newgame.game_status(terminal, newgame, "O")	
+				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")	
 			end
 		end
 
@@ -41,12 +41,12 @@ terminal = Terminal.new
 				puts "And..."
 				puts "The computer moves!: "
 				newgame.get_unbeatable_computer_player_X_move(terminal, newgame, "X")
-				newgame.game_status(terminal, newgame, "X")
+				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
 
 				puts ""
 	    		puts "Current board: #{newgame.setup}"
 				newgame.get_player_move("O")
-				newgame.game_status(terminal, newgame, "O")					
+				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")					
 			end
 		end		
 end

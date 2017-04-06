@@ -40,7 +40,7 @@ end
 
 class ComputerRandom < Player
 
-	def get_random_computer_player_move(terminal, newgame, player_name)
+	def get_random_computer_player_move(newgame, player_name)
 
 		vacant_squares = Array.new
 
