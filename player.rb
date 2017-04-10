@@ -1,3 +1,6 @@
+require_relative "gameboard.rb"
+
+
 class Player
 
 	def initialize(input_name)
@@ -51,7 +54,7 @@ class ComputerRandom < Player
 	    end
 	# .sample chooses a random index value from vacant_squares:            
 		square_sought = vacant_squares.sample
-		set_position(square_sought, player_name)
+		newgame.set_position(square_sought, player_name)
 		puts ""
 	end
 end

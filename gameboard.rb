@@ -1,3 +1,7 @@
+require_relative "terminal.rb"
+
+
+
 class GameBoard
 
 	attr_accessor :setup
@@ -36,26 +40,6 @@ class GameBoard
 
 	end	
 
-
-	def game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, player_name)
-		terminal.check_for_wins(newgame.setup, player_name)
-
-		if ((terminal.win == false) &&
-		   (newgame.check_full? == true))
-				declare_tie(terminal, newgame)
-				reset_game?()
-	    end
-
-		terminal.showboard(newgame.setup)
-
-		if ((terminal.win == true) ||
-			(newgame.check_full? == true)) ||
-		   ((newgame.check_full? == true) &&
-		    (terminal.win == false))
-
-				reset_game?()
-		end	
-	end
 
 	def identify_vacant_squares()
 

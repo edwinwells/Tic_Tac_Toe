@@ -62,17 +62,17 @@ class Terminal
 	        puts ""
 	        print "********"
 	        puts ""
-	        print " " + currentBoard[:a3] +
-	        	  " " + currentBoard[:b3] +
-	        	  " " + currentBoard[:c3]
+	        print " " + "#{currentBoard[:a3]}" +
+	        	  " " + "#{currentBoard[:b3]}" +
+	        	  " " + "#{currentBoard[:c3]}"
 	        puts ""
-	        print " " + currentBoard[:a2] +
-	        	  " " + currentBoard[:b2] +
-	        	  " " + currentBoard[:c2]
+	        print " " + "#{currentBoard[:a2]}" +
+	        	  " " + "#{currentBoard[:b2]}" +
+	        	  " " + "#{currentBoard[:c2]}"
 	        puts ""
-	        print " " + currentBoard[:a1] +
-	        	  " " + currentBoard[:b1] +
-	        	  " " + currentBoard[:c1]
+	        print " " + "#{currentBoard[:a1]}" +
+	        	  " " + "#{currentBoard[:b1]}" +
+	        	  " " + "#{currentBoard[:c1]}"
 	        puts ""
 	        puts ""
 	        print "********"
