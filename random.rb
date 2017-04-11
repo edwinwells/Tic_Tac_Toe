@@ -35,6 +35,13 @@ terminal = Terminal.new
 
 		freshgame.run_game(playerX, playerO, response)
 
+	    if freshgame.reset_game?() == true
+			startgame() 
+	    else
+	        exit
+	    end
+
+
 end
 # game = Game.new(game, playerX, playerO)
 startgame()

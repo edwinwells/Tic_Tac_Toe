@@ -44,7 +44,11 @@ class Game
 				puts ""
 				get_player_move(newgame, "X")
 				game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
-					
+
+				  if @win == true
+				  	break
+				  end	
+							
 				puts "And..."
 				puts "The computer moves!: "
 				playerO.get_random_computer_player_move(newgame, "O")
@@ -62,6 +66,10 @@ class Game
 				# newgame.get_random_computer_player_move(newgame, "X")
 				game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")	
 				# newgame.game_flow_status_to_proceed_or_to_declare_tie_or_todeclare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
+
+				  if @win == true
+				  	break
+				  end
 
 				puts ""
 				get_player_move(newgame, "O")
@@ -100,35 +108,37 @@ class Game
 			(newgame.check_full? == true)) ||
 		   ((newgame.check_full? == true) &&
 		    (terminal.win == false))
-
 				reset_game?()
 		end	
 	end
 
 	def reset_game?()
+		@win = true
 	  print "\n Care for another game? (Y or N) "
 	  again = gets.chomp
 		  if again.downcase == "y"
-			newgame = GameBoard.new
-			terminal = Terminal.new
+		  	true
+		# 	newgame = GameBoard.new
+		# 	terminal = Terminal.new
 
-		#Determine which player will be "X":
-			response = ""
-			puts""
+		# #Determine which player will be "X":
+		# 	response = ""
+		# 	puts""
 		 		
-			until response == "X" || response == "O" do
-				print " Will you choose to play as X or O? \n Enter X or O: "
-				response = gets.chomp.upcase
-				puts ""
-		 	end
-			playerX = Player.new("X")
-			playerO = ComputerRandom.new("O")
-			freshgame = Game.new("freshgame", playerX, playerO)
-			@newboard = GameBoard.new()
-			freshgame.run_game(playerX, playerO, response)
+		# 	until response == "X" || response == "O" do
+		# 		print " Will you choose to play as X or O? \n Enter X or O: "
+		# 		response = gets.chomp.upcase
+		# 		puts ""
+		#  	end
+		# 	playerX = Player.new("X")
+		# 	playerO = ComputerRandom.new("O")
+		# 	freshgame = Game.new("freshgame", playerX, playerO)
+		# 	@newboard = GameBoard.new()
+		# 	freshgame.run_game(playerX, playerO, response)
 		  else 
-		  	exit
-		  end	  
+		  	false
+		  end
+
 	end
 
 	def declare_tie(terminal, newgame)
