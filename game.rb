@@ -1,13 +1,18 @@
 require_relative "gameboard.rb"
 require_relative "player.rb"
 require_relative "terminal.rb"
-# require_relative "random.rb"
+require_relative "random.rb"
 
 class Game
 
-	def initialize(p1,p2)
+	attr_accessor :game
+
+
+	def initialize(game, p1, p2)
+		@game = game
 		@player1 = p1
 		@player2 = p2
+
 	end
 
 
@@ -21,23 +26,26 @@ class Game
 
 	end
 
-	def run_game(playerX, playerO)
+	def run_game(playerX, playerO, response)
 
 	p playerX
 	p playerO
+
 	newgame = GameBoard.new
 	p newgame
 	terminal = Terminal.new
 	p terminal
-#Determine which player will be "X":
-	response = ""
-	puts""
+
+
+# #Determine which player will be "X":
+# 	response = ""
+# 	puts""
  		
-	until response == "X" || response == "O" do
-		print " Will you choose to play as X or O? \n Enter X or O: "
-		response = gets.chomp.upcase
-		puts ""
- 	end
+# 	until response == "X" || response == "O" do
+# 		print " Will you choose to play as X or O? \n Enter X or O: "
+# 		response = gets.chomp.upcase
+# 		puts ""
+#  	end
 
 		if response == "X"
 			while newgame.check_full? == false ||
@@ -60,12 +68,15 @@ class Game
 
 				puts "And..."
 				puts "The computer moves!: "
-				newgame.get_random_computer_player_move(newgame, "X")
-				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_todeclare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
+				playerX.get_random_computer_player_move(newgame, "X")
+				# newgame.get_random_computer_player_move(newgame, "X")
+				game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")	
+				# newgame.game_flow_status_to_proceed_or_to_declare_tie_or_todeclare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
 
 				puts ""
-				get_player_move(newgame,"O")
-				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_todeclare_win_and_if_to_reset_to_new_game(terminal, newgame, playerO)					
+				get_player_move(newgame, "O")
+				game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")
+				# newgame.game_flow_status_to_proceed_or_to_declare_tie_or_todeclare_win_and_if_to_reset_to_new_game(terminal, newgame, playerO)					
 			end
 		end		
 	end
@@ -135,5 +146,3 @@ game = Game.new(playerX, playerO)
 @newboard = GameBoard.new()
 
 game.run_game(playerX, playerO)
-
-
