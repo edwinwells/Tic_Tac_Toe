@@ -1,7 +1,7 @@
 require_relative "gameboard.rb"
 require_relative "player.rb"
 require_relative "terminal.rb"
-require_relative "random.rb"
+# require_relative "random.rb"
 
 class Game
 
@@ -30,22 +30,12 @@ class Game
 
 	p playerX
 	p playerO
-
+	p game
 	newgame = GameBoard.new
 	p newgame
 	terminal = Terminal.new
 	p terminal
 
-
-# #Determine which player will be "X":
-# 	response = ""
-# 	puts""
- 		
-# 	until response == "X" || response == "O" do
-# 		print " Will you choose to play as X or O? \n Enter X or O: "
-# 		response = gets.chomp.upcase
-# 		puts ""
-#  	end
 
 		if response == "X"
 			while newgame.check_full? == false ||
@@ -122,11 +112,20 @@ class Game
 			newgame = GameBoard.new
 			terminal = Terminal.new
 
+		#Determine which player will be "X":
+			response = ""
+			puts""
+		 		
+			until response == "X" || response == "O" do
+				print " Will you choose to play as X or O? \n Enter X or O: "
+				response = gets.chomp.upcase
+				puts ""
+		 	end
 			playerX = Player.new("X")
 			playerO = ComputerRandom.new("O")
-			game = Game.new(playerX, playerO)
-			# @newboard = GameBoard.new()
-			game.run_game(playerX, playerO)
+			freshgame = Game.new("freshgame", playerX, playerO)
+			@newboard = GameBoard.new()
+			freshgame.run_game(playerX, playerO, response)
 		  else 
 		  	exit
 		  end	  
@@ -140,9 +139,9 @@ class Game
 
 end
 
-playerX = Player.new("X")
-playerO = ComputerRandom.new("O")
-game = Game.new(playerX, playerO)
-@newboard = GameBoard.new()
-
-game.run_game(playerX, playerO)
+# playerX = Player.new("X")
+# playerO = ComputerRandom.new("O")
+# game = Game.new(game, playerX, playerO)
+# @newboard = GameBoard.new()
+# response = "X"
+# game.run_game(playerX, playerO, response)

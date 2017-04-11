@@ -7,8 +7,6 @@ require_relative "game.rb"
 def startgame()
 newgame = GameBoard.new
 terminal = Terminal.new
-# thisone = Game.new
-# game = Game.new(game, playerX, playerO)
 
 #Determine which player will be "X":
 	response = ""
@@ -19,21 +17,24 @@ terminal = Terminal.new
 		response = gets.chomp.upcase
 		puts ""
  	end
+ 	p response
 
  	if response == "X"
 		playerX = Player.new("X")
 		playerO = ComputerRandom.new("O")
-		game = Game.new(playerX, playerO)
+		freshgame = Game.new("freshgame", playerX, playerO)
+		p freshgame
 		@newboard = GameBoard.new()
-		game.run_game(playerX, playerO, response)
 	elsif response == "O"
 		playerX = ComputerRandom.new("X")
 		playerO = Player.new("O")
-		game = Game.new(playerX, playerO)
+		freshgame = Game.new("freshgame", playerX, playerO)
+		p freshgame
 		@newboard = GameBoard.new()
-		game.run_game(playerX, playerO, response)
 	end
 
+		freshgame.run_game(playerX, playerO, response)
 
 end
+# game = Game.new(game, playerX, playerO)
 startgame()
