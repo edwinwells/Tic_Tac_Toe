@@ -1,7 +1,7 @@
 require_relative "gameboard.rb"
 require_relative "player.rb"
 require_relative "terminal.rb"
-
+# require_relative "random.rb"
 
 class Game
 
@@ -102,6 +102,29 @@ class Game
 
 				reset_game?()
 		end	
+	end
+
+	def reset_game?()
+	  print "\n Care for another game? (Y or N) "
+	  again = gets.chomp
+		  if again.downcase == "y"
+			newgame = GameBoard.new
+			terminal = Terminal.new
+
+			playerX = Player.new("X")
+			playerO = ComputerRandom.new("O")
+			game = Game.new(playerX, playerO)
+			# @newboard = GameBoard.new()
+			game.run_game(playerX, playerO)
+		  else 
+		  	exit
+		  end	  
+	end
+
+	def declare_tie(terminal, newgame)
+		print " The game is tie!"
+		puts ""
+		terminal.showboard(newgame.setup)
 	end
 
 end
