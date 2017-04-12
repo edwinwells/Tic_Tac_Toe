@@ -39,6 +39,7 @@ terminal = Terminal.new
 
 		freshgame.run_game(playerX, playerO, response)
 		p freshgame.reset
+		p freshgame.reset
 	    if freshgame.reset.downcase == "y"
 			startgame() 
 	    else

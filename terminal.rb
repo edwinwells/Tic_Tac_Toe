@@ -48,6 +48,7 @@ class Terminal
 			puts ""
 			puts " #{player_name} wins "
 			@win = true
+			
 		end
 	end
 
