@@ -8,6 +8,7 @@ def startgame()
 newgame = GameBoard.new
 terminal = Terminal.new
 
+#Should the following sec. be in Player Class? I think so
 #Determine which player will be "X":
 	response = ""
 	puts""
@@ -22,20 +23,23 @@ terminal = Terminal.new
  	if response == "X"
 		playerX = Player.new("X")
 		playerO = ComputerRandom.new("O")
-		freshgame = Game.new("freshgame", playerX, playerO)
+		reset = "N"
+		freshgame = Game.new("freshgame", playerX, playerO, reset)
 		p freshgame
 		@newboard = GameBoard.new()
+
 	elsif response == "O"
 		playerX = ComputerRandom.new("X")
 		playerO = Player.new("O")
-		freshgame = Game.new("freshgame", playerX, playerO)
+		reset = "N"
+		freshgame = Game.new("freshgame", playerX, playerO, reset)
 		p freshgame
 		@newboard = GameBoard.new()
 	end
 
 		freshgame.run_game(playerX, playerO, response)
-
-	    if freshgame.reset_game?() == true
+		p freshgame.reset
+	    if freshgame.reset.downcase == "y"
 			startgame() 
 	    else
 	        exit

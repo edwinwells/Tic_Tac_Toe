@@ -2,7 +2,7 @@ require_relative "gameboard.rb"
 
 class Terminal
 
-	attr_reader :win
+	attr_accessor :win
 
 	def initialize()
 		@win = false
