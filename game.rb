@@ -7,18 +7,61 @@ class Game
 
 	attr_accessor :game
 	attr_accessor :reset
-
+	attr_accessor :win
 
 	def initialize(game, p1, p2, again)
 		@game = game
 		@player1 = p1
 		@player2 = p2
 		@reset = reset
-
+		@win = false
+		@draw = false
 	end
 
+	def check_for_wins(currentBoard, player_name)
 
-	def run_game(playerX, playerO, response)
+		win1 = {a1: "#{player_name}",
+			    a2: "#{player_name}",
+			    a3: "#{player_name}"}
+		win2 = {a1: "#{player_name}",
+			    b1: "#{player_name}",
+			    c1: "#{player_name}"}
+		win3 = {a3: "#{player_name}",
+			    b3: "#{player_name}",
+			    c3: "#{player_name}"}
+		win4 = {c3: "#{player_name}",
+			    c2: "#{player_name}",
+			    c1: "#{player_name}"}
+		win5 = {b3: "#{player_name}",
+			    b2: "#{player_name}",
+			    b1: "#{player_name}"}
+		win6 = {a1: "#{player_name}",
+			    b2: "#{player_name}",
+			    c3: "#{player_name}"}
+		win7 = {a3: "#{player_name}",
+			    b2: "#{player_name}",
+			    c1: "#{player_name}"}
+		win8 = {a2: "#{player_name}",
+			    b2: "#{player_name}",
+			    c2: "#{player_name}"}
+
+		if currentBoard >= win1 ||
+		   currentBoard >= win2 ||
+		   currentBoard >= win3 ||
+		   currentBoard >= win4 ||
+		   currentBoard >= win5 ||
+		   currentBoard >= win6 ||
+		   currentBoard >= win7 ||
+		   currentBoard >= win8 
+
+		    puts " There's a win!"
+			puts ""
+			puts " #{player_name} wins "
+			win = true
+			
+		end
+	end
+		def run_game(playerX, playerO, response)
 
 	# p playerX
 	# p playerO
@@ -26,40 +69,39 @@ class Game
 	newgame = GameBoard.new
 	# p newgame
 	terminal = Terminal.new
-	@win = false
 	@reset = "N"
 	# p terminal
 
 
 		if response == "X"
-			while @win == false do
+			while win == false do
 
 				puts ""
-				if @win == false
+				if win == false
 					get_player_move(newgame, "X")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
 				end
-				# p @win
-				#   if @win == true
+				# p win
+				#   if win == true
 				#   	break
 				#   end	
-				if @win == false
+				if win == false
 					puts "And..."
 					puts "The computer moves!: "
 					playerO.get_random_computer_player_move(newgame, "O")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")	
 				end
-		 		if (terminal.win == true)
+		 		if (win == true)
 					   	ask_to_reset_game()
 				end	
 			end
 		end
 
 		if response == "O"
-			while terminal.win == false do
+			while win == false do
 
 				puts ""
-				if terminal.win == false
+				if win == false
 					puts "And..."
 					puts "The computer moves!: "
 					playerX.get_random_computer_player_move(newgame, "X")
@@ -67,12 +109,12 @@ class Game
 				end
 
 				puts ""
-				if terminal.win == false
+				if win == false
 					get_player_move(newgame, "O")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")
 				end
 			end
-	 	# 	if (terminal.win == true)
+	 	# 	if (win == true)
 			# 	   	ask_to_reset_game()
 			# end	
 		end		
@@ -97,15 +139,14 @@ class Game
 		terminal.showboard(newgame.setup)
 		p player_name
 		terminal.check_for_wins(newgame.setup, player_name)
-		p @win
-		p terminal.win
+		p win
 
-		if ((terminal.win == false) &&
+		if ((win == false) &&
 		   (newgame.check_full? == true))
-				terminal.win = true
-				p terminal.win
+				win = true
+				p win
 				declare_tie(terminal, newgame)
-		elsif terminal.win == true
+		elsif win == true
 			ask_to_reset_game()
 
 	    end
@@ -113,8 +154,8 @@ class Game
  	end
 
 	def ask_to_reset_game()
-		# terminal.win = true
-		# @win = true
+		# win = true
+		# win = true
 	    print "\n Care for another game? (Y or N) "
 		@reset = gets.chomp
 	end

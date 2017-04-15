@@ -19,7 +19,7 @@ terminal = Terminal.new
 
 		if response == "X"
 			while newgame.check_full? == false ||
-		  terminal.win == false do
+		  game.win == false do
 
 				puts ""
 				newgame.get_player_move("X")
@@ -34,7 +34,7 @@ terminal = Terminal.new
 
 		if response == "O"
 			while newgame.check_full? == false ||
-		  terminal.win == false do
+		  game.win == false do
 
 				puts "And..."
 				puts "The computer moves!: "

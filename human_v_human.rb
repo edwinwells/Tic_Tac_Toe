@@ -8,7 +8,7 @@ newgame = GameBoard.new
 terminal = Terminal.new
 
 	while newgame.check_full? == false ||
-		  terminal.win == false do
+		  game.win == false do
 
 		puts ""
 		newgame.get_player_move("X")

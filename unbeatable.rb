@@ -19,7 +19,7 @@ terminal = Terminal.new
 
 		if response == "X"
 			while newgame.check_full? == false ||
-		  terminal.win == false do
+		  game.win == false do
 
 				puts ""
 	    		print newgame.setup
@@ -35,7 +35,7 @@ terminal = Terminal.new
 
 		if response == "O"
 			while newgame.check_full? == false ||
-		  terminal.win == false do
+		  game.win == false do
 
 	    		puts "Current board: #{newgame.setup}"
 				puts "And..."
