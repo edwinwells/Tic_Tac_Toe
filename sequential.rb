@@ -1,11 +1,9 @@
 require_relative "gameboard.rb"
 require_relative "terminal.rb"
 require_relative "player.rb"
-
+require_relative "game.rb"
 
 def startgame()
-newgame = GameBoard.new
-terminal = Terminal.new
 
 #Determine which player will be "X":
 	response = ""
@@ -17,35 +15,27 @@ terminal = Terminal.new
 		puts ""
  	end
 
-		if response == "X"
-			while newgame.check_full? == false ||
-		  game.win == false do
-
-				puts ""
-				newgame.get_player_move("X")
-				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
+ 	if response == "X"
+		playerX = Player.new("X")
+		playerO = ComputerSequential.new("O")
+		reset = "N"
+		freshgame = VersusSequential.new(playerX, playerO, reset)
 					
-				puts "And..."
-				puts "The computer moves!: "
-				newgame.get_sequential_computer_player_move(terminal, newgame, "O")
-				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")	
-			end
-		end
+	elsif response == "O"
+		playerX = ComputerSequential.new("X")
+		playerO = Player.new("O")
+		reset = "N"
+		freshgame = VersusSequential.new(playerX, playerO, reset)
+		@newboard = GameBoard.new()
+	end
 
-		if response == "O"
-			while newgame.check_full? == false ||
-		  game.win == false do
+		freshgame.run_game(playerX, playerO, response)
 
-				puts "And..."
-				puts "The computer moves!: "
-				newgame.get_sequential_computer_player_move(terminal, newgame, "X")
-				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_todeclare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
+	    if freshgame.reset.downcase == "y"
+			startgame() 
+	    else
+	        exit
+	    end
 
-				puts ""
-				newgame.get_player_move("O")
-				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_todeclare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")					
-			end
-		end		
 end
-
 startgame()

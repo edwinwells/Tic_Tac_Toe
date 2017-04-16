@@ -173,16 +173,10 @@ end
 
 class VersusRandom < Game
 
-		def run_game(playerX, playerO, response)
+	def run_game(playerX, playerO, response)
 
-	# p playerX
-	# p playerO
-	# p game
-	newgame = GameBoard.new
-	# p newgame
-	terminal = Terminal.new
-	# p terminal
-	# p @setup
+		newgame = GameBoard.new
+		terminal = Terminal.new
 
 		if response == "X"
 			while win == false && @draw == false do
@@ -192,19 +186,13 @@ class VersusRandom < Game
 					get_player_move(newgame, "X")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
 				end
-				# p win
-				#   if win == true
-				#   	break
-				#   end	
+
 				if win == false && @draw == false
 					puts "And..."
 					puts "The computer moves!: "
 					playerO.get_random_computer_player_move(newgame, "O")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")	
 				end
-		 	# 	if (win == true)
-				# 	   	ask_to_reset_game()
-				# end	
 			end
 		end
 
@@ -225,17 +213,54 @@ class VersusRandom < Game
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")
 				end
 			end
-	 	# 	if (win == true)
-			# 	   	ask_to_reset_game()
-			# end	
 		end		
 	end
 
 end
 
-# playerX = Player.new("X")
-# playerO = ComputerRandom.new("O")
-# game = Game.new(game, playerX, playerO)
-# @newboard = GameBoard.new()
-# response = "X"
-# game.run_game(playerX, playerO, response)
+class VersusSequential < Game
+
+	def run_game(playerX, playerO, response)
+
+		newgame = GameBoard.new
+		terminal = Terminal.new
+
+		if response == "X"
+			while win == false && @draw == false do
+
+				puts ""
+				if win == false && @draw == false
+					get_player_move(newgame, "X")
+					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
+				end
+
+				if win == false && @draw == false
+					puts "And..."
+					puts "The computer moves!: "
+					playerO.get_sequential_computer_player_move(newgame, "O")
+					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")	
+				end
+			end
+		end
+
+		if response == "O"
+			while win == false && @draw == false do
+
+				puts ""
+				if win == false && @draw == false
+					puts "And..."
+					puts "The computer moves!: "
+					playerX.get_sequential_computer_player_move(newgame, "X")
+					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")	
+				end
+
+				puts ""
+				if win == false && @draw == false
+					get_player_move(newgame, "O")
+					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")
+				end
+			end
+		end		
+	end
+
+end

@@ -11,7 +11,7 @@ end
 
 class ComputerSequential < Player
 
-	def get_sequential_computer_player_move(terminal, newgame, player_name)
+	def get_sequential_computer_player_move(newgame, player_name)
 		vacant_squares = Array.new
 
     	(newgame.setup).each do |key, value|
@@ -21,7 +21,7 @@ class ComputerSequential < Player
 	    end
              
 		square_sought = vacant_squares[0]
-		set_position(square_sought, player_name)
+		newgame.set_position(square_sought, player_name)
 		puts ""
 	end
 
