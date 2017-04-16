@@ -340,32 +340,78 @@ class ComputerUnbeatable < Player
    				if newgame.setup >= {b2: "X"}
    					"a1"
    		#alternatively, if X has seized a corner square (strongest,) or any edge square, then O must take the centre:	
-   				elsif newgame.setup >= {a1: "X"}
-   					"b2"
-   				elsif newgame.setup >= {a3: "X"}
-   					"b2"
-   				elsif newgame.setup >= {c3: "X"}
-   					"b2"
-   				elsif newgame.setup >= {c1: "X"}
-   					"b2"
-   				elsif newgame.setup >= {a2: "X"}
-   					"b2"
-   				elsif newgame.setup >= {b3: "X"}
-   					"b2"
-   				elsif newgame.setup >= {c2: "X"}
-   					"b2"
-   				elsif newgame.setup >= {b1: "X"}
-   					"b2"
+   				elsif newgame.setup >= {a1: "X"} ||
+   				      newgame.setup >= {a3: "X"} ||
+   				      newgame.setup >= {c3: "X"} ||
+   				      newgame.setup >= {c1: "X"} ||
+   				      newgame.setup >= {a2: "X"} ||
+   				      newgame.setup >= {b3: "X"} ||
+   				      newgame.setup >= {c2: "X"} ||
+   				      newgame.setup >= {b1: "X"}
+   					  "b2"
    				end
-  #  		#ideal second move for X, if O has taken b2, is the opposite corner square:
-  #  			when 6
-  #  				if newgame.setup >= {a1: "X", b2: "O"}
-  #  					"c3"
-		# #alternatively, if O has taken a corner, X's second move should take any vacant corner:
-  #  				elsif newgame.setup >= {a1: "X", c3: "O"}
-  #  					"a3"
+   		#ideal second move for O, if O has taken b2, is the opposite corner square:
+   			when 6
+   				if newgame.setup >= {a1: "X", b2: "O", c3: "X"}
+   					"b3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", a3: "X"}
+   					"a2"
+   				elsif newgame.setup >= {a1: "X", b2: "O", a2: "X"} ||
+					  newgame.setup >= {a1: "X", b2: "O", b3: "X"}
+   					"a3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c2: "X"} ||
+   					  newgame.setup >= {a1: "X", b2: "O", b1: "X"}
+   					"c1"
 
-   				# end
+
+
+
+    			end
+
+   			when 4
+   				if newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", a2: "X"} ||
+   				   newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", a3: "X"} ||
+   				   newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", c2: "X"} ||
+   				   newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", c1: "X"}
+   				   "b1"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X"}
+   				   "c1"
+   				elsif newgame.setup >= {a1: "X", b2: "O", a3: "X", a2: "O", b3: "X"} ||
+   					 newgame.setup >= {a1: "X", b2: "O", a3: "X", a2: "O", c3: "X"} ||
+					 newgame.setup >= {a1: "X", b2: "O", a3: "X", a2: "O", c1: "X"} ||
+					 newgame.setup >= {a1: "X", b2: "O", a3: "X", a2: "O", b1: "X"}
+   				   "c2"
+   				elsif newgame.setup >= {a1: "X", b2: "O", a3: "X", a2: "O", c2: "X"}
+   					"b3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", a2: "X"} ||
+   					 newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c3: "X"} ||
+					 newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c2: "X"} ||
+					 newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", b1: "X"}
+					 "c1"
+   				elsif newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c1: "X"}
+   					 "b1"
+    			end
+
+    		when 2
+   				if newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c1: "O", a2: "X"} ||
+				   newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c1: "O", c2: "X"}   				   
+				   "a3"
+				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c1: "O", a3: "X"}
+					   "a2" 
+   				elsif newgame.setup >= {a1: "X", b2: "O", a3: "X", a2: "O", c2: "X", b3: "O", c3: "X"} ||
+   					  newgame.setup >= {a1: "X", b2: "O", a3: "X", a2: "O", c2: "X", b3: "O", c1: "X"} 
+   					"b1"	
+   				elsif newgame.setup >= {a1: "X", b2: "O", a3: "X", a2: "O", c2: "X", b3: "O", b1: "X"} 
+   					"c1"
+   				elsif newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c1: "X", b1: "O", a2: "X"} ||
+					  newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c1: "X", b1: "O", c2: "X"} 
+   					 "c3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c1: "X", b1: "O", c3: "X"}
+   					 "c2"
+				end
+   				# if newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X"}
+   				#    "c1"
+    			# end
    			end
 			newgame.set_position(square_sought, player_name)
 
