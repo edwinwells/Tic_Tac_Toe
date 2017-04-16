@@ -24,7 +24,7 @@ def startgame()
 		playerX = Player.new("X")
 		playerO = ComputerRandom.new("O")
 		reset = "N"
-		freshgame = Game.new(playerX, playerO, reset)
+		freshgame = VersusRandom.new(playerX, playerO, reset)
 		# p freshgame
 		# @newboard = GameBoard.new()
 
@@ -32,7 +32,7 @@ def startgame()
 		playerX = ComputerRandom.new("X")
 		playerO = Player.new("O")
 		reset = "N"
-		freshgame = Game.new(playerX, playerO, reset)
+		freshgame = VersusRandom.new(playerX, playerO, reset)
 		# p freshgame
 		@newboard = GameBoard.new()
 	end
