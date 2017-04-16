@@ -1,23 +1,21 @@
 require_relative "gameboard.rb"
 require_relative "terminal.rb"
 require_relative "player.rb"
-
+require_relative "game.rb"
 
 def startgame()
-newgame = GameBoard.new
-terminal = Terminal.new
 
-	while newgame.check_full? == false ||
-		  game.win == false do
+	playerX = Player.new("X")
+	playerO = Player.new("O")
+	reset = "N"
+	freshgame = HumanVersusHuman.new(playerX, playerO, reset)
 
-		puts ""
-		newgame.get_player_move("X")
-		newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
+	freshgame.run_game(playerX, playerO)
+    if freshgame.reset.downcase == "y"
+		startgame() 
+    else
+        exit
+    end
 			
-		puts ""
-		newgame.get_player_move("O")
-		newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")	
-
-	end
 end
 startgame()

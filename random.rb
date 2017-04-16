@@ -26,7 +26,6 @@ def startgame()
 		playerO = Player.new("O")
 		reset = "N"
 		freshgame = VersusRandom.new(playerX, playerO, reset)
-		@newboard = GameBoard.new()
 	end
 
 		freshgame.run_game(playerX, playerO, response)

@@ -264,3 +264,28 @@ class VersusSequential < Game
 	end
 
 end
+class HumanVersusHuman < Game
+
+	def run_game(playerX, playerO)
+
+		newgame = GameBoard.new
+		terminal = Terminal.new
+
+			while win == false && @draw == false do
+
+				puts ""
+				if win == false && @draw == false
+					get_player_move(newgame, "X")
+					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
+				end
+
+				puts ""
+				if win == false && @draw == false
+					get_player_move(newgame, "O")
+					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")
+				end
+
+			end
+	end
+
+end
