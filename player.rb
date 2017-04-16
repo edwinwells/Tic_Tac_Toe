@@ -47,7 +47,7 @@ end
 
 class ComputerUnbeatable < Player
 
-	def get_unbeatable_computer_player_X_move(terminal, newgame, player_name)
+	def get_unbeatable_computer_player_X_move(newgame, player_name)
 
 		vacant_squares = Array.new
     	(newgame.setup).each do |key, value|
@@ -85,11 +85,87 @@ class ComputerUnbeatable < Player
    					"b2"
    				end
 
+		# if then O takes an edge, then X must block, and this will force O to block next move:
+   			when 5
+   				if newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O"}
+   					"a2"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O",}
+   					"b1"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O",}
+   					"c2"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O",}
+   					"b3"
+   				end
+
+   		#if O does not block, X wins:
+   			when 3
+   		#after X has played a2:
+   				if newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O", a2: "X", b3: "O"}
+   					"a3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O", a2: "X", b1: "O"}
+   					"a3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O", a2: "X", c1: "O"}
+   					"a3"
+   		#after X has played b1:
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", a3: "O"}
+   					"c1"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", a2: "O"}
+   					"c1"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c2: "O"}
+   					"c1"
+   		#after X has played b3:
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", a2: "O"}
+   					"a3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", c2: "O"}
+   					"a3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", c1: "O"}
+   					"a3" 
+   		#after X has played c2:
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", a3: "O"}
+   					"c1" 
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", b3: "O"}
+   					"c1" 
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", b1: "O"}
+   					"c1" 
+   		#but if O blocks, X in turn must block:
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O", a2: "X", a3: "O"}
+   					"c1"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c1: "O"}
+   					"a3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", a3: "O"}
+   					"c1"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", c1: "O"}
+   					"a3" 
+   				end
+   		#finally, O must either block, or lose:
+   			when 1
+   				if newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O", a2: "X", a3: "O", c1: "X", b1: "O"}
+   					"b3"#DRAW
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O", a2: "X", a3: "O", c1: "X", b3: "O"}
+   					"b1"#X WINS
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c1: "O", a3: "X", a2: "O"}
+   					"c2"#DRAW
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c1: "O", a3: "X", c2: "O"}
+   					"a2"#X WINS
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", c1: "O", a3: "X", b3: "O"}
+   					"b1"#DRAW
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", c1: "O", a3: "X", b1: "O"}
+   					"b3"#X WINS
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", a3: "O", c1: "X", c2: "O"}
+   					"a2"#DRAW
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", a3: "O", c1: "X", a2: "O"}
+   					"c2"#X WINS
+   				end
+
    		end				
 			# puts vacant_squares.count
 			# puts square_sought
-			set_position(square_sought, player_name)
+			newgame.set_position(square_sought, player_name)
 	        # p vacant_squares
 			puts ""
 	end
+
+	def get_unbeatable_computer_player_O_move(newgame, player_name)
+	end
+
 end

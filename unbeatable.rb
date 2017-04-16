@@ -1,11 +1,9 @@
 require_relative "gameboard.rb"
 require_relative "terminal.rb"
 require_relative "player.rb"
-
+require_relative "game.rb"
 
 def startgame()
-newgame = GameBoard.new
-terminal = Terminal.new
 
 #Determine which player will be "X":
 	response = ""
@@ -18,36 +16,25 @@ terminal = Terminal.new
  	end
 
 		if response == "X"
-			while newgame.check_full? == false ||
-		  game.win == false do
+		playerX = Player.new("X")
+		playerO = ComputerUnbeatable.new("O")
+		reset = "N"
+		freshgame = VersusUnbeatable.new(playerX, playerO, reset)
 
-				puts ""
-	    		print newgame.setup
-				newgame.get_player_move("X")
-				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
-					
-				puts "And..."
-				puts "The computer moves!: "
-				newgame.get_unbeatable_computer_player_O_move(terminal, newgame, "O")
-				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")	
-			end
-		end
+	elsif response == "O"
+		playerX = ComputerUnbeatable.new("X")
+		playerO = Player.new("O")
+		reset = "N"
+		freshgame = VersusUnbeatable.new(playerX, playerO, reset)
+	end
 
-		if response == "O"
-			while newgame.check_full? == false ||
-		  game.win == false do
+		freshgame.run_game(playerX, playerO, response)
 
-	    		puts "Current board: #{newgame.setup}"
-				puts "And..."
-				puts "The computer moves!: "
-				newgame.get_unbeatable_computer_player_X_move(terminal, newgame, "X")
-				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
+	    if freshgame.reset.downcase == "y"
+			startgame() 
+	    else
+	        exit
+	    end
 
-				puts ""
-	    		puts "Current board: #{newgame.setup}"
-				newgame.get_player_move("O")
-				newgame.game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")					
-			end
-		end		
 end
 startgame()
