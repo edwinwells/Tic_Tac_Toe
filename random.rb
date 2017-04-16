@@ -5,8 +5,8 @@ require_relative "game.rb"
 
 
 def startgame()
-newgame = GameBoard.new
-terminal = Terminal.new
+# newgame = GameBoard.new
+# terminal = Terminal.new
 
 #Should the following sec. be in Player Class? I think so
 #Determine which player will be "X":
@@ -18,28 +18,28 @@ terminal = Terminal.new
 		response = gets.chomp.upcase
 		puts ""
  	end
- 	p response
+ 	# p response
 
  	if response == "X"
 		playerX = Player.new("X")
 		playerO = ComputerRandom.new("O")
 		reset = "N"
-		freshgame = Game.new("freshgame", playerX, playerO, reset)
-		p freshgame
-		@newboard = GameBoard.new()
+		freshgame = Game.new(playerX, playerO, reset)
+		# p freshgame
+		# @newboard = GameBoard.new()
 
 	elsif response == "O"
 		playerX = ComputerRandom.new("X")
 		playerO = Player.new("O")
 		reset = "N"
-		freshgame = Game.new("freshgame", playerX, playerO, reset)
-		p freshgame
+		freshgame = Game.new(playerX, playerO, reset)
+		# p freshgame
 		@newboard = GameBoard.new()
 	end
 
 		freshgame.run_game(playerX, playerO, response)
-		p freshgame.reset
-		p freshgame.reset
+		# p freshgame.reset
+		# p freshgame.reset
 	    if freshgame.reset.downcase == "y"
 			startgame() 
 	    else

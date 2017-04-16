@@ -9,7 +9,7 @@ class Game
 	attr_accessor :reset
 	attr_accessor :win
 
-	def initialize(game, p1, p2, again)
+	def initialize(p1, p2, reset)
 		@game = game
 		@player1 = p1
 		@player2 = p2
@@ -57,7 +57,7 @@ class Game
 		    puts " There's a win!"
 			puts ""
 			puts " #{player_name} wins "
-			win = true
+			@win = true
 			
 		end
 	end
@@ -69,15 +69,14 @@ class Game
 	newgame = GameBoard.new
 	# p newgame
 	terminal = Terminal.new
-	@reset = "N"
 	# p terminal
-
+	# p @setup
 
 		if response == "X"
-			while win == false do
+			while win == false && @draw == false do
 
 				puts ""
-				if win == false
+				if win == false && @draw == false
 					get_player_move(newgame, "X")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
 				end
@@ -85,23 +84,23 @@ class Game
 				#   if win == true
 				#   	break
 				#   end	
-				if win == false
+				if win == false && @draw == false
 					puts "And..."
 					puts "The computer moves!: "
 					playerO.get_random_computer_player_move(newgame, "O")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")	
 				end
-		 		if (win == true)
-					   	ask_to_reset_game()
-				end	
+		 	# 	if (win == true)
+				# 	   	ask_to_reset_game()
+				# end	
 			end
 		end
 
 		if response == "O"
-			while win == false do
+			while win == false && @draw == false do
 
 				puts ""
-				if win == false
+				if win == false && @draw == false
 					puts "And..."
 					puts "The computer moves!: "
 					playerX.get_random_computer_player_move(newgame, "X")
@@ -109,7 +108,7 @@ class Game
 				end
 
 				puts ""
-				if win == false
+				if win == false && @draw == false
 					get_player_move(newgame, "O")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")
 				end
@@ -121,6 +120,7 @@ class Game
 	end
 
 	def get_player_move(currentgame, player_name)
+		# p currentgame
 		print " #{player_name}, enter your square! "
 		square = gets.chomp
 
@@ -133,18 +133,19 @@ class Game
 
 		currentgame.set_position(square, player_name)
 		puts ""
+		# p currentgame
 	end
 
 	def game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, player_name)
 		terminal.showboard(newgame.setup)
-		p player_name
-		terminal.check_for_wins(newgame.setup, player_name)
-		p win
+		# p player_name
+		check_for_wins(newgame.setup, player_name)
+		# p win
 
 		if ((win == false) &&
 		   (newgame.check_full? == true))
-				win = true
-				p win
+				@draw = true
+				# p win
 				declare_tie(terminal, newgame)
 		elsif win == true
 			ask_to_reset_game()
@@ -161,7 +162,7 @@ class Game
 	end
 
 	def declare_tie(terminal, newgame)
-		# win = true
+		@draw = true
 		print " The game is tie!"
 		puts ""
 		ask_to_reset_game()
