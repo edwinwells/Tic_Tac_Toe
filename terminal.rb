@@ -11,19 +11,22 @@ class Terminal
 =end
 	def showboard(currentBoard)
 	        puts ""
-	        print "********"
+	        print "********" + " SQUARES LEGEND"
 	        puts ""
 	        print " " + "#{currentBoard[:a3]}" +
 	        	  " " + "#{currentBoard[:b3]}" +
 	        	  " " + "#{currentBoard[:c3]}"
+	        print "     a3|b3|c3"
 	        puts ""
 	        print " " + "#{currentBoard[:a2]}" +
 	        	  " " + "#{currentBoard[:b2]}" +
 	        	  " " + "#{currentBoard[:c2]}"
+	        print "     a2|b2|c2"
 	        puts ""
 	        print " " + "#{currentBoard[:a1]}" +
 	        	  " " + "#{currentBoard[:b1]}" +
 	        	  " " + "#{currentBoard[:c1]}"
+	        print "     a1|b1|c1"
 	        puts ""
 	        puts ""
 	        print "********"
