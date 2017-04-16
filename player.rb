@@ -289,12 +289,6 @@ class ComputerUnbeatable < Player
    					"b3"
    				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", c1: "O", a3: "X", b1: "O"}
    					"b3"
-
-
-
-
-
-
    				end
 
    		#finally, O must either block, or lose:
@@ -321,11 +315,6 @@ class ComputerUnbeatable < Player
    					"b1"
    				elsif newgame.setup >= {a1: "X", c2: "O", b2: "X", c3: "O", c1: "X", b3: "O", a3: "X", b1: "O"}
    					"a2"
-
-
-
-
-
    				end
 
    		end				
@@ -337,6 +326,50 @@ class ComputerUnbeatable < Player
 	end
 
 	def get_unbeatable_computer_player_O_move(newgame, player_name)
+
+		vacant_squares = Array.new
+    	(newgame.setup).each do |key, value|
+	 		if newgame.setup[key] == " "
+	           	vacant_squares.push(key)
+	        end
+	     end
+	    square_sought = case vacant_squares.count
+
+		#ideal first move for O, if X has taken b2, is a corner square:
+   			when 8
+   				if newgame.setup >= {b2: "X"}
+   					"a1"
+   		#alternatively, if X has seized a corner square (strongest,) or any edge square, then O must take the centre:	
+   				elsif newgame.setup >= {a1: "X"}
+   					"b2"
+   				elsif newgame.setup >= {a3: "X"}
+   					"b2"
+   				elsif newgame.setup >= {c3: "X"}
+   					"b2"
+   				elsif newgame.setup >= {c1: "X"}
+   					"b2"
+   				elsif newgame.setup >= {a2: "X"}
+   					"b2"
+   				elsif newgame.setup >= {b3: "X"}
+   					"b2"
+   				elsif newgame.setup >= {c2: "X"}
+   					"b2"
+   				elsif newgame.setup >= {b1: "X"}
+   					"b2"
+   				end
+  #  		#ideal second move for X, if O has taken b2, is the opposite corner square:
+  #  			when 6
+  #  				if newgame.setup >= {a1: "X", b2: "O"}
+  #  					"c3"
+		# #alternatively, if O has taken a corner, X's second move should take any vacant corner:
+  #  				elsif newgame.setup >= {a1: "X", c3: "O"}
+  #  					"a3"
+
+   				# end
+   			end
+			newgame.set_position(square_sought, player_name)
+
+
 	end
 
 end
