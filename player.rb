@@ -288,8 +288,8 @@ class ComputerUnbeatable < Player
    				elsif newgame.setup >= {a1: "X", b2: "O", c2: "X"} ||
    					  newgame.setup >= {a1: "X", b2: "O", b1: "X"}
    					"c1"
-
-
+   				elsif newgame.setup >= {a1: "X", b2: "O", c1: "X"}
+   					"b1"
 
 
     			end
@@ -312,10 +312,37 @@ class ComputerUnbeatable < Player
    				elsif newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", a2: "X"} ||
    					 newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c3: "X"} ||
 					 newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c2: "X"} ||
-					 newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", b1: "X"}
+					 newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", b1: "X"} ||
+					 newgame.setup >= {a1: "X", b2: "O", a2: "X", a3: "O", b1: "X"} ||
+					 newgame.setup >= {a1: "X", b2: "O", a2: "X", a3: "O", b3: "X"} ||
+					 newgame.setup >= {a1: "X", b2: "O", a2: "X", a3: "O", c3: "X"} ||
+					 newgame.setup >= {a1: "X", b2: "O", a2: "X", a3: "O", c2: "X"}
 					 "c1"
-   				elsif newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c1: "X"}
+   				elsif newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c1: "X"} ||
+   					  newgame.setup >= {a1: "X", b2: "O", a2: "X", a3: "O", c1: "X"}
    					 "b1"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c2: "X", c1: "O", a2: "X"} ||  
+   					 newgame.setup >= {a1: "X", b2: "O", c2: "X", c1: "O", b1: "X"} ||
+   					 newgame.setup >= {a1: "X", b2: "O", c2: "X", c1: "O", b3: "X"} ||
+					newgame.setup >= {a1: "X", b2: "O", c2: "X", c1: "O", c3: "X"}
+				   "a3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c2: "X", c1: "O", a3: "X"}
+   					"a2"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", a2: "X"} ||
+   					  newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", a3: "X"} ||
+                      newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", c3: "X"} ||
+					  newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", c2: "X"} 
+   					"b3"
+				elsif newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", b3: "X"} 
+					"a2"
+				elsif newgame.setup >= {a1: "X", b2: "O", b1: "X", c1: "O", a2: "X"} ||
+					  newgame.setup >= {a1: "X", b2: "O", b1: "X", c1: "O", b3: "X"} ||
+					  newgame.setup >= {a1: "X", b2: "O", b1: "X", c1: "O", c3: "X"} ||
+					  newgame.setup >= {a1: "X", b2: "O", b1: "X", c1: "O", c2: "X"}
+					"a3"
+				elsif newgame.setup >= {a1: "X", b2: "O", b1: "X", c1: "O", a3: "X"}
+					"a2"
+
     			end
 
     		when 2
@@ -331,13 +358,31 @@ class ComputerUnbeatable < Player
    					"c1"
    				elsif newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c1: "X", b1: "O", a2: "X"} ||
 					  newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c1: "X", b1: "O", c2: "X"} 
-   					 "c3"
+   					"c3"
    				elsif newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c1: "X", b1: "O", c3: "X"}
-   					 "c2"
-				end
-   				# if newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X"}
-   				#    "c1"
-    			# end
+   					"c2"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c2: "X", c1: "O", a3: "X", a2: "O", b1: "X"}
+   					"b3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c2: "X", c1: "O", a3: "X", a2: "O", b3: "X"}
+   					"c3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c2: "X", c1: "O", a3: "X", a2: "O", c3: "X"}
+   					"b3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", b3: "X", a2: "O", a3: "X"} ||
+				      newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", b3: "X", a2: "O", c3: "X"} ||
+				      newgame.setup >= {a1: "X", b2: "O", b1: "X", c1: "O", a3: "X", a2: "O", b3: "X"} ||
+				      newgame.setup >= {a1: "X", b2: "O", b1: "X", c1: "O", a3: "X", a2: "O", c3: "X"}
+   					"c2"
+				elsif newgame.setup >= {a1: "X", b2: "O", b1: "X", c1: "O", a3: "X", a2: "O", c2: "X"}
+   					"b3"
+
+   				elsif newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", b3: "X", a2: "O", c2: "X"} ||
+   				      newgame.setup >= {a1: "X", b2: "O", a2: "X", a3: "O", c1: "X", b1: "O", b3: "X"}
+   					"c3"
+   				elsif newgame.setup >= {a1: "X", b2: "O", a2: "X", a3: "O", c1: "X", b1: "O", c3: "X"} ||
+					  newgame.setup >= {a1: "X", b2: "O", a2: "X", a3: "O", c1: "X", b1: "O", c2: "X"}   					
+   					"b3"
+
+      			end
    			end
 			newgame.set_position(square_sought, player_name)
 
