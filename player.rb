@@ -140,7 +140,6 @@ class ComputerUnbeatable < Player
    					"c3"
    				end
 
-   		#if O does not block, X wins:
    			when 3
    		#after X has played a2:
    				if newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O", a2: "X", b3: "O"} ||
@@ -151,52 +150,52 @@ class ComputerUnbeatable < Player
    				   newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", a2: "O"} ||
    				   newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", c1: "O"} ||
    				   newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c1: "O"} ||
-   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O", a2: "X", b1: "O"} ||
-   				      newgame.setup >= {a1: "X", c2: "O", b2: "X", c3: "O", c1: "X", b1: "O"} ||
-   				      newgame.setup >= {a1: "X", c2: "O", b2: "X", c3: "O", c1: "X", b1: "O"}   				   
-   					"a3"
+   				   newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O", a2: "X", b1: "O"} ||
+   				   newgame.setup >= {a1: "X", c2: "O", b2: "X", c3: "O", c1: "X", b1: "O"} ||
+   				   newgame.setup >= {a1: "X", c2: "O", b2: "X", c3: "O", c1: "X", b1: "O"}   				   
+   				   "a3"
    		#after X has played b1:
    				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", a3: "O"} ||
-   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", a2: "O"} ||
-   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c2: "O"} ||
-   				      newgame.setup >= {a1: "X", a2: "O", b2: "X", c3: "O", a3: "X", c2: "O"} ||
+   				    newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", a2: "O"} ||
+   				    newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c2: "O"} ||
+   				    newgame.setup >= {a1: "X", a2: "O", b2: "X", c3: "O", a3: "X", c2: "O"} ||
    		#after X has played c2:
-   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", a3: "O"} ||
-   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", b3: "O"} ||
-   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", b1: "O"} ||
+   				    newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", a3: "O"} ||
+   				    newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", b3: "O"} ||
+   				    newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", b1: "O"} ||
    		#but if O blocks, X in turn must block:
-   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O", a2: "X", a3: "O"} ||
-   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", a3: "O"} ||
-   				      newgame.setup >= {a1: "X", b3: "O", b2: "X", c3: "O", a3: "X", a2: "O"} ||
-   				      newgame.setup >= {a1: "X", b3: "O", b2: "X", c3: "O", a3: "X", b1: "O"} ||
-   				      newgame.setup >= {a1: "X", b3: "O", b2: "X", c3: "O", a3: "X", c2: "O"} ||
-   				      newgame.setup >= {a1: "X", b1: "O", b2: "X", c3: "O", a3: "X", b3: "O"} ||
-   				      newgame.setup >= {a1: "X", b1: "O", b2: "X", c3: "O", a3: "X", c2: "O"} ||
-   				      newgame.setup >= {a1: "X", b1: "O", b2: "X", c3: "O", a3: "X", a2: "O"}  				      
+   				    newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O", a2: "X", a3: "O"} ||
+   				    newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", a3: "O"} ||
+   				    newgame.setup >= {a1: "X", b3: "O", b2: "X", c3: "O", a3: "X", a2: "O"} ||
+   				    newgame.setup >= {a1: "X", b3: "O", b2: "X", c3: "O", a3: "X", b1: "O"} ||
+   				    newgame.setup >= {a1: "X", b3: "O", b2: "X", c3: "O", a3: "X", c2: "O"} ||
+   				    newgame.setup >= {a1: "X", b1: "O", b2: "X", c3: "O", a3: "X", b3: "O"} ||
+   				    newgame.setup >= {a1: "X", b1: "O", b2: "X", c3: "O", a3: "X", c2: "O"} ||
+   				    newgame.setup >= {a1: "X", b1: "O", b2: "X", c3: "O", a3: "X", a2: "O"}  				      
    					"c1"
    		#following weakest play by O (cf above,) X wins thru' the fork:
    				elsif newgame.setup >= {a1: "X", c3: "O", a3: "X", a2: "O", c1: "X", b3: "O"} ||
-   				      newgame.setup >= {a1: "X", c3: "O", a3: "X", a2: "O", c1: "X", b2: "O"} ||
-   				      newgame.setup >= {a1: "X", a3: "O", c3: "X", b2: "O", c1: "X", c2: "O"} ||
-   				       newgame.setup >= {a1: "X", c2: "O", b2: "X", c3: "O", c1: "X", a2: "O"} ||
-   				       newgame.setup >= {a1: "X", c2: "O", b2: "X", c3: "O", c1: "X", a3: "O"} ||
-   				       newgame.setup >= {a1: "X", c2: "O", b2: "X", c3: "O", c1: "X", b3: "O"}
+   				    newgame.setup >= {a1: "X", c3: "O", a3: "X", a2: "O", c1: "X", b2: "O"} ||
+   				    newgame.setup >= {a1: "X", a3: "O", c3: "X", b2: "O", c1: "X", c2: "O"} ||
+   				    newgame.setup >= {a1: "X", c2: "O", b2: "X", c3: "O", c1: "X", a2: "O"} ||
+   				    newgame.setup >= {a1: "X", c2: "O", b2: "X", c3: "O", c1: "X", a3: "O"} ||
+   				    newgame.setup >= {a1: "X", c2: "O", b2: "X", c3: "O", c1: "X", b3: "O"}
    					"b1"
    				elsif newgame.setup >= {a1: "X", c3: "O", a3: "X", a2: "O", c1: "X", b1: "O"} ||
-   				      newgame.setup >= {a1: "X", c3: "O", a3: "X", a2: "O", c1: "X", c2: "O"}
+   				    newgame.setup >= {a1: "X", c3: "O", a3: "X", a2: "O", c1: "X", c2: "O"}
    					"b2"
    				elsif newgame.setup >= {a1: "X", a3: "O", c3: "X", b2: "O", c1: "X", b1: "O"} ||
-   				      newgame.setup >= {a1: "X", a3: "O", c3: "X", b2: "O", c1: "X", a2: "O"} ||
-   				      newgame.setup >= {a1: "X", a3: "O", c3: "X", b2: "O", c1: "X", b3: "O"} ||
-   				      newgame.setup >= {a1: "X", a2: "O", b2: "X", c3: "O", a3: "X", c1: "O"}
+   				    newgame.setup >= {a1: "X", a3: "O", c3: "X", b2: "O", c1: "X", a2: "O"} ||
+   				    newgame.setup >= {a1: "X", a3: "O", c3: "X", b2: "O", c1: "X", b3: "O"} ||
+   				    newgame.setup >= {a1: "X", a2: "O", b2: "X", c3: "O", a3: "X", c1: "O"}
    					"c2"
    				elsif newgame.setup >= {a1: "X", b1: "O", b2: "X", c3: "O", a3: "X", c1: "O"} ||
-   				      newgame.setup >= {a1: "X", b3: "O", b2: "X", c3: "O", a3: "X", c1: "O"} ||
-   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", c1: "O", a3: "X", b3: "O"}
+   				    newgame.setup >= {a1: "X", b3: "O", b2: "X", c3: "O", a3: "X", c1: "O"} ||
+   				    newgame.setup >= {a1: "X", b2: "O", c3: "X", c1: "O", a3: "X", b3: "O"}
    					"a2"
    				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", c1: "O", a3: "X", a2: "O"} ||
-   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", c1: "O", a3: "X", c2: "O"} ||
-   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", c1: "O", a3: "X", b1: "O"}
+   				    newgame.setup >= {a1: "X", b2: "O", c3: "X", c1: "O", a3: "X", c2: "O"} ||
+   				    newgame.setup >= {a1: "X", b2: "O", c3: "X", c1: "O", a3: "X", b1: "O"}
    					"b3"
    				end
 
@@ -207,15 +206,15 @@ class ComputerUnbeatable < Player
    				   newgame.setup >= {a1: "X", a2: "O", b2: "X", c3: "O", a3: "X", c1: "O", c2: "X", b1: "O"}
    					"b3"
    				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O", a2: "X", a3: "O", c1: "X", b3: "O"} ||
-   					newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", c1: "O", a3: "X", b3: "O"} ||
-   					newgame.setup >= {a1: "X", a2: "O", b2: "X", c3: "O", a3: "X", c1: "O", c2: "X", b3: "O"}
-   					"b1"
+   				   newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O", c2: "X", c1: "O", a3: "X", b3: "O"} ||
+   				   newgame.setup >= {a1: "X", a2: "O", b2: "X", c3: "O", a3: "X", c1: "O", c2: "X", b3: "O"}
+   				   "b1"
    				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c1: "O", a3: "X", a2: "O"} ||
-   					  newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", a3: "O", c1: "X", a2: "O"}
+   					newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", a3: "O", c1: "X", a2: "O"}
    					"c2"
    				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c1: "O", a3: "X", c2: "O"} ||
-   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", a3: "O", c1: "X", c2: "O"} ||
-   				      newgame.setup >= {a1: "X", c2: "O", b2: "X", c3: "O", c1: "X", b3: "O", a3: "X", b1: "O"}
+   				    newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", a3: "O", c1: "X", c2: "O"} ||
+   				    newgame.setup >= {a1: "X", c2: "O", b2: "X", c3: "O", c1: "X", b3: "O", a3: "X", b1: "O"}
    					"a2"
    				end
 
