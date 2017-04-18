@@ -77,58 +77,51 @@ class ComputerUnbeatable < Player
    				end
 		# if then O takes an edge, then X must block, and this will force O to block next move:
    			when 5
-   				if newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O"}
+   				if newgame.setup >= {a1: "X", b2: "O", c3: "X", c2: "O"} ||
+   				      newgame.setup >= {a1: "X", c3: "O", a3: "X", c2: "O"} ||
+   				      newgame.setup >= {a1: "X", c3: "O", a3: "X", b3: "O"} ||
+   				      newgame.setup >= {a1: "X", c3: "O", a3: "X", b2: "O"} ||
+   				      newgame.setup >= {a1: "X", c3: "O", a3: "X", c1: "O"} ||
+   				      newgame.setup >= {a1: "X", c3: "O", a3: "X", b1: "O"}			
    					"a2"
-   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O",}
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O",} ||
+   					  newgame.setup >= {a1: "X", c3: "O", a3: "X", b3: "O"}
    					"b1"
-   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O",}
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", a2: "O",} ||
+   					  newgame.setup >= {a1: "X", c3: "O", b2: "X", c1: "O"}
    					"c2"
-   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O",}
+   				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O",} ||
+   					  newgame.setup >= {a1: "X", c3: "O", b2: "X", a3: "O"}
    					"b3"
    		#if O has taken a corner on his first move (weakest,) and X has taken an additional corner (strongest,) X will win by taking the last corner, creating a "fork":
    				elsif newgame.setup >= {a1: "X", c3: "O", a3: "X", a2: "O"} ||
-   				      newgame.setup >= {a1: "X", a3: "O", c3: "X", b2: "O"}
+   				      newgame.setup >= {a1: "X", a3: "O", c3: "X", b2: "O"} ||
+   				      newgame.setup >= {a1: "X", c3: "O", b2: "X", c2: "O"}
    					"c1"
-   				elsif newgame.setup >= {a1: "X", c1: "O", c3: "X", b2: "O"}
+   				elsif newgame.setup >= {a1: "X", c1: "O", c3: "X", b2: "O"} ||
+   				      newgame.setup >= {a1: "X", c3: "O", b2: "X", a2: "O"} ||
+   				      newgame.setup >= {a1: "X", c3: "O", b2: "X", b1: "O"} ||
+   				      newgame.setup >= {a1: "X", c3: "O", b2: "X", b3: "O"}			
    					"a3"
    		#or if O misses the block:
    				elsif newgame.setup >= {a1: "X", a3: "O", c3: "X", a2: "O"} ||
    				      newgame.setup >= {a1: "X", a3: "O", c3: "X", b3: "O"} ||
    				      newgame.setup >= {a1: "X", a3: "O", c3: "X", c2: "O"} ||
    				      newgame.setup >= {a1: "X", a3: "O", c3: "X", c1: "O"} ||
-   				      newgame.setup >= {a1: "X", a3: "O", c3: "X", b1: "O"}
+   				      newgame.setup >= {a1: "X", a3: "O", c3: "X", b1: "O"} ||
+   				      newgame.setup >= {a1: "X", c1: "O", c3: "X", b1: "O"} ||
+   				      newgame.setup >= {a1: "X", c1: "O", c3: "X", b3: "O"} ||
+   				      newgame.setup >= {a1: "X", c1: "O", c3: "X", a3: "O"} ||
+   				      newgame.setup >= {a1: "X", c1: "O", c3: "X", a2: "O"} ||
+   				      newgame.setup >= {a1: "X", c1: "O", c3: "X", c2: "O"}		      
    					"b2"
    		#if O starts with an edge, then misses a block:
    				elsif newgame.setup >= {a1: "X", a3: "O", b2: "X", a2: "O"} ||
    				      newgame.setup >= {a1: "X", a3: "O", b2: "X", b3: "O"} ||
    				      newgame.setup >= {a1: "X", a3: "O", b2: "X", c2: "O"} ||
    				      newgame.setup >= {a1: "X", a3: "O", b2: "X", c1: "O"} ||
-   				      newgame.setup >= {a1: "X", a3: "O", b2: "X", b1: "O"}
-   					"c3"
-   				elsif newgame.setup >= {a1: "X", c1: "O", c3: "X", c2: "O"} ||
-   				      newgame.setup >= {a1: "X", c1: "O", c3: "X", b1: "O"} ||
-   				      newgame.setup >= {a1: "X", c1: "O", c3: "X", b3: "O"} ||
-   				      newgame.setup >= {a1: "X", c1: "O", c3: "X", a3: "O"} ||
-   				      newgame.setup >= {a1: "X", c1: "O", c3: "X", a2: "O"}
-   					"b2"
-   				elsif newgame.setup >= {a1: "X", c3: "O", b2: "X", b3: "O"} ||
-   				      newgame.setup >= {a1: "X", c3: "O", b2: "X", a2: "O"} ||
-   				      newgame.setup >= {a1: "X", c3: "O", b2: "X", b1: "O"}
-   					"a3"
-   				elsif newgame.setup >= {a1: "X", c3: "O", b2: "X", a3: "O"}
-   					"b3"
-   				elsif newgame.setup >= {a1: "X", c3: "O", b2: "X", c2: "O"}
-   					"c1"
-   				elsif newgame.setup >= {a1: "X", c3: "O", b2: "X", c1: "O"}
-   					"c2"
-   				elsif newgame.setup >= {a1: "X", c3: "O", a3: "X", c1: "O"} ||
-   				      newgame.setup >= {a1: "X", c3: "O", a3: "X", c2: "O"} ||
-   				      newgame.setup >= {a1: "X", c3: "O", a3: "X", b3: "O"} ||
-   				      newgame.setup >= {a1: "X", c3: "O", a3: "X", b2: "O"}
-   					"a2"
-   				elsif newgame.setup >= {a1: "X", c3: "O", a3: "X", b3: "O"}
-   					"b1"
-   				elsif newgame.setup >= {a1: "X", b3: "O", b2: "X", b1: "O"} ||
+   				      newgame.setup >= {a1: "X", a3: "O", b2: "X", b1: "O"} ||
+   				      newgame.setup >= {a1: "X", b3: "O", b2: "X", b1: "O"} ||
    				      newgame.setup >= {a1: "X", b3: "O", b2: "X", c1: "O"} ||
    				      newgame.setup >= {a1: "X", b3: "O", b2: "X", c2: "O"} ||
    				      newgame.setup >= {a1: "X", b3: "O", b2: "X", a2: "O"} ||
@@ -145,8 +138,6 @@ class ComputerUnbeatable < Player
    				      newgame.setup >= {a1: "X", b1: "O", b2: "X", c1: "O"} ||
    				      newgame.setup >= {a1: "X", a2: "O", b2: "X", c1: "O"}
    					"c3"
-   				elsif newgame.setup >= {a1: "X", c3: "O", a3: "X", b1: "O"}
-   					"a2"				
    				end
 
    		#if O does not block, X wins:
