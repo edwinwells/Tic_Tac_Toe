@@ -159,7 +159,8 @@ class ComputerUnbeatable < Player
    		#after X has played b1:
    				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", a3: "O"} ||
    				      newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", a2: "O"} ||
-   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c2: "O"}
+   				      newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c2: "O"} ||
+   				      newgame.setup >= {a1: "X", a2: "O", b2: "X", c3: "O", a3: "X", c2: "O"}
    					"c1"
    		#after X has played b3:
    				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b1: "O", b3: "X", a2: "O"} ||
@@ -247,6 +248,12 @@ class ComputerUnbeatable < Player
 
    		end				
 
+   			p square_sought
+   			if square_sought == nil
+   			  puts "There has been an error- please record the position, and notify the creator of the game."
+   			  puts ""
+   			  exit
+   			end
 			newgame.set_position(square_sought, player_name)
 			puts ""
 	end
@@ -576,8 +583,13 @@ class ComputerUnbeatable < Player
       			end
    			end
    			p square_sought
+   			if square_sought == nil
+   			  puts "There has been an error- please record the position, and notify the creator of the game."
+   			  puts ""
+   			  exit
+   			end   			
 			newgame.set_position(square_sought, player_name)
-
+			puts ""
 
 	end
 
