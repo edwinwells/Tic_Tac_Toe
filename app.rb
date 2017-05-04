@@ -1,9 +1,9 @@
 require 'sinatra'
-# require_relative "unbeatable.rb"
-# require_relative "gameboard.rb"
-# require_relative "terminal.rb"
-# require_relative "player.rb"
-# require_relative "game.rb"
+require_relative "unbeatable.rb"
+require_relative "gameboard.rb"
+require_relative "terminal.rb"
+require_relative "player.rb"
+require_relative "game.rb"
 
 get '/' do
     erb :initial_page
@@ -21,18 +21,15 @@ end
 
 post '/humanX(move)' do
     place = params[:move]
-    result = startgame(move)
+    # result = startgame(place)
+newboard = GameBoard.new
+newboard={
+			:a1=>"O", :a2=>"O", :a3=>"O",
+		 	:b1=>"X", :b2=>" ", :b3=>"O",
+		  	:c1=>"X", :c2=>"O", :c3=>"X"	
+		 }
 
-    if result==true 
-        statement1="Congratulations!"
-        statement2="Your ISBN #{number} is Valid!"
-        statement3="Have a nice day:-)"
-    else
-        statement1="Sorry 'bout your luck!"
-        statement2="You got hold of a counterfeit ISBN!"
-        statement3="Better luck next time..."
-    end
-    erb :showisbnresult, :locals => {:number => number,:statement1 => statement1, :statement2 => statement2, :statement3 => statement3} 
+    erb :showinfo, :locals => {:newboard => newboard} 
 
 end
 

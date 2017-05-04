@@ -32,5 +32,4 @@ class Terminal
 	        print "********"
 	        puts ""
 	end
-
 end
