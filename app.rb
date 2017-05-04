@@ -11,8 +11,13 @@ end
 
 get '/X' do
 newboard = GameBoard.new
+newboard={
+			a1: "a1", a2: "a2", a3: "a3",
+		 	b1: "b1", b2: "b2", b3: "b3",
+		  	c1: "c1", c2: "c2", c3: "c3"	
+		 }
 
-    erb :User_Chooses_X, :locals => {:newboard => newboard}
+    erb :User_Chooses_X, :locals => {newboard: newboard}
 end
 
 get '/O' do
@@ -27,12 +32,12 @@ post '/humanX(move)' do
     # result = startgame(place)
 	# newboard.set_position(position, "X")
 	# current_setup = params[:setup]
-# newboard={
-# 			:a1=>"O", :a2=>"O", :a3=>"O",
-# 		 	:b1=>"X", :b2=>" ", :b3=>"O",
-# 		  	:c1=>"X", :c2=>"O", :c3=>"X"	
-# 		 }
-    erb :User_Chooses_X, :locals => {:newboard => newboard} 
+newboard={
+			a1: "a1", a2: "a2", a3: "a3",
+		 	b1: "b1", b2: "b2", b3: "b3",
+		  	c1: "c1", c2: "c2", c3: "c3"	
+		 }
+    erb :User_Chooses_X, :locals => {newboard: newboard} 
 
 end
 
