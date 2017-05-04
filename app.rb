@@ -10,7 +10,7 @@ get '/' do
 end
 
 get '/X' do
-newboard = GameBoard.new.setup
+newboard = GameBoard.new
 
     erb :User_Chooses_X, :locals => {:newboard => newboard}
 end
@@ -22,14 +22,16 @@ end
 
 
 post '/humanX(move)' do
-    place = params[:move]
-    # newboard = params
+    position = params[:move]
+    newboard = params[:newboard]
     # result = startgame(place)
-newboard={
-			:a1=>"O", :a2=>"O", :a3=>"O",
-		 	:b1=>"X", :b2=>" ", :b3=>"O",
-		  	:c1=>"X", :c2=>"O", :c3=>"X"	
-		 }
+	# newboard.set_position(position, "X")
+	# current_setup = params[:setup]
+# newboard={
+# 			:a1=>"O", :a2=>"O", :a3=>"O",
+# 		 	:b1=>"X", :b2=>" ", :b3=>"O",
+# 		  	:c1=>"X", :c2=>"O", :c3=>"X"	
+# 		 }
     erb :User_Chooses_X, :locals => {:newboard => newboard} 
 
 end
