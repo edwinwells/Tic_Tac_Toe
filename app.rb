@@ -6,6 +6,16 @@ require_relative "player.rb"
 require_relative "game.rb"
 
 # enable :sessions
+# get '/' do
+# 	erb :get_name
+# end
+
+# post '/name' do
+# 	name = params[:user_name]
+# 	erb :get_location, :locals => {:name => name}
+# end
+
+
 
 get '/' do
     erb :initial_page
@@ -13,24 +23,13 @@ end
 
 get '/X' do
 
-		playerX = Player.new("X")
-		playerO = ComputerUnbeatable.new("O")
-		reset = "N"
+	playerX = Player.new("X")
+	playerO = ComputerUnbeatable.new("O")
+	reset = "N"
 
-		freshgame = VersusUnbeatable.new(playerX, playerO, reset)
+	freshgame = VersusUnbeatable.new(playerX, playerO, reset)
 
-	freshgame = {
-				a1: "X", a2: "", a3: "",
-			 	b1: "", b2: "", b3: "",
-			  	c1: "", c2: "", c3: ""	
-			       }
-
-legend = GameBoard.new
-legend={
-			a1: "a1", a2: "a2", a3: "a3",
-		 	b1: "b1", b2: "b2", b3: "b3",
-		  	c1: "c1", c2: "c2", c3: "c3"	
-		 }
+	freshgame = freshgame.setup
 
     erb :User_Chooses_X, :locals => {freshgame: freshgame, legend: legend}
 end

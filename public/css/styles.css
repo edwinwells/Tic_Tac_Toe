@@ -2,9 +2,21 @@ H1 { text-align: center;
 font-weight: bold;
 color: green;
 text-decoration: underline;
-}
+    }
 
+H3 {
+font-weight: bold;
+color: black;
+text-decoration: underline;
 
+	}
+
+table {border: 1px solid black;
+text-decoration: underline;
+verticalAlign = bottom;
+font-weight: bold;
+color: black;
+    }	
 
 .color_blue{
 color: blue;
