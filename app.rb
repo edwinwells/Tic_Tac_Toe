@@ -26,12 +26,15 @@ get '/X' do
 	playerX = Player.new("X")
 	playerO = ComputerUnbeatable.new("O")
 	reset = "N"
+	@freshgame = VersusUnbeatable.new(playerX, playerO, reset)
 
-	freshgame = VersusUnbeatable.new(playerX, playerO, reset)
+	freshgame = {
+			     a1: " ", a2: " ", a3: " ",
+			     b1: " ", b2: " ", b3: " ",
+			     c1: " ", c2: " ", c3: " "
+		         }
 
-	freshgame = freshgame.setup
-
-    erb :User_Chooses_X, :locals => {freshgame: freshgame, legend: legend}
+    erb :User_Chooses_X, :locals => {:freshgame => freshgame}
 end
 
 get '/O' do
@@ -47,7 +50,6 @@ post '/humanX(move)' do
 	# @setup[:"#{position}"] = character
 
 	freshgame = params[:freshgame]
-    legend = params[:legend]
     position = params[:move]
     playerX = params[:playerX]
     playerO = params[:playerO]
@@ -84,12 +86,7 @@ post '/humanX(move)' do
 # 		 	b1: "", b2: "", b3: "",
 # 		  	c1: "", c2: "", c3: ""	
 # 		       }
-legend = {
-			a1: "a1", a2: "a2", a3: "a3",
-		 	b1: "b1", b2: "b2", b3: "b3",
-		  	c1: "c1", c2: "c2", c3: "c3"	
-		 }
 
-    erb :User_Chooses_X, :locals => {freshgame: freshgame, legend: legend} 
+    erb :User_Chooses_X, :locals => {freshgame: freshgame} 
 
 end
