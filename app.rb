@@ -35,10 +35,22 @@ end
 
 
 
-post '/humanX_move' do
+post '/HumanX_move' do
 	# current_game.set_position
 
 	# @setup[:"#{position}"] = character
+
+	move = params[:move]
+	freshgame = params[:freshgame]
+    playerX = params[:playerX]
+    playerO = params[:playerO]
+    gameboard = params[:gameboard]
+
+
+    erb :ComputerO_move, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+end
+
+post '/ComputerO_move' do
 
 	move = params[:move]
 	freshgame = params[:freshgame]
@@ -48,10 +60,12 @@ post '/humanX_move' do
 
 	session[:gameboard].set_position(move, "X")
 
+	session[:playerO].get_unbeatable_computer_player_O_move(session[:gameboard], "O")
+
     erb :ComputerO_move, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
 
-post '/ComputerO_move' do
+post '/HumanX_balance' do
 	# current_game.set_position
 
 	# @setup[:"#{position}"] = character
@@ -61,6 +75,31 @@ post '/ComputerO_move' do
     playerX = params[:playerX]
     playerO = params[:playerO]
     gameboard = params[:gameboard]
+
+	if session[:freshgame].check_for_wins(session[:freshgame], "O") == true
+		erb:win_for_O
+	end
+
+	session[:gameboard].set_position(move, "X")
+
+	if session[:freshgame].check_for_wins(session[:freshgame], "X") == true
+		erb:win_for_X
+	end
+	session[:playerO].get_unbeatable_computer_player_O_move(session[:gameboard], "O")
+
+
+    erb :ComputerO_balance, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+end
+
+post '/ComputerO_balance' do
+
+	move = params[:move]
+	freshgame = params[:freshgame]
+    playerX = params[:playerX]
+    playerO = params[:playerO]
+    gameboard = params[:gameboard]
+
+	session[:gameboard].set_position(move, "X")
 
 	session[:playerO].get_unbeatable_computer_player_O_move(session[:gameboard], "O")
 	# session[:gameboard].set_position(move, "O")

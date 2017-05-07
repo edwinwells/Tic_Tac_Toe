@@ -233,7 +233,7 @@ class ComputerUnbeatable < Player
 	def get_unbeatable_computer_player_O_move(newgame, player_name)
 
 		vacant_squares = Array.new
-236    	(newgame.setup).each do |key, value|
+    	(newgame.setup).each do |key, value|
 	 		if newgame.setup[key] == " "
 	           	vacant_squares.push(key)
 	        end
