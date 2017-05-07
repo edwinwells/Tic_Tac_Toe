@@ -1,4 +1,5 @@
 require_relative "terminal.rb"
+require_relative "player.rb"
 
 
 

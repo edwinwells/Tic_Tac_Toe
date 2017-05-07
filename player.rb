@@ -233,7 +233,7 @@ class ComputerUnbeatable < Player
 	def get_unbeatable_computer_player_O_move(newgame, player_name)
 
 		vacant_squares = Array.new
-    	(newgame.setup).each do |key, value|
+236    	(newgame.setup).each do |key, value|
 	 		if newgame.setup[key] == " "
 	           	vacant_squares.push(key)
 	        end
@@ -548,7 +548,7 @@ class ComputerUnbeatable < Player
    			end
    			p square_sought
    			if square_sought == nil
-   			  puts "There has been an error- please record the position, and notify the creator of the game."
+   			  puts "There has been an error- please record the position, and notify the creator of this game."
    			  puts ""
    			  exit
    			end   			

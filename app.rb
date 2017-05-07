@@ -62,7 +62,8 @@ post '/ComputerO_move' do
     playerO = params[:playerO]
     gameboard = params[:gameboard]
 
-	session[:gameboard].set_position(move, "O")
+	session[:playerO].get_unbeatable_computer_player_O_move(session[:gameboard], "O")
+	# session[:gameboard].set_position(move, "O")
 
     erb :ComputerO_move, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
