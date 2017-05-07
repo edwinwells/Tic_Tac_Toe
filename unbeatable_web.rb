@@ -37,4 +37,4 @@ def startgame()
 	    end
 
 end
-startgame()
+# startgame()

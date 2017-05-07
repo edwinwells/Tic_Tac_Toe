@@ -1,43 +1,35 @@
 require 'sinatra'
-require_relative "unbeatable.rb"
+require_relative "unbeatable_web.rb"
 require_relative "gameboard.rb"
 require_relative "terminal.rb"
 require_relative "player.rb"
 require_relative "game.rb"
 
-# enable :sessions
-# get '/' do
-# 	erb :get_name
-# end
-
-# post '/name' do
-# 	name = params[:user_name]
-# 	erb :get_location, :locals => {:name => name}
-# end
-
-
+class TicTacToeweb < Sinatra::Base
+enable :sessions
 
 get '/' do
     erb :initial_page
 end
 
 get '/X' do
+	session[:playerX] = Player.new("X")
+	session[:playerO] = ComputerUnbeatable.new("O")
+	session[:reset] = "N"	
+	session[:freshgame] = VersusUnbeatable.new(session[:playerX], session[:playerO], session[:reset])
+	session[:gameboard] = GameBoard.new
 
-	playerX = Player.new("X")
-	playerO = ComputerUnbeatable.new("O")
-	reset = "N"
-	@freshgame = VersusUnbeatable.new(playerX, playerO, reset)
 
-	freshgame = {
-			     a1: " ", a2: " ", a3: " ",
-			     b1: " ", b2: " ", b3: " ",
-			     c1: " ", c2: " ", c3: " "
-		         }
-
-    erb :User_Chooses_X, :locals => {:freshgame => freshgame}
+    erb :User_Chooses_X, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
 
 get '/O' do
+
+	session[:playerO] = Player.new("O")
+	session[:playerX] = ComputerUnbeatable.new("X")
+	session[:reset] = "N"	
+	session[:freshgame] = VersusUnbeatable.new(session[:playerX], session[:playerO], session[:reset])
+	session[:gameboard] = GameBoard.new	
     erb :User_Chooses_O
 end
 
@@ -45,19 +37,16 @@ end
 
 post '/humanX(move1)' do
 	# current_game.set_position
-# post '/hxone' do
-# 	name = params[:user_name]
-# 	erb :get_location, :locals => {:name => name}
-# end
-
 
 	# @setup[:"#{position}"] = character
 
 	move1 = params[:move1]
 	freshgame = params[:freshgame]
-    position = params[:move1]
     playerX = params[:playerX]
     playerO = params[:playerO]
+    gameboard = params[:gameboard]
+
+	session[:gameboard].set_position(move1, "X")
 
     # freshgame = freshgame
 
@@ -85,9 +74,18 @@ post '/humanX(move1)' do
 	# 	puts "Invalid entry! Please try again."
 	# end
 
-    erb :ComputerO_move1, :locals => {:move1 => move1, :freshgame => freshgame}
+    erb :ComputerO_move1, :locals => {:move1 => session[:move1], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+end
 
- get '/humanX(move2)' do 
+ post '/humanX_move2' do
+ 	computermove1 = session[:computermove1] 
+	move1 = session[:move1]
+	freshgame = params[:freshgame]
+    playerX = params[:playerX]
+    playerO = params[:playerO]
+    gameboard = params[:gameboard]
 
+
+    erb :humanX_move2, :locals => {:computermove1 => session[:computermove1], :move1 => session[:move1], :playerX => session[:playerX], :playerO => session[:playerO],:freshgame => session[:freshgame], :reset =>session[:reset]}
  end
 end
