@@ -6,16 +6,16 @@ text-decoration: underline;
 
 H3 {
 font-weight: bold;
-color: black;
+color: blue;
 text-decoration: underline;
 
 	}
 
-table {border: 1px solid black;
+table {border: 1px solid blue;
 text-decoration: underline;
 verticalAlign = bottom;
 font-weight: bold;
-color: black;
+color: blue;
     }	
 
 .color_blue{
@@ -38,11 +38,16 @@ text-align: center;
 
 }
 
+.bgblack{
+background-color: black;
+
+}
+
+
 .bgsilver{
 background-color: silver;
 
 }
-
 
 .bggoldenrod{
 background-color: goldenrod;

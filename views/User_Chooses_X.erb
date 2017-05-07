@@ -1,26 +1,7 @@
 <center><h1>Enter a square:</h1><center>
 
-<form method="post" action="humanX(move)">
-  <input type="text" name = "move">
+<form method="post" action="humanX(move1)">
+  <input type="text" name = "move1">
   <input type="submit">
 </form>
-
-<table><h1>
-	<tr>
-    <td><%= freshgame[:c1]%></td>
-    <td><%= freshgame[:c2]%></td>
-    <td><%= freshgame[:c3]%></td>
-  </tr>
-  <tr>
-    <td><%= freshgame[:b1]%></td>
-    <td><%= freshgame[:b2]%></td>
-    <td><%= freshgame[:b3]%></td>
-  </tr>
-  <tr>
-    <td><%= freshgame[:a1]%></td>
-    <td><%= freshgame[:a2]%></td>
-    <td><%= freshgame[:a3]%></td>		
-	</tr>	
-</h1></table>
-
-
+  <input type ="hidden" name="freshgame" value ="<%= freshgame%>">

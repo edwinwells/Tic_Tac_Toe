@@ -43,50 +43,51 @@ end
 
 
 
-post '/humanX(move)' do
+post '/humanX(move1)' do
 	# current_game.set_position
+# post '/hxone' do
+# 	name = params[:user_name]
+# 	erb :get_location, :locals => {:name => name}
+# end
 
 
 	# @setup[:"#{position}"] = character
 
+	move1 = params[:move1]
 	freshgame = params[:freshgame]
-    position = params[:move]
+    position = params[:move1]
     playerX = params[:playerX]
     playerO = params[:playerO]
 
-	freshgame = VersusUnbeatable.new(playerX, playerO, "No")
+    # freshgame = freshgame
 
-	# freshgame = {
-	# 			a1: "X", a2: "", a3: "",
-	# 		 	b1: "", b2: "", b3: "",
-	# 		  	c1: "", c2: "", c3: ""	
-	# 	        }    
+ #    a1 = freshgame[:a1]
+ #    b1 = freshgame[:b1]
+ #    c1 = freshgame[:c1]
+ #    a2 = freshgame[:a2]
+ #    b2 = freshgame[:b2]
+ #    c2 = freshgame[:c2]
+ #    a3 = freshgame[:a3]
+ #    b3 = freshgame[:b3]
+ #    c3 = freshgame[:c3]
 
-	freshgame.run_game(playerX, playerO, "X")
 
-# 
-    # puts current_game
 
-    # result = startgame(place)
-	# newboard.set_position(position, "X")
-	if position != "a1" ||
-		position != "a2" ||
-		position != "a3" ||
-		position != "b1" ||
-		position != "b2" ||
-		position != "b3" ||
-		position != "c1" ||
-		position != "c2" ||
-		position != "c3"
-		puts "Invalid entry! Please try again."
-	end
+	# if position != "a1" ||
+	# 	position != "a2" ||
+	# 	position != "a3" ||
+	# 	position != "b1" ||
+	# 	position != "b2" ||
+	# 	position != "b3" ||
+	# 	position != "c1" ||
+	# 	position != "c2" ||
+	# 	position != "c3"
+	# 	puts "Invalid entry! Please try again."
+	# end
 
-# freshgame = {
-# 			a1: "X", a2: "", a3: "",
-# 		 	b1: "", b2: "", b3: "",
-# 		  	c1: "", c2: "", c3: ""	
-# 		       }
+    erb :ComputerO_move1, :locals => {:move1 => move1, :freshgame => freshgame}
 
-    erb :User_Chooses_X, :locals => {freshgame: freshgame} 
+ get '/humanX(move2)' do 
 
+ end
 end
