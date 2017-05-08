@@ -65,6 +65,10 @@ post '/ComputerO_move' do
     erb :ComputerO_move, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
 
+get '/HumanX_balance' do
+    erb :HumanX_balance, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+end
+
 post '/HumanX_balance' do
 	# current_game.set_position
 
@@ -76,16 +80,18 @@ post '/HumanX_balance' do
     playerO = params[:playerO]
     gameboard = params[:gameboard]
 
-
+	redirect "/Invalid_Move_For_X" if session[:gameboard].check_position?(move) == false
 
 	session[:gameboard].set_position(move, "X")
 
 	redirect "/winnerX" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
+	redirect "/drawn_game" if session[:gameboard].check_full?() == true
+
 
 	session[:playerO].get_unbeatable_computer_player_O_move(session[:gameboard], "O")
 
 	redirect "/winnerO" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
-	
+	redirect "/drawn_game" if session[:gameboard].check_full?() == true
 
     erb :ComputerO_balance, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
@@ -98,20 +104,38 @@ post '/ComputerO_balance' do
     playerO = params[:playerO]
     gameboard = params[:gameboard]
 
+	redirect "/Invalid_Move_For_X" if session[:gameboard].check_position?(move) == false
+
 	session[:gameboard].set_position(move, "X")
 	redirect "/winnerX" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
+	redirect "/drawn_game" if session[:gameboard].check_full?() == true
+
 
 	session[:playerO].get_unbeatable_computer_player_O_move(session[:gameboard], "O")
 	redirect "/winnerO" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
+	redirect "/drawn_game" if session[:gameboard].check_full?() == true
 
-    erb :ComputerO_move, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+    erb :ComputerO_balance, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
 
 get "/winnerO" do
-		erb:win_for_O, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+		erb:win_for_O, :locals => {gameboard: session[:gameboard]}
 end
 
 get "/winnerX" do
-		erb:win_for_X, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+		erb:win_for_X, :locals => {gameboard: session[:gameboard]}
 end
+
+get "/drawn_game" do
+	erb:Drawn_game, :locals => {gameboard: session[:gameboard]}
+end
+
+get "/Invalid_Move_For_X" do
+	erb:Invalid_Move_For_X, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+end
+
+get "/Invalid_Move_For_O" do
+	erb:Invalid_Move_For_O, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+end
+
 end
