@@ -76,17 +76,16 @@ post '/HumanX_balance' do
     playerO = params[:playerO]
     gameboard = params[:gameboard]
 
-	if session[:freshgame].check_for_wins(session[:freshgame], "O") == true
-		erb:win_for_O
-	end
+
 
 	session[:gameboard].set_position(move, "X")
 
-	if session[:freshgame].check_for_wins(session[:freshgame], "X") == true
-		erb:win_for_X
-	end
+	redirect "/winnerX" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
+
 	session[:playerO].get_unbeatable_computer_player_O_move(session[:gameboard], "O")
 
+	redirect "/winnerO" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
+	
 
     erb :ComputerO_balance, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
@@ -100,11 +99,19 @@ post '/ComputerO_balance' do
     gameboard = params[:gameboard]
 
 	session[:gameboard].set_position(move, "X")
+	redirect "/winnerX" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
 
 	session[:playerO].get_unbeatable_computer_player_O_move(session[:gameboard], "O")
-	# session[:gameboard].set_position(move, "O")
+	redirect "/winnerO" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
 
     erb :ComputerO_move, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
 
+get "/winnerO" do
+		erb:win_for_O, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+end
+
+get "/winnerX" do
+		erb:win_for_X, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+end
 end
