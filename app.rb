@@ -88,7 +88,7 @@ post '/ComputerX_move' do
 
 	session[:playerX].get_unbeatable_computer_player_X_move(session[:gameboard], "X")
 
-    erb :HumanX_balance, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+    erb :ComputerX_balance, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
 
 get '/HumanX_balance' do
