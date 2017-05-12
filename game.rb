@@ -62,7 +62,7 @@ class Game
 		end
 	end
 
-	def get_player_move(currentgame, player_name)
+	def get_move(currentgame, player_name)
 		# p currentgame
 		print " #{player_name}, enter your square! "
 		square = gets.chomp
@@ -126,14 +126,14 @@ class VersusRandom < Game
 
 				puts ""
 				if win == false && @draw == false
-					get_player_move(newgame, "X")
+					get_move(newgame, "X")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
 				end
 
 				if win == false && @draw == false
 					puts "And..."
 					puts "The computer moves!: "
-					playerO.get_random_computer_player_move(newgame, "O")
+					playerO.get_move(newgame, "O")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")	
 				end
 			end
@@ -146,13 +146,13 @@ class VersusRandom < Game
 				if win == false && @draw == false
 					puts "And..."
 					puts "The computer moves!: "
-					playerX.get_random_computer_player_move(newgame, "X")
+					playerX.get_move(newgame, "X")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")	
 				end
 
 				puts ""
 				if win == false && @draw == false
-					get_player_move(newgame, "O")
+					get_move(newgame, "O")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")
 				end
 			end
@@ -173,14 +173,14 @@ class VersusSequential < Game
 
 				puts ""
 				if win == false && @draw == false
-					get_player_move(newgame, "X")
+					get_move(newgame, "X")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
 				end
 
 				if win == false && @draw == false
 					puts "And..."
 					puts "The computer moves!: "
-					playerO.get_sequential_computer_player_move(newgame, "O")
+					playerO.get_move(newgame, "O")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")	
 				end
 			end
@@ -193,13 +193,13 @@ class VersusSequential < Game
 				if win == false && @draw == false
 					puts "And..."
 					puts "The computer moves!: "
-					playerX.get_sequential_computer_player_move(newgame, "X")
+					playerX.get_move(newgame, "X")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")	
 				end
 
 				puts ""
 				if win == false && @draw == false
-					get_player_move(newgame, "O")
+					get_move(newgame, "O")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")
 				end
 			end
@@ -218,13 +218,13 @@ class HumanVersusHuman < Game
 
 				puts ""
 				if win == false && @draw == false
-					get_player_move(newgame, "X")
+					get_move(newgame, "X")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
 				end
 
 				puts ""
 				if win == false && @draw == false
-					get_player_move(newgame, "O")
+					get_move(newgame, "O")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")
 				end
 
@@ -245,14 +245,14 @@ class VersusUnbeatable < Game
 
 				puts ""
 				if win == false && @draw == false
-					get_player_move(newgame, "X")
+					get_move(newgame, "X")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
 				end
 
 				if win == false && @draw == false
 					puts "And..."
 					puts "The computer moves!: "
-					playerO.get_unbeatable_computer_player_O_move(newgame, "O")
+					playerO.get_move(newgame, "O")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")	
 				end
 			end
@@ -265,13 +265,13 @@ class VersusUnbeatable < Game
 				if win == false && @draw == false
 					puts "And..."
 					puts "The computer moves!: "
-					playerX.get_unbeatable_computer_player_X_move(newgame, "X")
+					playerX.get_move(newgame, "X")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")	
 				end
 
 				puts ""
 				if win == false && @draw == false
-					get_player_move(newgame, "O")
+					get_move(newgame, "O")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")
 				end
 			end

@@ -37,10 +37,6 @@ class GameBoard
 		if count <9 then false else true end
     end
 
-	def get_unbeatable_computer_player_O_move(terminal, newgame, player_name)
-
-	end	
-
 
 	def identify_vacant_squares()
 

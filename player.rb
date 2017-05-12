@@ -11,7 +11,7 @@ end
 
 class ComputerSequential < Player
 
-	def get_sequential_computer_player_move(newgame, player_name)
+	def get_move(newgame, player_name)
 		vacant_squares = Array.new
 
     	(newgame.setup).each do |key, value|
@@ -29,7 +29,7 @@ end
 
 class ComputerRandom < Player
 
-	def get_random_computer_player_move(newgame, player_name)
+	def get_move(newgame, player_name)
 
 		vacant_squares = Array.new
 
@@ -47,7 +47,7 @@ end
 
 class ComputerUnbeatable < Player
 
-	def get_unbeatable_computer_player_X_move(newgame, player_name)
+	def get_move(newgame, player_name)
 
 		vacant_squares = Array.new
     	(newgame.setup).each do |key, value|
@@ -230,7 +230,7 @@ class ComputerUnbeatable < Player
 			puts ""
 	end
 
-	def get_unbeatable_computer_player_O_move(newgame, player_name)
+	def get_move(newgame, player_name)
 
 		vacant_squares = Array.new
     	(newgame.setup).each do |key, value|
