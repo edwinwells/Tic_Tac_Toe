@@ -18,7 +18,7 @@ get '/twohumans' do
 	session[:reset] = "N"
 	session[:freshgame] = Game.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+    erb :Basic_Table_Human_v_Human, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
 
 # get '/X' do

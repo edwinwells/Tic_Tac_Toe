@@ -15,6 +15,35 @@ color: blue;
 text-decoration: underline;
 }
 
+
+table {
+	font-family: palatino;
+  font-weight: bold;
+	width: 22%;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+td, th {
+	text-align: center;
+	padding: 6px;
+  border-left: 3px solid blue;
+}
+
+td:first-child { border-left: none; }  
+
+tr:nth-child(even) {
+	background-color: #FFD700;
+  border-bottom: 3px solid blue;
+  border-top: 3px solid blue;
+}
+
+tr:nth-child(odd) {
+  background-color: #FFD700;
+}
+
+td { width:42px; height:74px; } 
+
 table {verticalAlign = center;
 font-weight: bold;
 font-size:37;
