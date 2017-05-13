@@ -64,14 +64,14 @@ class Game
 
 	def get_move(currentgame, player_name)
 		# p currentgame
-		print " #{player_name}, enter your square! "
-		square = gets.chomp
+		# print " #{player_name}, enter your square! "
+		# square = gets.chomp
 
 		until currentgame.check_position?(square) == true do
-        	print " Invalid entry! Try again..."
-			puts ""
-			print " #{player_name}, enter your square! "
-			square = gets.chomp
+   #      	print " Invalid entry! Try again..."
+			# puts ""
+			# print " #{player_name}, enter your square! "
+			# square = gets.chomp
 		end
 
 		currentgame.set_position(square, player_name)
@@ -79,21 +79,21 @@ class Game
 		# p currentgame
 	end
 
-	def game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, player_name)
-		terminal.showboard(newgame.setup)
+	def game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(newgame, player_name)
+		# terminal.showboard(newgame.setup)
 		# p player_name
 		check_for_wins(newgame.setup, player_name)
 		# p win
 
-		if ((win == false) &&
-		   (newgame.check_full? == true))
-				@draw = true
-				# p win
-				declare_tie(terminal, newgame)
-		elsif win == true
-			ask_to_reset_game()
+		# if ((win == false) &&
+		#    (newgame.check_full? == true))
+		# 		@draw = true
+		# 		# p win
+		# 		declare_tie(terminal, newgame)
+		# elsif win == true
+		# 	ask_to_reset_game()
 
-	    end
+	 #    end
 
  	end
 
@@ -209,20 +209,20 @@ class VersusSequential < Game
 end
 class HumanVersusHuman < Game
 
-	def run_game(playerX, playerO)
+	def run_game(playerX, playerO, freshgame)
 
-		newgame = GameBoard.new
-		terminal = Terminal.new
+		# newgame = GameBoard.new
+		# terminal = Terminal.new
 
 			while win == false && @draw == false do
 
-				puts ""
+				# puts ""
 				if win == false && @draw == false
-					get_move(newgame, "X")
+					get_move(freshgame, "X")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "X")
 				end
 
-				puts ""
+				# puts ""
 				if win == false && @draw == false
 					get_move(newgame, "O")
 					game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, "O")

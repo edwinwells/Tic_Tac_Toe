@@ -3,6 +3,8 @@ require_relative "unbeatable_web.rb"
 require_relative "gameboard.rb"
 require_relative "player.rb"
 require_relative "game.rb"
+require_relative "human_v_human.rb"
+
 
 class TicTacToeweb < Sinatra::Base
 enable :sessions
@@ -15,7 +17,7 @@ get '/twohumans' do
 	session[:playerX] = Player.new("X")
 	session[:playerO] = Player.new("O")
 	session[:reset] = "N"
-	session[:freshgame] = Game.new(session[:playerX], session[:playerO], session[:reset])
+	session[:freshgame] = HumanVersusHuman.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
     erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
@@ -68,8 +70,45 @@ get '/levelthreeHumanO' do
 	session[:gameboard] = GameBoard.new
 end
 
-post '/twohumans' do
+post '/get_move' do
 
+	freshgame = params[:freshgame]
+    playerX = params[:playerX]
+    playerO = params[:playerO]
+    gameboard = params[:gameboard]
+	reset = params[:reset]
+	name = params[:name]
+
+     if name == "a3"
+     	square = "a3"
+     elsif name == "b3"
+     	square = "b3"
+     elsif name == "c3"
+     	square = "c3"
+     elsif name == "a2"
+     	square = "a2"
+     elsif name == "b2"
+     	square = "b2"
+     elsif name == "c2"
+     	square = "c2"
+     elsif name == "a1"
+     	square = "a1"
+     elsif name == "b1"
+     	square = "b1"
+     elsif name == "c1"
+     	square = "c1"
+     end
+
+
+	# redirect "/Invalid_Move" if session[:gameboard].check_position?(square) == false
+	session[:gameboard].set_position(square, "X")
+
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], square: square}
+
+end
+
+get '/Invalid_Move' do
+    erb :Invalid_Move, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
 
 # get '/X' do

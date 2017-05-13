@@ -27,4 +27,9 @@ In player.rb:
 	In all game.rb sub-classes:
 	get_move(newgame, player_name)
 
+********************************************************
+
+In human_v_human.rb:
+	startgame()
+
 =end

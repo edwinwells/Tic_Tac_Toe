@@ -7,6 +7,10 @@ class Player
 		@player = input_name
 	end
 
+   def get_move(newgame, player_name)
+      newgame.set_position(square_sought, player_name)
+   end
+
 end
 
 class ComputerSequential < Player
