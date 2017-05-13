@@ -1,60 +1,61 @@
-H1 { text-align: center;
-font-weight: bold;
-color: green;
+-h1 { text-align: center;
+font-weight: 900;
+color: black;
 text-decoration: underline;
-    }
+}
 
 H2 { text-align: center;
 font-weight: bold;
 color: blue;
-    }
+}
 
 H3 {
 font-weight: bold;
 color: blue;
 text-decoration: underline;
+}
 
-	}
-
-table {border: 1px solid blue;
-text-decoration: underline;
-verticalAlign = bottom;
+table {verticalAlign = center;
 font-weight: bold;
-color: blue;
-    }	
+font-size:37;
+color: black;
+}	
 
 .color_blue{
 color: blue;
+}
 
+.color_purple{
+color: purple;
 }
 
 .color_darkmagenta{
 color: darkmagenta;
-
 }
 
 .color_goldenrod{
 color: goldenrod;
-
 }
 
 .center{
 text-align: center;
-
 }
 
 .bgblack{
 background-color: black;
-
 }
-
 
 .bgsilver{
 background-color: silver;
+}
 
+.bggold{
+background-color: gold;
 }
 
 .bggoldenrod{
 background-color: goldenrod;
-
 }
+
+p.detail { text-align:center;color:black;font-weight:bold;font-family:"Times New Roman";font-size:35 }
+span.ultimate { text-decoration:underline;font-weight:bold;font-family:"Times New Roman";font-size:37;color:navy}
