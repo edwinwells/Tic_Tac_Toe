@@ -1,7 +1,6 @@
 require 'sinatra'
 require_relative "unbeatable_web.rb"
 require_relative "gameboard.rb"
-require_relative "terminal.rb"
 require_relative "player.rb"
 require_relative "game.rb"
 
@@ -18,7 +17,59 @@ get '/twohumans' do
 	session[:reset] = "N"
 	session[:freshgame] = Game.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
-    erb :Basic_Table_Human_v_Human, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+end
+
+get '/leveloneHumanX' do
+	session[:playerX] = Player.new("X")
+	session[:playerO] = ComputerSequential.new("O")
+	session[:reset] = "N"
+	session[:freshgame] = VersusSequential.new(session[:playerX], session[:playerO], session[:reset])
+	session[:gameboard] = GameBoard.new
+end
+
+get '/leveloneHumanO' do
+	session[:playerX] = ComputerSequential.new("X")
+	session[:playerO] = Player.new("O")
+	session[:reset] = "N"
+	session[:freshgame] = VersusSequential.new(session[:playerX], session[:playerO], session[:reset])
+	session[:gameboard] = GameBoard.new
+end
+
+get '/leveltwoHumanX' do
+	session[:playerX] = Player.new("X")
+	session[:playerO] = ComputerRandom.new("O")
+	session[:reset] = "N"
+	session[:freshgame] = VersusRandom.new(session[:playerX], session[:playerO], session[:reset])
+	session[:gameboard] = GameBoard.new
+end
+
+get '/leveltwoHumanO' do
+	session[:playerX] = ComputerRandom.new("X")
+	session[:playerO] = Player.new("O")
+	session[:reset] = "N"
+	session[:freshgame] = VersusRandom.new(session[:playerX], session[:playerO], session[:reset])
+	session[:gameboard] = GameBoard.new
+end
+
+get '/levelthreeHumanX' do
+	session[:playerX] = Player.new("X")
+	session[:playerO] = ComputerUnbeatable.new("O")
+	session[:reset] = "N"
+	session[:freshgame] = VersusUnbeatable.new(session[:playerX], session[:playerO], session[:reset])
+	session[:gameboard] = GameBoard.new
+end
+
+get '/levelthreeHumanO' do
+	session[:playerX] = ComputerUnbeatable.new("X")
+	session[:playerO] = Player.new("O")
+	session[:reset] = "N"
+	session[:freshgame] = VersusUnbeatable.new(session[:playerX], session[:playerO], session[:reset])
+	session[:gameboard] = GameBoard.new
+end
+
+post '/twohumans' do
+
 end
 
 # get '/X' do

@@ -50,6 +50,14 @@ font-size:37;
 color: black;
 }	
 
+.buttontd {
+  width: 74px; 
+  height: 74px;
+  font: 80px arial, sans-serif;
+  background-color: gold;
+  border-style: none;
+}
+
 .color_blue{
 color: blue;
 }

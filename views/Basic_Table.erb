@@ -9,27 +9,22 @@
 <center><table>
 
   <tr>
-     <td id="post_move" onclick="myFunction()"></td>
-     <td id="post_move" onclick="myFunction()"></td>
-     <td id="post_move" onclick="myFunction()"></td>
+    <td><button class="buttontd" type="submit" name="a3" value="a3"><%= gameboard.setup[:a3]%></button></td>
+    <td><button class="buttontd" type="submit" name="b3" value="b3"><%= gameboard.setup[:b3]%></button></td>
+    <td><button class="buttontd" type="submit" name="c3" value="c3"><%= gameboard.setup[:c3]%></button></td>
+
   </tr>
   <tr>
-     <td id="post_move" onclick="myFunction()"></td>
-     <td id="post_move" onclick="myFunction()"></td>
-     <td id="post_move" onclick="myFunction()"></td>
+    <td><button class="buttontd" type="submit" name="a2" value="a2"><%= gameboard.setup[:a2]%></button></td>
+    <td><button class="buttontd" type="submit" name="b2" value="b2"><%= gameboard.setup[:b2]%></button></td>
+    <td><button class="buttontd" type="submit" name="c2" value="c2"><%= gameboard.setup[:c2]%></button></td>
   </tr>
   <tr>
-     <td id="post_move" onclick="myFunction()"></td>
-     <td id="post_move" onclick="myFunction()"></td>
-     <td id="post_move" onclick="myFunction()"></td>
+    <td><button class="buttontd" type="submit" name="a1" value="a1"><%= gameboard.setup[:a1]%></button></td>
+    <td><button class="buttontd" type="submit" name="b1" value="b1"><%= gameboard.setup[:b1]%></button></td>
+    <td><button class="buttontd" type="submit" name="c1" value="0c1"><%= gameboard.setup[:c1]%></button></td>
   </tr>
 </table></center>
-
-<script>
-function myFunction() {
-    document.getElementById("post_move").innerHTML = "X";
-}
-</script>
 
 </body>
 </html>
