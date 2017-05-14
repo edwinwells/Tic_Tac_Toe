@@ -19,10 +19,14 @@ get '/twohumans' do
 	session[:reset] = "N"
 	session[:freshgame] = HumanVersusHuman.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+
+	# @name = params["name"]
+	# @gameboard = params["gameboard"]
+
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard]}
 end
 
-post '/get_move' do
+post '/move' do
 
 	freshgame = params[:freshgame]
     playerX = params[:playerX]
@@ -56,7 +60,7 @@ post '/get_move' do
 
 
 
-    erb :Basic_Table2, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], value: value}
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], value: value}
 
 end
 
