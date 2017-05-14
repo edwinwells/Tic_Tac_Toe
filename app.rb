@@ -42,23 +42,23 @@ post '/move' do
      # 	position = 0
 
      if params["a3"] == "a3"
-     	session[:gameboard].set_position("a3", "X")
+     	session[:gameboard].set_position("a3", @player)
      elsif params["b3"] == "b3"
-     	session[:gameboard].set_position("b3", "X")
+     	session[:gameboard].set_position("b3", @player)
      elsif params["c3"] == "c3"
-     	session[:gameboard].set_position("c3", "X")
+     	session[:gameboard].set_position("c3", @player)
      elsif params["a2"] == "a2"
-     	session[:gameboard].set_position("a2", "X")
+     	session[:gameboard].set_position("a2", @player)
      elsif params["b2"] == "b2"
-     	session[:gameboard].set_position("b2", "X")
+     	session[:gameboard].set_position("b2", @player)
      elsif params["c2"] == "c2"
-     	session[:gameboard].set_position("c2", "X")
+     	session[:gameboard].set_position("c2", @player)
      elsif params["a1"] == "a1"
-     	session[:gameboard].set_position("a1", "X")
+     	session[:gameboard].set_position("a1", @player)
      elsif params["b1"] == "b1"
-     	session[:gameboard].set_position("b1", "X")
+     	session[:gameboard].set_position("b1", @player)
      elsif params["c1"] == "c1"
-     	session[:gameboard].set_position("c1", "X")
+     	session[:gameboard].set_position("c1", @player)
      end
 
 	# redirect "/Invalid_Move" if session[:gameboard].check_position?(square) == false
