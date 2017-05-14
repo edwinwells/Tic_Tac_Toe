@@ -22,6 +22,52 @@ get '/twohumans' do
     erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
 
+post '/get_move' do
+
+	freshgame = params[:freshgame]
+    playerX = params[:playerX]
+    playerO = params[:playerO]
+    gameboard = params[:gameboard]
+	reset = params[:reset]
+	value = params[:value]
+
+     if params[:value] == "a3"
+     	gameboard.setup[:a3] = "X"
+     elsif params[:value] == "b3"
+     	gameboard.setup[:b3] = "X"
+     elsif params[:value] == "c3"
+     	gameboard.setup[:c3] = "X"
+     elsif params[:value] == "a2"
+     	gameboard.setup[:a2] = "X"
+     elsif params[:value] == "b2"
+     	gameboard.setup[:b2] = "X"
+     elsif params[:value] == "c2"
+     	gameboard.setup[:c2] = "X"
+     elsif params[:value] == "a1"
+     	gameboard.setup[:a1] = "X"
+     elsif params[:value] == "b1"
+     	gameboard.setup[:b1] = "X"
+     elsif params[:value] == "c1"
+     	gameboard.setup[:c1] = "X"
+     end
+
+	# redirect "/Invalid_Move" if session[:gameboard].check_position?(square) == false
+	# session[:gameboard] = session[:gameboard].set_position(square, "X")
+
+
+
+    erb :Basic_Table2, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], value: value}
+
+end
+
+get '/show_move' do
+
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+
+
+end
+
+
 get '/leveloneHumanX' do
 	session[:playerX] = Player.new("X")
 	session[:playerO] = ComputerSequential.new("O")
@@ -70,42 +116,7 @@ get '/levelthreeHumanO' do
 	session[:gameboard] = GameBoard.new
 end
 
-post '/get_move' do
 
-	freshgame = params[:freshgame]
-    playerX = params[:playerX]
-    playerO = params[:playerO]
-    gameboard = params[:gameboard]
-	reset = params[:reset]
-	name = params[:name]
-
-     if name == "a3"
-     	square = "a3"
-     elsif name == "b3"
-     	square = "b3"
-     elsif name == "c3"
-     	square = "c3"
-     elsif name == "a2"
-     	square = "a2"
-     elsif name == "b2"
-     	square = "b2"
-     elsif name == "c2"
-     	square = "c2"
-     elsif name == "a1"
-     	square = "a1"
-     elsif name == "b1"
-     	square = "b1"
-     elsif name == "c1"
-     	square = "c1"
-     end
-
-
-	# redirect "/Invalid_Move" if session[:gameboard].check_position?(square) == false
-	session[:gameboard].set_position(square, "X")
-
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], square: square}
-
-end
 
 get '/Invalid_Move' do
     erb :Invalid_Move, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
