@@ -38,9 +38,6 @@ post '/moveX' do
 
 	p params
 
-     # if params["position"][0].to_i == 0
-     # 	position = 0
-
      if params["a3"] == "a3"
      	session[:gameboard].set_position("a3", "X")
      elsif params["b3"] == "b3"
@@ -60,6 +57,11 @@ post '/moveX' do
      elsif params["c1"] == "c1"
      	session[:gameboard].set_position("c1", "X")
      end
+
+#***********************************************
+	redirect "/winnerX" if session[:freshgame].check_for_wins(session[:gameboard].setup, "X") == true
+	redirect "/drawn_game" if session[:gameboard].check_full?() == true
+#***********************************************     
 
 	# redirect "/Invalid_Move" if session[:gameboard].check_position?(square) == false
 	# session[:gameboard] = session[:gameboard].set_position(square, "X")
@@ -81,6 +83,8 @@ post '/moveO' do
 	gameboard = params["gameboard"]
 
 	p params
+
+	
 
      # if params["position"][0].to_i == 0
      # 	position = 0
@@ -104,6 +108,11 @@ post '/moveO' do
      elsif params["c1"] == "c1"
      	session[:gameboard].set_position("c1", "O")
      end
+
+ #***********************************************
+	redirect "/winnerO" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
+	redirect "/drawn_game" if session[:gameboard].check_full?() == true
+#***********************************************
 
 	# redirect "/Invalid_Move" if session[:gameboard].check_position?(square) == false
 	# session[:gameboard] = session[:gameboard].set_position(square, "X")
@@ -173,6 +182,14 @@ end
 
 get '/Invalid_Move' do
     erb :Invalid_Move, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+end
+
+get "/winnerO" do
+		erb:win_for_O, :locals => {gameboard: session[:gameboard]}
+end
+
+get "/winnerX" do
+		erb:win_for_X, :locals => {gameboard: session[:gameboard]}
 end
 
 # get '/X' do
@@ -350,13 +367,7 @@ end
 #     erb :ComputerX_balance, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 # end
 
-# get "/winnerO" do
-# 		erb:win_for_O, :locals => {gameboard: session[:gameboard]}
-# end
 
-# get "/winnerX" do
-# 		erb:win_for_X, :locals => {gameboard: session[:gameboard]}
-# end
 
 # get "/drawn_game" do
 # 	erb:Drawn_game, :locals => {gameboard: session[:gameboard]}
