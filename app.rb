@@ -34,7 +34,7 @@ post '/move' do
     gameboard = params[:gameboard]
 	reset = params[:reset]
 	value = params[:value]
-	@gameboard = params["gameboard"]
+	gameboard = params["gameboard"]
 
 	p params
 
@@ -42,23 +42,23 @@ post '/move' do
      # 	position = 0
 
      if params["a3"] == "a3"
-     	gameboard.setup[:a3] = "X"
+     	session[:gameboard].set_position("a3", "X")
      elsif params["b3"] == "b3"
-     	gameboard.setup[:b3] = "X"
+     	session[:gameboard].set_position("b3", "X")
      elsif params["c3"] == "c3"
-     	gameboard.setup[:c3] = "X"
+     	session[:gameboard].set_position("c3", "X")
      elsif params["a2"] == "a2"
-     	gameboard.setup[:a2] = "X"
+     	session[:gameboard].set_position("a2", "X")
      elsif params["b2"] == "b2"
-     	gameboard.setup["b2"] = "X"
+     	session[:gameboard].set_position("b2", "X")
      elsif params["c2"] == "c2"
-     	gameboard.setup[:c2] = "X"
+     	session[:gameboard].set_position("c2", "X")
      elsif params["a1"] == "a1"
-     	gameboard.setup[:a1] = "X"
+     	session[:gameboard].set_position("a1", "X")
      elsif params["b1"] == "b1"
-     	gameboard.setup[:b1] = "X"
+     	session[:gameboard].set_position("b1", "X")
      elsif params["c1"] == "c1"
-     	gameboard.setup[:c1] = "X"
+     	session[:gameboard].set_position("c1", "X")
      end
 
 	# redirect "/Invalid_Move" if session[:gameboard].check_position?(square) == false
@@ -66,7 +66,7 @@ post '/move' do
 
 
 
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: gameboard, value: value}
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], value: value}
 
 end
 
