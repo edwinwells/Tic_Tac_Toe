@@ -5,7 +5,6 @@ require_relative "player.rb"
 require_relative "game.rb"
 require_relative "human_v_human.rb"
 
-
 class TicTacToeweb < Sinatra::Base
 enable :sessions
 
@@ -24,7 +23,6 @@ get '/twohumans' do
 end
  
 post '/moveX' do
-
 	freshgame = params[:freshgame]
     playerX = params[:playerX]
     playerO = params[:playerO]
@@ -64,22 +62,13 @@ post '/moveX' do
      	session[:gameboard].set_position("c1", "X")
      end
 
-#***********************************************
 	redirect "/winnerX" if session[:freshgame].check_for_wins(session[:gameboard].setup, "X") == true
 	redirect "/drawn_game" if session[:gameboard].check_full?() == true
-#***********************************************     
-
-	# redirect "/Invalid_Move" if session[:gameboard].check_position?(square) == false
-	# session[:gameboard] = session[:gameboard].set_position(square, "X")
-
-
 
     erb :Basic_Table2, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], value: value}
-
 end
 
 post '/moveO' do
-
 	freshgame = params[:freshgame]
     playerX = params[:playerX]
     playerO = params[:playerO]
@@ -89,11 +78,6 @@ post '/moveO' do
 	gameboard = params["gameboard"]
 
 	p params
-
-	
-
-     # if params["position"][0].to_i == 0
-     # 	position = 0
 
      if params["a3"] == "a3"
 		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("a3") == false
@@ -124,26 +108,11 @@ post '/moveO' do
      	session[:gameboard].set_position("c1", "O")
      end
 
- #***********************************************
 	redirect "/winnerO" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
 	redirect "/drawn_game" if session[:gameboard].check_full?() == true
-#***********************************************
-
-	# redirect "/Invalid_Move" if session[:gameboard].check_position?(square) == false
-	# session[:gameboard] = session[:gameboard].set_position(square, "X")
-
-
 
     erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], value: value}
-
 end
-#******************************************************
-# get '/moveX' do
-# 	redirect "/moveX"
-
-#     erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
-# end
-#******************************************************
 
 get '/Basic_Table.erb' do
     erb :Basic_Table,  :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
@@ -152,13 +121,15 @@ get '/Basic_Table2.erb' do
     erb :Basic_Table2,  :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
 
-
 get '/leveloneHumanX' do
 	session[:playerX] = Player.new("X")
 	session[:playerO] = ComputerSequential.new("O")
 	session[:reset] = "N"
 	session[:freshgame] = VersusSequential.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
+
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard]}
+
 end
 
 get '/leveloneHumanO' do
@@ -167,6 +138,8 @@ get '/leveloneHumanO' do
 	session[:reset] = "N"
 	session[:freshgame] = VersusSequential.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
+
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard]}	
 end
 
 get '/leveltwoHumanX' do
@@ -175,6 +148,8 @@ get '/leveltwoHumanX' do
 	session[:reset] = "N"
 	session[:freshgame] = VersusRandom.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
+
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard]}	
 end
 
 get '/leveltwoHumanO' do
@@ -183,6 +158,8 @@ get '/leveltwoHumanO' do
 	session[:reset] = "N"
 	session[:freshgame] = VersusRandom.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
+
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard]}	
 end
 
 get '/levelthreeHumanX' do
@@ -191,6 +168,8 @@ get '/levelthreeHumanX' do
 	session[:reset] = "N"
 	session[:freshgame] = VersusUnbeatable.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
+
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard]}	
 end
 
 get '/levelthreeHumanO' do
@@ -199,6 +178,8 @@ get '/levelthreeHumanO' do
 	session[:reset] = "N"
 	session[:freshgame] = VersusUnbeatable.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
+
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard]}	
 end
 
 
