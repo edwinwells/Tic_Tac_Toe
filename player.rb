@@ -236,12 +236,12 @@ class ComputerUnbeatable < Player
 
 	def get_move(newgame, player_name)
 
-		vacant_squares = Array.new
-    	(newgame.setup).each do |key, value|
-	 		if newgame.setup[key] == " "
-	           	vacant_squares.push(key)
-	        end
-	     end
+		# vacant_squares = Array.new
+  #   	(newgame.setup).each do |key, value|
+	 # 		if newgame.setup[key] == " "
+	 #           	vacant_squares.push(key)
+	 #        end
+	 #     end
 	    square_sought = case vacant_squares.count
 
 		#ideal first move for O, if X has taken b2, is a corner square:

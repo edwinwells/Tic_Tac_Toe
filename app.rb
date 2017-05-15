@@ -32,6 +32,50 @@ post '/moveX' do
 	gameboard = params["gameboard"]
 
 	p params
+#*************************************************
+		# vacant_squares = Array.new
+ 
+  #   	(session[:gameboard].setup).each do |key, value|
+	 # 		if (session[:gameboard].setup)[key] == " "
+	 #           	vacant_squares.push(key)
+	 #        end
+	 #    end
+             
+
+	if params[:playerX] = ComputerSequential.new("X")
+		vacant_squares = Array.new
+ 
+    	(session[:gameboard].setup).each do |key, value|
+	 		if (session[:gameboard].setup)[key] == " "
+	           	vacant_squares.push(key)
+	        end
+	    end
+			square_sought = vacant_squares[0]
+			session[:gameboard].set_position(square_sought, "X")
+	elsif params[:playerX] = ComputerRandom.new("X")
+		vacant_squares = Array.new
+ 
+    	(session[:gameboard].setup).each do |key, value|
+	 		if (session[:gameboard].setup)[key] == " "
+	           	vacant_squares.push(key)
+	        end
+	    end		
+            square_sought = vacant_squares.sample
+			session[:gameboard].set_position(square_sought, "X")
+	elsif params[:playerX] = ComputerUnbeatable.new("X")
+		vacant_squares = Array.new
+ 
+    	(session[:gameboard].setup).each do |key, value|
+	 		if (session[:gameboard].setup)[key] == " "
+	           	vacant_squares.push(key)
+	        end
+	    end
+   			session[:playerX].get_move(session[:gameboard], "O")
+#********************************   			
+			# session[:gameboard].set_position(square_sought, "X")
+#********************************  
+
+	elsif params[:playerX] = Player.new("X")	
 
      if params["a3"] == "a3"
 		redirect "/Invalid_Move_X" if session[:gameboard].check_position?("a3") == false
@@ -61,7 +105,7 @@ post '/moveX' do
 		redirect "/Invalid_Move_X" if session[:gameboard].check_position?("c1") == false
      	session[:gameboard].set_position("c1", "X")
      end
-
+    end
 	redirect "/winnerX" if session[:freshgame].check_for_wins(session[:gameboard].setup, "X") == true
 	redirect "/drawn_game" if session[:gameboard].check_full?() == true
 
@@ -79,6 +123,16 @@ post '/moveO' do
 
 	p params
 #*************************************************
+		# vacant_squares = Array.new
+ 
+  #   	(session[:gameboard].setup).each do |key, value|
+	 # 		if (session[:gameboard].setup)[key] == " "
+	 #           	vacant_squares.push(key)
+	 #        end
+	 #    end
+             
+
+	if params[:playerO] = ComputerSequential.new("O")
 		vacant_squares = Array.new
  
     	(session[:gameboard].setup).each do |key, value|
@@ -86,17 +140,32 @@ post '/moveO' do
 	           	vacant_squares.push(key)
 	        end
 	    end
-             
-
-	if session[:playerO] = ComputerSequential.new("O")
 			square_sought = vacant_squares[0]
 			session[:gameboard].set_position(square_sought, "O")
-	elsif session[:playerO] = ComputerRandom.new("O")
+	elsif params[:playerO] = ComputerRandom.new("O")
+		vacant_squares = Array.new
+ 
+    	(session[:gameboard].setup).each do |key, value|
+	 		if (session[:gameboard].setup)[key] == " "
+	           	vacant_squares.push(key)
+	        end
+	    end
             square_sought = vacant_squares.sample
 			session[:gameboard].set_position(square_sought, "O")
-	elsif session[:playerO] = ComputerUnbeatable.new("O")
+	elsif params[:playerO] = ComputerUnbeatable.new("O")
+		vacant_squares = Array.new
+ 
+    	(session[:gameboard].setup).each do |key, value|
+	 		if (session[:gameboard].setup)[key] == " "
+	           	vacant_squares.push(key)
+	        end
+	    end
    			session[:playerO].get_move(session[:gameboard], "O")
-	elsif session[:playerO] = Player.new("O")
+#********************************   			
+			# session[:gameboard].set_position(square_sought, "O")
+#********************************   			
+
+	elsif params[:playerO] = Player.new("O")
 	     if params["a3"] == "a3"
 			redirect "/Invalid_Move_O" if session[:gameboard].check_position?("a3") == false
 	     	session[:gameboard].set_position("a3", "O")
