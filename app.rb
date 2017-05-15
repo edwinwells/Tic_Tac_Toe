@@ -2,7 +2,6 @@ require 'sinatra'
 require_relative "gameboard.rb"
 require_relative "player.rb"
 require_relative "game.rb"
-require_relative "human_v_human.rb"
 
 class TicTacToeweb < Sinatra::Base
 enable :sessions
