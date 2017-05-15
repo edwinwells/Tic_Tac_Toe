@@ -26,7 +26,7 @@ class ComputerSequential < Player
              
 		square_sought = vacant_squares[0]
 		newgame.set_position(square_sought, player_name)
-		puts ""
+		# puts ""
 	end
 
 end
@@ -53,12 +53,12 @@ class ComputerUnbeatable < Player
 
 	def get_move(newgame, player_name)
 
-		vacant_squares = Array.new
-    	(newgame.setup).each do |key, value|
-	 		if newgame.setup[key] == " "
-	           	vacant_squares.push(key)
-	        end
-	     end
+		# vacant_squares = Array.new
+  #   	(newgame.setup).each do |key, value|
+	 # 		if newgame.setup[key] == " "
+	 #           	vacant_squares.push(key)
+	 #        end
+	 #     end
 
 	    square_sought = case vacant_squares.count
 		#ideal first move for X is a corner square:

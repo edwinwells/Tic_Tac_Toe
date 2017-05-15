@@ -78,36 +78,56 @@ post '/moveO' do
 	gameboard = params["gameboard"]
 
 	p params
+#*************************************************
+		vacant_squares = Array.new
+ 
+    	(session[:gameboard].setup).each do |key, value|
+	 		if (session[:gameboard].setup)[key] == " "
+	           	vacant_squares.push(key)
+	        end
+	    end
+             
 
-     if params["a3"] == "a3"
-		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("a3") == false
-     	session[:gameboard].set_position("a3", "O")
-     elsif params["b3"] == "b3"
-		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("b3") == false
-     	session[:gameboard].set_position("b3", "O")
-     elsif params["c3"] == "c3"
-		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("c3") == false
-     	session[:gameboard].set_position("c3", "O")
-     elsif params["a2"] == "a2"
-		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("a2") == false
-     	session[:gameboard].set_position("a2", "O")
-     elsif params["b2"] == "b2"
-		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("b2") == false
-     	session[:gameboard].set_position("b2", "O")
-     elsif params["c2"] == "c2"
-		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("c2") == false
-     	session[:gameboard].set_position("c2", "O")
-     elsif params["a1"] == "a1"
-		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("a1") == false
-     	session[:gameboard].set_position("a1", "O")
-     elsif params["b1"] == "b1"
-		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("b1") == false
-     	session[:gameboard].set_position("b1", "O")
-     elsif params["c1"] == "c1"
-		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("c1") == false
-     	session[:gameboard].set_position("c1", "O")
+	if session[:playerO] == ComputerSequential.new("O")
+				square_sought = vacant_squares[0]
+
+				newgame.set_position(square_sought, player_name)
+	elsif session[:playerO] == ComputerRandom.new("O")
+	            square_sought = vacant_squares.sample
+				newgame.set_position(square_sought, player_name)
+	elsif session[:playerO] == ComputerUnbeatable.new("O")
+				# get_move(newgame, player_name)
+	   			session[:playerO].get_move(session[:gameboard], "O")
+	elsif session[:playerO] == Player.new("O")
+	     if params["a3"] == "a3"
+			redirect "/Invalid_Move_O" if session[:gameboard].check_position?("a3") == false
+	     	session[:gameboard].set_position("a3", "O")
+	     elsif params["b3"] == "b3"
+			redirect "/Invalid_Move_O" if session[:gameboard].check_position?("b3") == false
+	     	session[:gameboard].set_position("b3", "O")
+	     elsif params["c3"] == "c3"
+			redirect "/Invalid_Move_O" if session[:gameboard].check_position?("c3") == false
+	     	session[:gameboard].set_position("c3", "O")
+	     elsif params["a2"] == "a2"
+			redirect "/Invalid_Move_O" if session[:gameboard].check_position?("a2") == false
+	     	session[:gameboard].set_position("a2", "O")
+	     elsif params["b2"] == "b2"
+			redirect "/Invalid_Move_O" if session[:gameboard].check_position?("b2") == false
+	     	session[:gameboard].set_position("b2", "O")
+	     elsif params["c2"] == "c2"
+			redirect "/Invalid_Move_O" if session[:gameboard].check_position?("c2") == false
+	     	session[:gameboard].set_position("c2", "O")
+	     elsif params["a1"] == "a1"
+			redirect "/Invalid_Move_O" if session[:gameboard].check_position?("a1") == false
+	     	session[:gameboard].set_position("a1", "O")
+	     elsif params["b1"] == "b1"
+			redirect "/Invalid_Move_O" if session[:gameboard].check_position?("b1") == false
+	     	session[:gameboard].set_position("b1", "O")
+	     elsif params["c1"] == "c1"
+			redirect "/Invalid_Move_O" if session[:gameboard].check_position?("c1") == false
+	     	session[:gameboard].set_position("c1", "O")
      end
-
+    end
 	redirect "/winnerO" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
 	redirect "/drawn_game" if session[:gameboard].check_full?() == true
 
