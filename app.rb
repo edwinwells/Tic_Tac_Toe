@@ -88,17 +88,15 @@ post '/moveO' do
 	    end
              
 
-	if session[:playerO] == ComputerSequential.new("O")
-				square_sought = vacant_squares[0]
-
-				newgame.set_position(square_sought, player_name)
-	elsif session[:playerO] == ComputerRandom.new("O")
-	            square_sought = vacant_squares.sample
-				newgame.set_position(square_sought, player_name)
-	elsif session[:playerO] == ComputerUnbeatable.new("O")
-				# get_move(newgame, player_name)
-	   			session[:playerO].get_move(session[:gameboard], "O")
-	elsif session[:playerO] == Player.new("O")
+	if session[:playerO] = ComputerSequential.new("O")
+			square_sought = vacant_squares[0]
+			session[:gameboard].set_position(square_sought, "O")
+	elsif session[:playerO] = ComputerRandom.new("O")
+            square_sought = vacant_squares.sample
+			session[:gameboard].set_position(square_sought, "O")
+	elsif session[:playerO] = ComputerUnbeatable.new("O")
+   			session[:playerO].get_move(session[:gameboard], "O")
+	elsif session[:playerO] = Player.new("O")
 	     if params["a3"] == "a3"
 			redirect "/Invalid_Move_O" if session[:gameboard].check_position?("a3") == false
 	     	session[:gameboard].set_position("a3", "O")
