@@ -211,6 +211,10 @@ get '/Invalid_Move_O' do
     erb :Invalid_Move_O, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
 
+get "/drawn_game" do
+	erb:Drawn_game, :locals => {gameboard: session[:gameboard]}
+end
+
 get "/winnerO" do
 		erb:win_for_O, :locals => {gameboard: session[:gameboard]}
 end
@@ -396,9 +400,7 @@ end
 
 
 
-# get "/drawn_game" do
-# 	erb:Drawn_game, :locals => {gameboard: session[:gameboard]}
-# end
+
 
 # get "/Invalid_Move_For_X" do
 # 	erb:Invalid_Move_For_X, :locals => {:move => session[:move], playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
