@@ -53,12 +53,12 @@ class ComputerUnbeatable < Player
 
 	def get_move(newgame, player_name)
 
-		# vacant_squares = Array.new
-  #   	(newgame.setup).each do |key, value|
-	 # 		if newgame.setup[key] == " "
-	 #           	vacant_squares.push(key)
-	 #        end
-	 #     end
+		vacant_squares = Array.new
+    	(newgame.setup).each do |key, value|
+	 		if newgame.setup[key] == " "
+	           	vacant_squares.push(key)
+	        end
+	     end
 
 	    square_sought = case vacant_squares.count
 		#ideal first move for X is a corner square:
@@ -222,19 +222,19 @@ class ComputerUnbeatable < Player
    					  "a2"
    				end
 
-   		end				
+   		# end				
 
-   			p square_sought
-   			if square_sought == nil
-   			  puts "There has been an error- please record the position, and notify the creator of the game."
-   			  puts ""
-   			  exit
-   			end
-			newgame.set_position(square_sought, player_name)
-			puts ""
-	end
+   # 			p square_sought
+   # 			if square_sought == nil
+   # 			  puts "There has been an error- please record the position, and notify the creator of the game."
+   # 			  puts ""
+   # 			  exit
+   # 			end
+			# newgame.set_position(square_sought, player_name)
+			# puts ""
+	# end
 
-	def get_move(newgame, player_name)
+	# def get_move(newgame, player_name)
 
 		# vacant_squares = Array.new
   #   	(newgame.setup).each do |key, value|
@@ -242,7 +242,7 @@ class ComputerUnbeatable < Player
 	 #           	vacant_squares.push(key)
 	 #        end
 	 #     end
-	    square_sought = case vacant_squares.count
+	 #    square_sought = case vacant_squares.count
 
 		#ideal first move for O, if X has taken b2, is a corner square:
    			when 8
