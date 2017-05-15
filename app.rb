@@ -20,12 +20,9 @@ get '/twohumans' do
 	session[:freshgame] = HumanVersusHuman.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
 
-	# @name = params["name"]
-	# @gameboard = params["gameboard"]
-
     erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard]}
 end
-# /moveO
+ 
 post '/moveX' do
 
 	freshgame = params[:freshgame]
@@ -39,22 +36,31 @@ post '/moveX' do
 	p params
 
      if params["a3"] == "a3"
+		redirect "/Invalid_Move_X" if session[:gameboard].check_position?("a3") == false
      	session[:gameboard].set_position("a3", "X")
      elsif params["b3"] == "b3"
+		redirect "/Invalid_Move_X" if session[:gameboard].check_position?("b3") == false
      	session[:gameboard].set_position("b3", "X")
      elsif params["c3"] == "c3"
+		redirect "/Invalid_Move_X" if session[:gameboard].check_position?("c3") == false
      	session[:gameboard].set_position("c3", "X")
      elsif params["a2"] == "a2"
+		redirect "/Invalid_Move_X" if session[:gameboard].check_position?("a2") == false
      	session[:gameboard].set_position("a2", "X")
      elsif params["b2"] == "b2"
+		redirect "/Invalid_Move_X" if session[:gameboard].check_position?("b2") == false
      	session[:gameboard].set_position("b2", "X")
      elsif params["c2"] == "c2"
+		redirect "/Invalid_Move_X" if session[:gameboard].check_position?("c2") == false
      	session[:gameboard].set_position("c2", "X")
      elsif params["a1"] == "a1"
+		redirect "/Invalid_Move_X" if session[:gameboard].check_position?("a1") == false
      	session[:gameboard].set_position("a1", "X")
      elsif params["b1"] == "b1"
+		redirect "/Invalid_Move_X" if session[:gameboard].check_position?("b1") == false
      	session[:gameboard].set_position("b1", "X")
      elsif params["c1"] == "c1"
+		redirect "/Invalid_Move_X" if session[:gameboard].check_position?("c1") == false
      	session[:gameboard].set_position("c1", "X")
      end
 
@@ -90,22 +96,31 @@ post '/moveO' do
      # 	position = 0
 
      if params["a3"] == "a3"
+		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("a3") == false
      	session[:gameboard].set_position("a3", "O")
      elsif params["b3"] == "b3"
+		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("b3") == false
      	session[:gameboard].set_position("b3", "O")
      elsif params["c3"] == "c3"
+		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("c3") == false
      	session[:gameboard].set_position("c3", "O")
      elsif params["a2"] == "a2"
+		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("a2") == false
      	session[:gameboard].set_position("a2", "O")
      elsif params["b2"] == "b2"
+		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("b2") == false
      	session[:gameboard].set_position("b2", "O")
      elsif params["c2"] == "c2"
+		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("c2") == false
      	session[:gameboard].set_position("c2", "O")
      elsif params["a1"] == "a1"
+		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("a1") == false
      	session[:gameboard].set_position("a1", "O")
      elsif params["b1"] == "b1"
+		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("b1") == false
      	session[:gameboard].set_position("b1", "O")
      elsif params["c1"] == "c1"
+		redirect "/Invalid_Move_O" if session[:gameboard].check_position?("c1") == false
      	session[:gameboard].set_position("c1", "O")
      end
 
@@ -122,11 +137,19 @@ post '/moveO' do
     erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], value: value}
 
 end
-get '/show_move' do
+#******************************************************
+# get '/moveX' do
+# 	redirect "/moveX"
 
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+#     erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+# end
+#******************************************************
 
-
+get '/Basic_Table.erb' do
+    erb :Basic_Table,  :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+end
+get '/Basic_Table2.erb' do
+    erb :Basic_Table2,  :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
 
 
@@ -180,8 +203,12 @@ end
 
 
 
-get '/Invalid_Move' do
-    erb :Invalid_Move, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+get '/Invalid_Move_X' do
+    erb :Invalid_Move_X, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
+end
+
+get '/Invalid_Move_O' do
+    erb :Invalid_Move_O, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard]}
 end
 
 get "/winnerO" do
