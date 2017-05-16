@@ -215,10 +215,6 @@ get '/Invalid_Move' do
     erb :Invalid_Move, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], gametype: session[:gametype], player: player, table: table}
 end
 
-# get '/Invalid_Move_O' do
-#     erb :Invalid_Move_O, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], gametype: session[:gametype]}
-# end
-
 get '/Basic_Table.erb' do
     erb :Basic_Table,  :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], gametype: session[:gametype]}
 end
