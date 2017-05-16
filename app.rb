@@ -94,6 +94,7 @@ get '/levelthreeHumanO' do
 end
  
 post '/moveX' do
+	square = [:square]
 	freshgame = params[:freshgame]
     playerX = params[:playerX]
     playerO = params[:playerO]
@@ -113,33 +114,9 @@ post '/moveX' do
 	   session[:gametype] == 7 
 			session[:playerX].get_move(session[:gameboard],"X")
    	else
-     if params["a3"] == "a3"
-		redirect "/Invalid_Move?player=X" if session[:gameboard].check_position?("a3") == false
-     	session[:gameboard].set_position("a3", "X")
-     elsif params["b3"] == "b3"
-		redirect "/Invalid_Move?player=X" if session[:gameboard].check_position?("b3") == false
-     	session[:gameboard].set_position("b3", "X")
-     elsif params["c3"] == "c3"
-		redirect "/Invalid_Move?player=X" if session[:gameboard].check_position?("c3") == false
-     	session[:gameboard].set_position("c3", "X")
-     elsif params["a2"] == "a2"
-		redirect "/Invalid_Move?player=X" if session[:gameboard].check_position?("a2") == false
-     	session[:gameboard].set_position("a2", "X")
-     elsif params["b2"] == "b2"
-		redirect "/Invalid_Move?player=X" if session[:gameboard].check_position?("b2") == false
-     	session[:gameboard].set_position("b2", "X")
-     elsif params["c2"] == "c2"
-		redirect "/Invalid_Move?player=X" if session[:gameboard].check_position?("c2") == false
-     	session[:gameboard].set_position("c2", "X")
-     elsif params["a1"] == "a1"
-		redirect "/Invalid_Move?player=X" if session[:gameboard].check_position?("a1") == false
-     	session[:gameboard].set_position("a1", "X")
-     elsif params["b1"] == "b1"
-		redirect "/Invalid_Move?player=X" if session[:gameboard].check_position?("b1") == false
-     	session[:gameboard].set_position("b1", "X")
-     elsif params["c1"] == "c1"
-		redirect "/Invalid_Move?player=X" if session[:gameboard].check_position?("c1") == false
-     	session[:gameboard].set_position("c1", "X")
+     if params[:square] == params[:square]
+		redirect "/Invalid_Move?player=X" if session[:gameboard].check_position?(params[:square]) == false
+     	session[:gameboard].set_position(params[:square], "X")
      end     
     end
 	redirect "/winner?player=X" if session[:freshgame].check_for_wins(session[:gameboard].setup, "X") == true
@@ -148,6 +125,7 @@ post '/moveX' do
 end
 
 post '/moveO' do
+	square = params[:square]
 	freshgame = params[:freshgame]
     playerX = params[:playerX]
     playerO = params[:playerO]
@@ -169,33 +147,9 @@ post '/moveO' do
 	   session[:gametype] == 6 
 			session[:playerO].get_move(session[:gameboard],"O") 
  	else
-     if params["a3"] == "a3"
-		redirect "/Invalid_Move?player=O" if session[:gameboard].check_position?("a3") == false
-     	session[:gameboard].set_position("a3", "O")
-     elsif params["b3"] == "b3"
-		redirect "/Invalid_Move?player=O" if session[:gameboard].check_position?("b3") == false
-     	session[:gameboard].set_position("b3", "O")
-     elsif params["c3"] == "c3"
-		redirect "/Invalid_Move?player=O" if session[:gameboard].check_position?("c3") == false
-     	session[:gameboard].set_position("c3", "O")
-     elsif params["a2"] == "a2"
-		redirect "/Invalid_Move?player=O" if session[:gameboard].check_position?("a2") == false
-     	session[:gameboard].set_position("a2", "O")
-     elsif params["b2"] == "b2"
-		redirect "/Invalid_Move?player=O" if session[:gameboard].check_position?("b2") == false
-     	session[:gameboard].set_position("b2", "O")
-     elsif params["c2"] == "c2"
-		redirect "/Invalid_Move?player=O" if session[:gameboard].check_position?("c2") == false
-     	session[:gameboard].set_position("c2", "O")
-     elsif params["a1"] == "a1"
-		redirect "/Invalid_Move?player=O" if session[:gameboard].check_position?("a1") == false
-     	session[:gameboard].set_position("a1", "O")
-     elsif params["b1"] == "b1"
-		redirect "/Invalid_Move?player=O" if session[:gameboard].check_position?("b1") == false
-     	session[:gameboard].set_position("b1", "O")
-     elsif params["c1"] == "c1"
-		redirect "/Invalid_Move?player=O" if session[:gameboard].check_position?("c1") == false
-     	session[:gameboard].set_position("c1", "O")
+     if params[:square] == params[:square]
+		redirect "/Invalid_Move?player=O" if session[:gameboard].check_position?(params[:square]) == false
+     	session[:gameboard].set_position(params[:square], "O")
 	 end
 	end
 	redirect "/winner?player=O" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
