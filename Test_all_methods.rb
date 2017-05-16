@@ -5,51 +5,57 @@ require_relative "game.rb"
 
 class Testallmethods < Minitest::Test
 
-	# def test_nothing_present_except_integers_true
-	# 	isbn_string="0123456789"
-	# 	assert_equal(true,remove_unwanted(isbn_string))
-	# end
-
-	# def test_for_new_board
-	# 	player = Sequential.new(null)
-	# 	move = player.get_move()
-	# 	assert_equal(result,board.setup)
-	# end
-
-	# def test_for_O_at_b2
-	# 	board = GameBoard.new
-	# 	board.set_position(:b2, "O")
-	# 	result = {:b2 => "O"}		
-	# 	assert_equal(result,board.setup)
-	# end		
-
-# In game.rb:
-
-
 =begin	
-https://www.ruby-forum.com/topic/267209
 
 In game.rb:
-	initialize(p1, p2, reset)
-	check_for_wins(currentBoard, player_name)
-	get_move(currentgame, player_name)
-	game_flow_status_to_proceed_or_to_declare_tie_or_to_declare_win_and_if_to_reset_to_new_game(terminal, newgame, player_name)
-	ask_to_reset_game()
-	declare_tie(terminal, newgame)
-
-	In all game.rb sub-classes:
-	run_game(playerX, playerO, response)
+X	initialize(p1, p2, reset)
+X	check_for_wins(currentBoard, player_name)
 
 =end
 
+#	initialize(p1, p2, reset) method:
+	def test_params_of_initialized_game
+		game = Game.new("X", "O", "N")
+		@player1 = "X"
+		@player2 = "O"
+		@reset = "N"
+		assert_equal(@player1, "X")
+		assert_equal(@player2, "O")
+		assert_equal(@reset, "N")
+	end
+
+#	check_for_wins(currentBoard, player_name) method:
+	def test_returns_true_if_win_present
+		game = Game.new("X", "O", "N")
+		currentBoard = {
+			     a1: "X", a2: "O", a3: "X",
+			     b1: "O", b2: "X", b3: "O",
+			     c1: "O", c2: "X", c3: "X"
+		         }
+		result = game.check_for_wins(currentBoard, "X")
+		assert_equal(true,result)
+	end
+
+	def test_returns_nil_if_no_win_present
+		game = Game.new("X", "O", "N")
+		currentBoard = {
+			     a1: "X", a2: "O", a3: "X",
+			     b1: "O", b2: "X", b3: "O",
+			     c1: "O", c2: "X", c3: "O"
+		         }
+		result = game.check_for_wins(currentBoard, "X")
+		assert_nil(nil,result)
+	end
+
+
 # ********************************************************
-
-# In gameboard.rb:
-# 	initialize()
-#X 	set_position(position, character)
-#X 	check_position?(position)
-#X 	check_full?()
-
+=begin
+ In gameboard.rb:
+X 	initialize()
+X 	set_position(position, character)
+X 	check_position?(position)
+X 	check_full?()
+=end
 
 # 	initialize() method:
 	def test_params_of_initialized_board
@@ -109,24 +115,31 @@ In game.rb:
 		assert_equal(true,result)
 	end
 
-# ********************************************************
+# *****************************************************
+=begin
+In player.rb:
+X	initialize(input_name)
+
+	In all player.rb sub-classes:
+	get_move(newgame, player_name)
+=end
 
 
+#	get_move(currentgame, player_name) method:
+# get_move(newgame, player_name)
+	# def test_get_move_for_an_AI_sequential_player
+	# 	player = ComputerSequential.new("X")
+	# 	newgame = GameBoard.new
+	# 	p newgame
+	# 	positionsought = {
+	# 		       a1: "X", a2: " ", a3: " ",
+	# 		       b1: " ", b2: " ", b3: " ",
+	# 		       c1: " ", c2: " ", c3: " "
+	# 	          }
+	# 	player_name = "X"
+	# 	result = player.get_move(newgame, player_name)
+	# 	assert_equal(positionsought, result)
+	# end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# *****************************************************
 end
