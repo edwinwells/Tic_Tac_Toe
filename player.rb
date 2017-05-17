@@ -535,4 +535,4 @@ class ComputerUnbeatable < Player
 
 	end
 
-end #trick
+end
