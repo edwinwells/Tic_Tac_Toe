@@ -40,6 +40,11 @@ get '/leveloneHumanO' do
 	session[:reset] = "N"
 	session[:freshgame] = VersusSequential.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
+	session[:gameboard].setup = {
+					   a1: "X", a2: " ", a3: " ",
+					   b1: " ", b2: " ", b3: " ",
+					   c1: " ", c2: " ", c3: " "
+				       }
 	session[:gametype] = 3
 	gametype = params[:gametype]
 	session[:current_player] = "X"
@@ -51,7 +56,7 @@ get '/leveltwoHumanX' do
 	session[:playerO] = ComputerRandom.new("O")
 	session[:reset] = "N"
 	session[:freshgame] = VersusRandom.new(session[:playerX], session[:playerO], session[:reset])
-	session[:gameboard] = GameBoard.new
+	session[:gameboard] = GameBoard.new	
 	session[:gametype] = 4
 	gametype = params[:gametype]
 	session[:current_player] = "X"
@@ -64,6 +69,11 @@ get '/leveltwoHumanO' do
 	session[:reset] = "N"
 	session[:freshgame] = VersusRandom.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
+	session[:gameboard].setup = {
+					   a1: "X", a2: " ", a3: " ",
+					   b1: " ", b2: " ", b3: " ",
+					   c1: " ", c2: " ", c3: " "
+				       }	
 	session[:gametype] = 5
 	gametype = params[:gametype]
 	session[:current_player] = "X"
@@ -88,6 +98,11 @@ get '/levelthreeHumanO' do
 	session[:reset] = "N"
 	session[:freshgame] = VersusUnbeatable.new(session[:playerX], session[:playerO], session[:reset])
 	session[:gameboard] = GameBoard.new
+	session[:gameboard].setup = {
+					   a1: "X", a2: " ", a3: " ",
+					   b1: " ", b2: " ", b3: " ",
+					   c1: " ", c2: " ", c3: " "
+				       }	
 	session[:gametype] = 7
 	gametype = params[:gametype]
 	session[:current_player] = "X"
@@ -105,32 +120,71 @@ post '/move' do
 	gametype = params[:gametype]
 	current_player = session[:current_player]
 
-	if session[:current_player] == "X"
-		if session[:gametype] == 3 ||
-		   session[:gametype] == 5 ||
-		   session[:gametype] == 7 
-				session[:playerX].get_move(session[:gameboard],session[:current_player])
-	   	else
-			redirect "/invalid_move?player=#{current_player}&action=/move#{current_player}" if session[:gameboard].check_position?(params[:square]) == false
-	     	session[:gameboard].set_position(params[:square], session[:current_player])
-	    end
-	else
+         #set-up for session[:gametype] == 2,4,6:
 		if session[:gametype] == 2 ||
 		   session[:gametype] == 4 ||
-		   session[:gametype] == 6 
-				session[:playerO].get_move(session[:gameboard],session[:current_player])
+		   session[:gametype] == 6  
+		   session[:current_player] == "X"
+
+		   redirect "/invalid_move?player=X&action=/moveX" if session[:gameboard].check_position?(params[:square]) == false
+		   session[:playerX].get_move(session[:gameboard], "X", params[:square])
+		   redirect "/winner?player=X" if session[:freshgame].check_for_wins(session[:gameboard].setup, current_player) == true
+		   redirect "/drawn_game" if session[:gameboard].check_full?() == true	     	
+		   session[:square] = " "
+
+	   	   session[:playerO].get_move(session[:gameboard],"O")
+		   redirect "/winner?player=O" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
+		   redirect "/drawn_game" if session[:gameboard].check_full?() == true	
+
+         #set-up for session[:gametype] == 3,5,7:
+		elsif
+			 session[:gametype] == 3 ||
+			 session[:gametype] == 5 ||
+			 session[:gametype] == 7 
+			 session[:current_player] == "O"
+
+		     if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == false && session[:gameboard].check_full?() == true
+		     	 	redirect "/drawn_game"
+		     elsif session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true && session[:gameboard].check_full?() == true
+		      	    redirect "/winner?player=O"
+		     elsif session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true && session[:gameboard].check_full?() == false
+		      	    redirect "/winner?player=O"
+		 	 end			 
+
+		     redirect "/invalid_move?player=O&action=/moveO" if session[:gameboard].check_position?(params[:square]) == false
+		     session[:playerO].get_move(session[:gameboard], "O", params[:square])			 
+		     if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == false && session[:gameboard].check_full?() == true
+		     	 	redirect "/drawn_game"
+		     elsif session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true && session[:gameboard].check_full?() == true
+		      	    redirect "/winner?player=O"
+		     elsif session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true && session[:gameboard].check_full?() == false
+		      	    redirect "/winner?player=O"
+		 	 end
+
+	   	     session[:playerX].get_move(session[:gameboard],"X")
+		     redirect "/winner?player=X" if session[:freshgame].check_for_wins(session[:gameboard].setup, "X") == true			 
+		     if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == false && session[:gameboard].check_full?() == true
+		     	 	redirect "/drawn_game"
+		     elsif session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true && session[:gameboard].check_full?() == true
+		      	    redirect "/winner?player=O"
+		     elsif session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true && session[:gameboard].check_full?() == false
+		      	    redirect "/winner?player=O"
+		 	 end
+			 redirect "/drawn_game" if session[:gameboard].check_full?() == true
+		     	 	
+         #  Good for session[:gametype] == 1:
 	   	else
-			redirect "/invalid_move?player=#{current_player}&action=/move#{current_player}" if session[:gameboard].check_position?(params[:square]) == false
-	     	session[:gameboard].set_position(params[:square], session[:current_player])
-	    end		
+		   current_player = params[:current_player]
+		   redirect "/invalid_move?player=#{current_player}&action=/move#{current_player}" if session[:gameboard].check_position?(params[:square]) == false
+     	   session[:gameboard].set_position(params[:square], session[:current_player])
+		   redirect "/winner?player=#{session[:current_player]}" if session[:freshgame].check_for_wins(session[:gameboard].setup, session[:current_player]) == true
+		   redirect "/drawn_game" if session[:gameboard].check_full?() == true	     	
+		   if session[:current_player] == "X"
+			    session[:current_player] = "O"
+		   else
+				session[:current_player] = "X"
+		   end	
 	end
-	redirect "/winner?player=#{current_player}" if session[:freshgame].check_for_wins(session[:gameboard].setup, current_player) == true
-	redirect "/drawn_game" if session[:gameboard].check_full?() == true
-	if session[:current_player] == "X"
-		session[:current_player] = "O"
-	else
-		session[:current_player] = "X"
-	end		
     erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], value: value, gametype: session[:gametype], current_player: current_player}
 end
 

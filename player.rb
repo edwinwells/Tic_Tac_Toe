@@ -6,7 +6,7 @@ class Player
 		@player = input_name
 	end
 
-   def get_move(newgame, player_name)
+   def get_move(newgame, player_name, square_sought)
       newgame.set_position(square_sought, player_name)
    end
 
