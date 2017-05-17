@@ -115,31 +115,4 @@ X 	check_full?()
 		assert_equal(true,result)
 	end
 
-# *****************************************************
-=begin
-In player.rb:
-X	initialize(input_name)
-
-	In all player.rb sub-classes:
-	get_move(newgame, player_name)
-=end
-
-
-#	get_move(currentgame, player_name) method:
-# get_move(newgame, player_name)
-	# def test_get_move_for_an_AI_sequential_player
-	# 	player = ComputerSequential.new("X")
-	# 	newgame = GameBoard.new
-	# 	p newgame
-	# 	positionsought = {
-	# 		       a1: "X", a2: " ", a3: " ",
-	# 		       b1: " ", b2: " ", b3: " ",
-	# 		       c1: " ", c2: " ", c3: " "
-	# 	          }
-	# 	player_name = "X"
-	# 	result = player.get_move(newgame, player_name)
-	# 	assert_equal(positionsought, result)
-	# end
-
-# *****************************************************
 end

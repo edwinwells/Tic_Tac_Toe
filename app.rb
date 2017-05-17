@@ -18,7 +18,8 @@ get '/twohumans' do
 	session[:gameboard] = GameBoard.new
 	session[:gametype] = 1
 	gametype = params[:gametype]
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype]}
+	session[:current_player] = "X"
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
 end
 
 get '/leveloneHumanX' do
@@ -29,8 +30,8 @@ get '/leveloneHumanX' do
 	session[:gameboard] = GameBoard.new
 	session[:gametype] = 2
 	gametype = params[:gametype]
-
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype]}
+	session[:current_player] = "X"
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
 end
 
 get '/leveloneHumanO' do
@@ -41,8 +42,8 @@ get '/leveloneHumanO' do
 	session[:gameboard] = GameBoard.new
 	session[:gametype] = 3
 	gametype = params[:gametype]
-
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype]}
+	session[:current_player] = "X"
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
 end
 
 get '/leveltwoHumanX' do
@@ -53,8 +54,8 @@ get '/leveltwoHumanX' do
 	session[:gameboard] = GameBoard.new
 	session[:gametype] = 4
 	gametype = params[:gametype]
-
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype]}
+	session[:current_player] = "X"
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
 end
 
 get '/leveltwoHumanO' do
@@ -65,8 +66,8 @@ get '/leveltwoHumanO' do
 	session[:gameboard] = GameBoard.new
 	session[:gametype] = 5
 	gametype = params[:gametype]
-
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype]}
+	session[:current_player] = "X"
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
 end
 
 get '/levelthreeHumanX' do
@@ -77,8 +78,8 @@ get '/levelthreeHumanX' do
 	session[:gameboard] = GameBoard.new
 	session[:gametype] = 6
 	gametype = params[:gametype]
-
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype]}
+	session[:current_player] = "X"
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
 end
 
 get '/levelthreeHumanO' do
@@ -89,11 +90,11 @@ get '/levelthreeHumanO' do
 	session[:gameboard] = GameBoard.new
 	session[:gametype] = 7
 	gametype = params[:gametype]
-
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype]}
+	session[:current_player] = "X"
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
 end
  
-post '/moveX' do
+post '/move' do
 	square = [:square]
 	freshgame = params[:freshgame]
     playerX = params[:playerX]
@@ -101,78 +102,54 @@ post '/moveX' do
     gameboard = params[:gameboard]
 	reset = params[:reset]
 	value = params[:value]
-	gameboard = params["gameboard"]
 	gametype = params[:gametype]
+	current_player = session[:current_player]
 
-	if session[:gametype] == 3 ||
-	   session[:gametype] == 5 ||
-	   session[:gametype] == 7 
-			session[:playerX].get_move(session[:gameboard],"X")
-
-   	else
-     if params[:square] == params[:square]
-		redirect "/Invalid_Move?player=X" if session[:gameboard].check_position?(params[:square]) == false
-     	session[:gameboard].set_position(params[:square], "X")
-     end     
-    end
-	redirect "/winner?player=X" if session[:freshgame].check_for_wins(session[:gameboard].setup, "X") == true
-	redirect "/drawn_game" if session[:gameboard].check_full?() == true
-    erb :Basic_Table2, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], value: value, gametype: session[:gametype]}
-end
-
-post '/moveO' do
-	square = params[:square]
-	freshgame = params[:freshgame]
-    playerX = params[:playerX]
-    playerO = params[:playerO]
-    gameboard = params[:gameboard]
-	reset = params[:reset]
-	value = params[:value]
-	gameboard = params["gameboard"]
-	gametype = params[:gametype]
-
-	if session[:gametype] == 2 ||
-	   session[:gametype] == 4 ||
-	   session[:gametype] == 6 
-			session[:playerO].get_move(session[:gameboard],"O")
-
- 	else
-     if params[:square] == params[:square]
-		redirect "/Invalid_Move?player=O" if session[:gameboard].check_position?(params[:square]) == false
-     	session[:gameboard].set_position(params[:square], "O")
-	 end
+	if session[:current_player] == "X"
+		if session[:gametype] == 3 ||
+		   session[:gametype] == 5 ||
+		   session[:gametype] == 7 
+				session[:playerX].get_move(session[:gameboard],session[:current_player])
+	   	else
+			redirect "/invalid_move?player=#{current_player}&action=/move#{current_player}" if session[:gameboard].check_position?(params[:square]) == false
+	     	session[:gameboard].set_position(params[:square], session[:current_player])
+	    end
+	else
+		if session[:gametype] == 2 ||
+		   session[:gametype] == 4 ||
+		   session[:gametype] == 6 
+				session[:playerO].get_move(session[:gameboard],session[:current_player])
+	   	else
+			redirect "/invalid_move?player=#{current_player}&action=/move#{current_player}" if session[:gameboard].check_position?(params[:square]) == false
+	     	session[:gameboard].set_position(params[:square], session[:current_player])
+	    end		
 	end
-	redirect "/winner?player=O" if session[:freshgame].check_for_wins(session[:gameboard].setup, "O") == true
+	redirect "/winner?player=#{current_player}" if session[:freshgame].check_for_wins(session[:gameboard].setup, current_player) == true
 	redirect "/drawn_game" if session[:gameboard].check_full?() == true
-
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], value: value, gametype: session[:gametype]}
+	if session[:current_player] == "X"
+		session[:current_player] = "O"
+	else
+		session[:current_player] = "X"
+	end		
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], value: value, gametype: session[:gametype], current_player: current_player}
 end
 
-get '/Invalid_Move' do
+get '/invalid_move' do
 	player = params[:player]
-
-	if params[:player] == "X"
-		table = "Basic_Table.erb"
-	else table = "Basic_Table2.erb"
-	end
-
-    erb :Invalid_Move, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], gametype: session[:gametype], player: player, table: table}
+	action = params[:action]
+    erb :Invalid_Move, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], gametype: session[:gametype], player: player, action: action}
 end
 
 get '/Basic_Table.erb' do
-    erb :Basic_Table,  :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], gametype: session[:gametype]}
-end
-get '/Basic_Table2.erb' do
-    erb :Basic_Table2,  :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], gametype: session[:gametype]}
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset], gameboard: session[:gameboard], gametype: session[:gametype], action: session[:action]}
 end
 
 get "/drawn_game" do
-	erb:Drawn_game, :locals => {gameboard: session[:gameboard]}
+	erb :drawn_game, :locals => {gameboard: session[:gameboard]}
 end
 
 get "/winner" do
 	player = params[:player]
-
-		erb:win, :locals => {gameboard: session[:gameboard], player: player}
+		erb :win, :locals => {gameboard: session[:gameboard], player: player}
 end
 end
