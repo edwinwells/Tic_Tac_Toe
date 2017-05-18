@@ -19,7 +19,7 @@ get '/twohumans' do
 	session[:gametype] = 1
 	gametype = params[:gametype]
 	session[:current_player] = "X"
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO], freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
 end
 
 get '/leveloneHumanX' do
@@ -30,7 +30,7 @@ get '/leveloneHumanX' do
 	session[:gameboard] = GameBoard.new
 	session[:gametype] = 2
 	gametype = params[:gametype]
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype]}
 end
 
 get '/leveloneHumanO' do
@@ -46,7 +46,7 @@ get '/leveloneHumanO' do
 				       }
 	session[:gametype] = 3
 	gametype = params[:gametype]
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype]}
 end
 
 get '/leveltwoHumanX' do
@@ -57,7 +57,7 @@ get '/leveltwoHumanX' do
 	session[:gameboard] = GameBoard.new	
 	session[:gametype] = 4
 	gametype = params[:gametype]
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype]}
 end
 
 get '/leveltwoHumanO' do
@@ -73,7 +73,7 @@ get '/leveltwoHumanO' do
 				       }	
 	session[:gametype] = 5
 	gametype = params[:gametype]
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype]}
 end
 
 get '/levelthreeHumanX' do
@@ -84,7 +84,7 @@ get '/levelthreeHumanX' do
 	session[:gameboard] = GameBoard.new
 	session[:gametype] = 6
 	gametype = params[:gametype]
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype]}
 end
 
 get '/levelthreeHumanO' do
@@ -101,7 +101,7 @@ get '/levelthreeHumanO' do
 	session[:gametype] = 7
 	gametype = params[:gametype]
 	# session[:current_player] = "X"
-    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype], current_player: session[:current_player]}
+    erb :Basic_Table, :locals => {playerX: session[:playerX], playerO: session[:playerO],freshgame: session[:freshgame], reset: session[:reset],gameboard: session[:gameboard], gametype: session[:gametype]}
 end
  
 post '/move' do
