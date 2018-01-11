@@ -252,7 +252,7 @@ class ComputerUnbeatable < Player
    					"a3"
    				elsif newgame.setup >= {a1: "X", b2: "O", c2: "X"} ||
    					  newgame.setup >= {a1: "X", b2: "O", b1: "X"} ||
-                    newgame.setup >= {a1: "X", b2: "O", a3: "X"} ||
+                    newgame.setup >= {a1: "O", b2: "X", a3: "X"} ||
    				     newgame.setup >= {a1: "O", b2: "X", c3: "X"} ||
    				     newgame.setup >= {c3: "X", b2: "O", c2: "X"} ||
                     newgame.setup >= {a2: "X", b2: "O", c2: "X"}
@@ -286,7 +286,7 @@ class ComputerUnbeatable < Player
    				    newgame.setup >= {a1: "O", b2: "X", c3: "X", c1: "O", a2: "X"} ||
    				    newgame.setup >= {a1: "O", b2: "X", c3: "X", c1: "O", a3: "X"} ||
    				    newgame.setup >= {a1: "O", b2: "X", c3: "X", c1: "O", b3: "X"} ||
-   				    newgame.setup >= {a1: "O", b2: "X", c3: "X", c1: "O", c2: "X"} ||
+                   newgame.setup >= {a1: "O", b2: "X", c3: "X", c1: "O", b3: "X"} ||
 				       newgame.setup >= {c2: "X", b2: "O", c1: "X", c3: "O", a1: "X"} ||
 				   	 newgame.setup >= {c1: "X", b2: "O", b3: "X", c3: "O", a1: "X"} ||
 				   	 newgame.setup >= {c1: "X", b2: "O", c3: "X", c2: "O", a2: "X"} ||
@@ -294,6 +294,11 @@ class ComputerUnbeatable < Player
 				   	 newgame.setup >= {a3: "X", b2: "O", c3: "X", b3: "O", a1: "X"} ||
 				   	 newgame.setup >= {a3: "X", b2: "O", c3: "X", b3: "O", c2: "X"} ||
 				   	 newgame.setup >= {a3: "X", b2: "O", c3: "X", b3: "O", c1: "X"} ||
+                   newgame.setup >= {a1: "O", b2: "X", a3: "X", c1: "O", b3: "X"} ||
+                   newgame.setup >= {a1: "O", b2: "X", a3: "X", c1: "O", c3: "X"} ||
+                   newgame.setup >= {a1: "O", b2: "X", a3: "X", c1: "O", a2: "X"} ||
+                   newgame.setup >= {a1: "O", b2: "X", a3: "X", c1: "O", c2: "X"} ||
+                   newgame.setup >= {a1: "O", b2: "X", c3: "X", c1: "O", c2: "X"} ||
    					 newgame.setup >= {a1: "X", b2: "O", a2: "X", a3: "O", c1: "X"} ||
    					 newgame.setup >= {a1: "X", b2: "O", b3: "X", a3: "O", c1: "X"}
    				    "b1"
@@ -352,6 +357,7 @@ class ComputerUnbeatable < Player
    				    newgame.setup >= {c3: "X", b2: "O", c2: "X", c1: "O", a3: "X"} ||
    					 newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", a3: "X"} ||
                    newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", c3: "X"} ||
+                   newgame.setup >= {a1: "O", b2: "X", a3: "X", c1: "O", b1: "X"} ||
 					    newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", c2: "X"} ||
 					    newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", a2: "X"}	    
    					"b3"
@@ -441,8 +447,9 @@ class ComputerUnbeatable < Player
 				      newgame.setup >= {c1: "X", b2: "O", c3: "X", c2: "O", a2: "X", b1: "O", b3: "X"} ||
 				      newgame.setup >= {b2: "X", a1: "O", b1: "X", b3: "O", c2: "X", a2: "O", c1: "X"} ||
 				      newgame.setup >= {b2: "X", a1: "O", b1: "X", b3: "O", c2: "X", a2: "O", c3: "X"} ||
-                   newgame.setup >= {a2: "X", b2: "O", b1: "X", a1: "O", c3: "X", c1: "O", c2: "X"} ||
-                   newgame.setup >= {a2: "X", b2: "O", b1: "X", a1: "O", c3: "X", c1: "O", b3: "X"}
+                  newgame.setup >= {a1: "O", b2: "X", a2: "X", c2: "O", b1: "X", b3: "O", c1: "X"} ||
+                  newgame.setup >= {a2: "X", b2: "O", b1: "X", a1: "O", c3: "X", c1: "O", c2: "X"} ||
+                  newgame.setup >= {a2: "X", b2: "O", b1: "X", a1: "O", c3: "X", c1: "O", b3: "X"}
 				   "a3"
 				elsif newgame.setup >= {a1: "X", b2: "O", c3: "X", b3: "O", b1: "X", c1: "O", a3: "X"} ||
 			         newgame.setup >= {b2: "X", a1: "O", b3: "X", b1: "O", c1: "X", a3: "O", c2: "X"} ||
@@ -455,6 +462,7 @@ class ComputerUnbeatable < Player
    				   newgame.setup >= {c1: "O", b2: "X", a3: "X", b1: "O", b3: "X", c3: "O", a1: "X"} ||
  				   	newgame.setup >= {c1: "X", b2: "O", b3: "X", c3: "O", a1: "X", b1: "O", a3: "X"} ||
    					newgame.setup >= {b2: "X", a1: "O", b1: "X", b3: "O", c1: "X", a3: "O", c3: "X"} ||
+                  newgame.setup >= {a1: "O", b2: "X", a3: "X", c1: "O", b1: "X", b3: "O", c2: "X"} ||
    				   newgame.setup >= {c1: "X", b2: "O", a3: "X", b1: "O", b3: "X", c3: "O", a1: "X"} ||
    				   newgame.setup >= {b2: "X", a1: "O", b1: "X", b3: "O", c1: "X", a3: "O", c2: "X"}	   			    
 					"a2" 
@@ -481,6 +489,7 @@ class ComputerUnbeatable < Player
 				   	newgame.setup >= {a3: "X", b2: "O", c3: "X", b3: "O", b1: "X", a2: "O", c2: "X"} ||
 				   	newgame.setup >= {a3: "X", b2: "O", c2: "X", c3: "O", a1: "X", a2: "O", b3: "X"} ||
 				   	newgame.setup >= {a3: "X", b2: "O", c2: "X", c3: "O", a1: "X", a2: "O", b1: "X"} ||
+                  newgame.setup >= {a1: "O", b2: "X", a2: "X", c2: "O", b1: "X", b3: "O", a3: "X"} ||
 				   	newgame.setup >= {b2: "X", a1: "O", b1: "X", b3: "O", c2: "X", a2: "O", a3: "X"} ||
    				   newgame.setup >= {a3: "X", b2: "O", b1: "X", a2: "O", c2: "X", c3: "O", a1: "X"}
    					"c1"
@@ -508,7 +517,8 @@ class ComputerUnbeatable < Player
 				   	newgame.setup >= {a3: "X", b2: "O", c3: "X", b3: "O", b1: "X", a2: "O", c1: "X"} ||
 				      newgame.setup >= {a1: "X", b2: "O", b1: "X", c1: "O", a3: "X", a2: "O", b3: "X"} ||
 				      newgame.setup >= {a1: "X", b2: "O", b1: "X", c1: "O", a3: "X", a2: "O", c3: "X"} ||
-				      newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", b3: "X", a2: "O", c3: "X"} ||
+                  newgame.setup >= {a1: "O", b2: "X", a2: "X", c2: "O", b1: "X", b3: "O", a3: "X"} ||
+				      newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", b3: "X", a2: "O", c2: "X"} ||
 				      newgame.setup >= {a1: "X", b2: "O", c1: "X", b1: "O", b3: "X", a2: "O", a3: "X"}
    					"c2"
    				elsif newgame.setup >= {a1: "X", b2: "O", c2: "X", c1: "O", a3: "X", a2: "O", b1: "X"} ||
